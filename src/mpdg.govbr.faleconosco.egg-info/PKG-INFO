@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: mpdg.govbr.faleconosco
+Version: 1.0a1
+Summary: An add-on for Plone
+Home-page: https://pypi.python.org/pypi/mpdg.govbr.faleconosco
+Author: Samuel Carlos
+Author-email: samuel.moraisbsb@gmail.com
+License: GPL version 2
+Description: Pré-Requisitos
+        --------------
+        
+        Instalar o pandas no python que está sendo usado na instalação do plone 
+        
+        
+        '''
+        pip install pandas
+        
+        '''
+        
+        
+        
+        Contributors
+        ============
+        
+        - Samuel Carlos, samuel.moraisbsb@gmail.com
+        
+        
+        Changelog
+        =========
+        
+        
+        1.0a1 (unreleased)
+        ------------------
+        
+        - Initial release.
+          [samuel]
+        
+Keywords: Python Plone
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 5.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+  <factorytypes>
+    <type portal_type="Assunto" />
+    <type portal_type="FaleConosco" />
+    <type portal_type="Mensagem" />
+    <type portal_type="Historico" />
+  </factorytypes>
+</object>
