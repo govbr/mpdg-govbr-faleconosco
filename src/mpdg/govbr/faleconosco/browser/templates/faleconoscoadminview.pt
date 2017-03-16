@@ -1,0 +1,365 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="javascript_head_slot">
+  <script src="++resource++mpdg.govbr.faleconosco/easy_ajax.js">
+  </script>
+</metal:block>
+
+
+
+<metal:block fill-slot="main">
+<br />
+<h3 class="documentFirstHeading">Painel de Administração / Fale Conosco</h3>
+
+<div class="container-search">
+    <div class="container-filter">
+        <form action="" method="GET" class="form-filter use-ajax">
+            <div class="top-filter clearfix">
+                <div class="left call-refinar-busca">
+                    <span><span class="sign">+</span> Refinar Busca</span>
+                </div>
+
+                <div class="right">
+                    <input type="text" value="" name="SearchableText" placeholder="Busca"/>
+                </div>
+
+            </div>
+            <div class="mid-filter clearfix busca-avancada" style="display: none;">
+                <div class="cell width-2 position-0">
+                    <div>
+                        <div>
+                            <label>Status:</label>
+                        </div>
+                        <div>
+                            <div>
+                                <input type="radio" name="tipo" value="todos" />
+                                <img src="" alt="No Prazo"
+                                     tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />  Todos
+                            </div>                 
+                            <div>
+                                <input type="radio" name="tipo" value="prazo" />
+                                <img src="" alt="No Prazo"
+                                     tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />  No Prazo
+                            </div>
+                            <div>
+                                <input type="radio" name="tipo" value="alerta" />
+                                <img src="" alt="Em Alerta"
+                                     tal:attributes="src string:++resource++mpdg.govbr.faleconosco/alerta.png" />  Em Alerta
+                           </div>
+                           <div>
+                               <input type="radio" name="tipo" value="atraso" />
+                               <img src="" alt="Em Atraso"
+                                    tal:attributes="src string:++resource++mpdg.govbr.faleconosco/atraso.png" />  Em Atraso
+                           </div>
+                           <div>
+                               <input type="radio" name="tipo" value="respondido" />
+                               <img src="" alt="Respondidos"
+                                    tal:attributes="src string:++resource++mpdg.govbr.faleconosco/respondido.png" />  Respondidos
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell width-5 position-5">
+                    <div>
+                        <div>
+                            <label>Assunto</label>
+                        </div>
+                        <div>
+                            <input value="" name="assunto" placeholder="Assunto" type="text"
+                            >
+
+                            
+                        </div>
+                        <!-- <div>
+                            <select name="assunto">
+                                <option value="">Todos</option>
+                                <tal:rep repeat="item view/assuntos">
+                                    <option tal:attributes="value item/value"
+                                            tal:content="item/title"></option>
+                                </tal:rep>
+                            </select>
+                        </div> -->
+                    </div>
+                    <div>
+                        <div>
+                            <label>Responsável</label>
+                        </div>
+                        <div>
+                            <select name="responsavel">
+                                <option value="">Todos</option>
+                                <tal:rep repeat="item view/get_responsaveis_filtro">
+                                    <option tal:attributes="value item/id"
+                                            tal:content="item/id"></option>
+                                </tal:rep>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="cell width-5 position-10">
+                    <div>
+                        <label>Data de Cadastro</label>
+                    </div>
+                    <div class="dates-box clearfix">
+                        <div class="left">
+                            <div>
+                                <label>inicio</label>
+                            </div>
+                            <div>
+                                <input type="date" name="inicio" />
+                            </div>
+                        </div>
+                        <div class="left">
+                            <div>
+                                <label>término</label>
+                            </div>
+                            <div>
+                                <input type="date" name="termino" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bot-filter clearfix">
+                <div class="buttons-box right">
+                    <input type="button" name="submitted" value="Buscar" id="busca-fale-button"
+                           ajax-url="@@fale-conosco-admin" ajax-id="fale-conosco-busca" ajax-filter="fale-conosco-busca" icon="ui-icon-refresh"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="legendas">
+    <ul>
+        <li><b>Legendas:</b></li>
+        <li><img src="" alt="No Prazo"
+                 tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />No Prazo</li>
+        <li><img src="" alt="Em Alerta"
+                 tal:attributes="src string:++resource++mpdg.govbr.faleconosco/alerta.png" />Em Alerta</li>
+        <li><img src="" alt="Em Atraso"
+                 tal:attributes="src string:++resource++mpdg.govbr.faleconosco/atraso.png" />Em Atraso</li>
+        <li><img src="" alt="Respondidos"
+                 tal:attributes="src string:++resource++mpdg.govbr.faleconosco/respondido.png" />Respondidos</li>
+    </ul>
+
+</div>
+
+<div class="fale-tabela-resultado">
+    <ul>
+        <!-- <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
+        <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li> -->
+        <li tal:condition="python:view.is_admin()">
+            <a href="@@responder-selecionados" class="fale-responder-selecionados">Responder selecionados</a>
+        </li>
+        <li tal:condition="python:view.is_user()">
+            <a href="@@fale-conosco-admin" onclick="alert('Você não tem permissão para realizar essa ação.')">Responder selecionados</a>
+        </li>
+        <li tal:condition="python:view.is_admin()">
+            <a href="@@encaminhar-mensagem" class="fale-encaminhar-selecionados">Encaminhar selecionados</a>
+        </li>
+        <li tal:condition="python:view.is_user()">
+            <a href="@@fale-conosco-admin" >Encaminhar selecionados</a>
+        </li>
+        <li><a href="#" id="fale-gerar-charts">Gerar Gráfico</a></li>
+        <li><a href="" tal:attributes="href string:@@mensagens-arquivadas-admin" class="">Mensagens arquivadas</a></li>
+
+    </ul>
+  </div>
+
+<div class="container-results">
+    <div class="results-search" ajax-content="fale-conosco-busca">
+        <div class="table-box"
+             tal:define="results view/fale_conosco;
+                         Batch python:modules['Products.CMFPlone'].Batch;
+                         b_size python:20;
+                         b_start python:0;
+                         b_start request/b_start | b_start;
+                         batch python:Batch(results, b_size, int(b_start), orphan=1);"
+             tal:condition="results">
+            <table id="listing-table" class="auto-table" width="100%">
+                <thead>
+                <tr>
+                    <th style="width:35px;">
+                    <input type="checkbox"  id="marcartabela"> </th>
+                    <th style="width: 68px;">Status</th>
+                    <th style="width: 100px;">Cadastro</th>
+                    <th>Assunto</th>
+                    <th style="width: 160px;">Remetente</th>
+                    <th>Responsável</th>
+                </tr>
+                </thead>
+                <tal:semresultado condition="python: not batch">
+                <tr>
+                    <td colspan="5">
+                            <center><p>Não foram encontrados resultados para sua busca.</p></center>
+                    </td>
+                </tr>
+                </tal:semresultado>
+                <tal:block repeat="item batch">
+                    <tr class="fale-mais-mensagem"
+                        tal:define="zebra python:repeat['item'].odd and 'odd' or 'even'"
+                        tal:attributes="class string:fale-mais-mensagem ${zebra}">
+                        <td tal:define="status item/status">
+
+                            <input class="fale-select" name="fale-select" type="checkbox" value="item/uid"
+                                                       tal:condition="python: status != 'respondido'"
+                                                       tal:attributes="value item/uid
+                                                       "/>
+
+                        </td>
+
+                        <td tal:define="status item/status" style="text-align: center;">
+                            <a href="#" class="fale-mais-mensagem">
+                                <img src="" alt=""
+                                     tal:attributes="alt status;
+                                                     src string:++resource++mpdg.govbr.faleconosco/${status}.png" />
+                            </a>
+                        </td>
+                        <td tal:content="item/data"></td>
+                        <td tal:content="item/assunto"></td>
+                        <td tal:content="item/nome"></td>
+                        <td tal:content="item/responsavel" class="responsavel"></td>
+                    </tr>
+                    <tr class="fale-mensagens" id="" tal:attributes="id item/uid">
+                        <td colspan="6"
+                            tal:define="UID item/uid;
+                                        acao context/REQUEST/acao|nothing;
+                                        msg context/REQUEST/msg|nothing;
+                                        member context/@@plone_portal_state/member;">
+
+                            <h1 tal:content="item/assunto"></h1>
+                            <tal:mensagem repeat="mensagem python:context.restrictedTraverse('@@mensagens').get_mensagens(uid=UID)">
+
+                              <!-- cabeçalho da msg -->
+                              <div class="fale-mensagem-cabecalho" tal:condition="not: repeat/mensagem/start">
+                                  <span class="negrito"
+                                        tal:content="python: mensagem['estado'].capitalize()"></span>
+                                  <span tal:content="structure mensagem/usuario"></span>
+                                  <span tal:content="mensagem/data" style="float:right;"></span>
+                              </div>
+                              <!-- fim cabeçalho da msg -->
+
+                              <!-- conteudo da msg -->
+                              <div class="fale-mensagem">
+                                  <span class="negrito"> Mensagem: </span>
+                                  <div class="fale-mensagem-texto"
+                                       tal:content="mensagem/mensagem"></div>
+                              </div>
+                              <!-- fim conteudo da msg -->
+
+                              <br />
+
+                              <div tal:define="resp mensagem/responsavel;
+                                               estado mensagem/estado"
+                                   tal:condition="python: not acao and
+                                                  repeat['mensagem'].end"
+                                   class="fale-mensagem-acao-responder-encaminhar">
+
+                                    <p>
+                                      <span class="negrito">Ação:</span>
+
+                                      <span tal:define="resp_action python:view.get_responder_url(resp, UID)"
+                                            tal:condition="python:view.can_reply(estado, resp)">
+                                        <a href="#" id="fale-mensagem-responder-new-page"
+                                           tal:attributes="href string:${context/portal_url}/${resp_action}">Responder</a>
+                                      </span>
+
+                                      <span tal:condition="python:view.can_reply(estado, resp)">
+                                        | <a href="@@usuarios" class="fale-mensagem-encaminhar link-overlay"
+                                             tal:attributes="id string:fale-encaminhar-${repeat/item/number};
+                                                             rel string:#pb_${repeat/item/number}">Encaminhar</a>
+                                      </span>
+
+                                      <span tal:condition="python:view.can_rescue(item, estado)">
+                                        | <a href="#" id="fale-mensagem-resgatar">Resgatar</a>
+                                      </span>
+
+                                      <span tal:condition="view/is_admin">
+                                        | <a href="" id="fale-mensagem-arquivar"
+                                             tal:attributes="href string:${context/portal_url}/@@justificar-arquivamento-de-mensagem?uids=${UID}">Arquivar</a>
+                                      </span>
+                                    </p>
+
+                              </div>
+
+                              <div id="fale-mensagem-form" />
+
+                              <div class="fale-mensagem-form" style="display: none" tal:condition="repeat/mensagem/end">
+
+                                    <form action="@@add-mensagem" name="add-mensagem" method="post"
+                                          id="fale-mensagem-form-id" tal:attributes="id string:fale-encaminhar-${repeat/item/number}"  >
+                                        <input type="hidden" name="nome" value="" tal:attributes="value mensagem/nome" />
+                                        <input type="hidden" name="email" value="" tal:attributes="value mensagem/email" />
+                                        <input type="hidden" name="responsavel" value="" tal:attributes="value mensagem/responsavel" />
+                                        <input type="hidden" name="assunto" value="" tal:attributes="value mensagem/assunto" />
+                                        <input type="hidden" name="pai" value="" tal:attributes="value mensagem/pai" />
+                                        <div class="fale-mensagem-header">
+                                            <span class="fale-responder-email"
+                                                  style="display:none"><b class="negrito">Resposta:</b> <span tal:replace="mensagem/email" /></span>
+                                            <span class="fale-encaminhar-email"
+                                                  style="display:none"><b class="negrito">Encaminhado</b> </span>
+                                            <span class="fale-resgatar-email"
+                                                  style="display:none"><b class="negrito">Resgatado</b> <span tal:replace="member" /></span>
+                                            <span tal:content="mensagem/data" style="float: right">data</span>
+                                        </div>
+                                        <div class="fale-mensagem-corpo" id=""
+                                             tal:attributes="id string:fale-mensagem-corpo-${repeat/item/number}">
+                                            <textarea rows="5" name="mensagem"></textarea>
+                                        </div>
+                                        <div class="fale-mensagem-acao">
+                                            <span><b class="negrito">Adicionar:</b>
+                                                <a href="@@textos-prontos" class="fale-inserir-textos"
+                                                   tal:attributes="id string:fale-mensagem-corpo-${repeat/item/number}">Textos Prontos</a>   |
+                                                <a href="@@inserir-faq" class="fale-inserir-faq"
+                                                   tal:attributes="id string:fale-mensagem-corpo-${repeat/item/number}">FAQ</a>
+                                            </span>
+                                            <input type="button" id="fale-descartar" style="float: right;" value="Descartar" />
+                                            <input style="float: right; margin: 0px 5px;" type="submit" class="fale-mensagem-form-submit" value="Enviar" />
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </tal:mensagem>
+                        </td>
+                    </tr>
+                </tal:block>
+            </table>
+
+            <div class="fale-tabela-resultado"
+                 tal:condition="results" >
+
+                 <ul>
+                    <!-- <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
+                    <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li> -->
+                    <li tal:condition="python:view.is_admin()">
+                      <a href="@@responder-selecionados" class="fale-responder-selecionados">Responder selecionados</a>
+                  </li>
+                  <li tal:condition="python:view.is_user()">
+                      <a href="@@fale-conosco-admin" onclick="alert('Você não tem permissão para realizar essa ação.')">Responder selecionados</a>
+                  </li>
+                  <li tal:condition="python:view.is_admin()">
+                      <a href="@@encaminhar-mensagem" class="fale-encaminhar-selecionados">Encaminhar selecionados</a>
+                  </li>
+                  <li tal:condition="python:view.is_user()">
+                      <a href="@@fale-conosco-admin"  onclick="alert('Você não tem permissão para realizar essa ação.')" >Encaminhar selecionados</a>
+                  </li>
+                  <li><a href="#" id="fale-gerar-charts">Gerar Gráfico</a></li>
+                  <li><a href="" tal:attributes="href string:@@mensagens-arquivadas-admin" class="">Mensagens arquivadas</a></li>
+                  </ul>
+
+           </div>
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
+        </div>
+
+    </div>
+    
+</div>
+
+</metal:block>
+
+</html>

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="example.dexterityforms"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+
+    <h1 class="documentFirstHeading">Fale Conosco</h1>
+
+    <div tal:define="dados view/dados">
+        <h3>
+              <p>Obrigado <span tal:content="dados/nome">NOME</span>  pelo seu contato!</p>
+                <b >Sua mensagem:</b> 
+                <ul>
+        ​             <li>Título: <i><span tal:content="dados/titulo">TITULO</span></i></li> 
+                     <li>Mensagem: <i><span tal:content="dados/mensagem">MENSAGEM</span></i></li>
+                 </ul> <br>
+                 <p> <b>Por favor, confirme o envio da sua mensagem no e-mail <span tal:content="dados/email">EMAIL</span> .Após sua confirmação, a sua mensagem será enviada para os responsáveis do Sítio do Governo Eletrônico.</p> 
+        </h3>
+
+          <a href="" tal:attributes= "href view/get_portal_url">Voltar pagina inicial </a> 
+    </div>
+
+</metal:block>
+
+</html>

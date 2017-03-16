@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup"
+  i18n_domain="mpdg.govbr.faleconosco">
+
+<gs:upgradeStep
+    title="Update content types namespace"
+    description="Update FaleConosco, Historico and Mensagem content types to new namespace"
+    source="*"
+    destination="1000"
+    handler=".upgrades.upgrade_faleconosco_namespace.upgrade_fale_conosco"
+    profile="mpdg.govbr.faleconosco:default" />
+
+</configure>
