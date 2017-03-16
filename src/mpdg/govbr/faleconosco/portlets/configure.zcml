@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="mpdg.govbr.faleconosco">
+
+  <plone:portlet
+      name="mpdg.govbr.faleconosco"
+      interface=".faleconosco.IFaleConoscoPortlet"
+      assignment=".faleconosco.Assignment"
+      view_permission="zope2.View"
+      renderer=".faleconosco.Renderer"
+      addview=".faleconosco.AddForm"
+      />
+
+</configure>

@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+    <div class="fale-textos-form">
+        <form name="fale-textos-form" method="post">
+            <tal:block repeat="item view/textos">
+                <input type="radio" value="texto" name="fale-texto" class="fale-texto" />
+                <b tal:content="item/titulo" /><br/>
+                <p tal:content="structure item/texto" />
+            </tal:block>
+        </form>
+    </div>
+    </metal:block>
+</html>

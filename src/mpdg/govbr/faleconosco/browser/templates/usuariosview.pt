@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+    <div class="fale-usuarios-form" tal:define="user_grups view/usuarios" >
+        <a href="@@encaminhar-selecionados" id="fale-usuario-sel"  ></a>
+        <form name="fale-usuarios-form" method="post" id="fale-usuarios-form"  >
+            <tal:block repeat="item user_grups"> 
+                <span>
+                    <input type="radio" value="email" alt="nome" name="fale-usuario"
+                           class="fale-usuario"
+                           tal:attributes="value item/email;
+                                           alt item/nome" />
+                    &nbsp;&nbsp;<strong><span tal:content="item/nome" /></strong>
+                    <span tal:content="item/user_id" style="display: none;" />              
+                    <br />
+                    
+                    
+                </span>
+            </tal:block>
+        </form>
+        <p tal:condition = "not: user_grups "> Não há usuarios cadastrado no grupo de administrador   </p> 
+    </div>
+    
+
+    <script>
+        $(document).ready(function(){
+            $('a#fale-usuario-sel').prepOverlay({
+                subtype: 'ajax',
+                noform: function(el) {return $.plonepopups.noformerrorshow(el,'close');},
+                redirect: function(){return location.href},
+                closeselector: '[name="descartar"]',
+                config: {
+                    onBeforeLoad: function(event) {
+                        $id = event.target.ownerDocument.activeElement.id;
+                        $form = $('form[name="encaminhar-selecionados"]');
+                        var $input = event.target.ownerDocument.activeElement;
+                        var $nome = $input.alt;
+                        $form.find('.fale-encaminhar-email').find('.negrito').text('Encaminhar para: ' + $nome);
+                        $form.find('input[name="email"]').attr('value', $input.value)
+                        $form.find('input[name="nome"]').attr('value', $nome)
+                        if ($form.find('input[name=estado]').length === 0) {
+                            $form.prepend($('<input type="hidden" name="estado" value="encaminhar" />'));
+                        }
+                        var uids = event.target.ownerDocument.getElementsByName('uids')
+                        if ($form.find('input[name=uids]').length === 0) {
+                            $form.prepend($('<input type="hidden" name="uids" value="' + uids[0].value + '" />'));
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+    </metal:block>
+</html>

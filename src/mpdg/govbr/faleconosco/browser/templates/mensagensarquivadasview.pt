@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+
+
+<metal:block fill-slot="main">
+<br />
+  <h2 class="documentFirstHeading">Painel de Administração / Fale Conosco / Mensagens arquivadas</h2>
+<hr />
+
+  <div class="container-results"
+       tal:define="mensagem view/mensagens_arquivadas;">
+
+      <div class="fale-tabela-resultado">
+
+          <ul>
+              <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
+              <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li>
+              <!-- <li><a href="@@encaminhar-mensagem" class="fale-encaminhar-selecionados">Encaminhar selecionados</a></li> -->
+              <li><a href="" tal:attributes="href string:@@fale-conosco-admin" class="">Painel do fale conosco</a></li>
+          </ul>
+
+      </div><!-- .fale-tabela-resultado -->
+
+      <div class="table-box"
+            tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                       b_size python:20;
+                       b_start python:0;
+                       b_start request/b_start | b_start;
+                       batch python:Batch(mensagem, b_size, int(b_start), orphan=1);"            
+            tal:condition="mensagem">
+
+          <table class="table listing" width="100%">
+                <tr class="fale-mais-mensagem">
+                      <th width="5%">
+                          <input type="checkbox" class="fale-select" name="fale-select">
+                      </th>
+                      <th>Assunto</th>
+                      <th>Quem arquivou</th>
+                      <th>Motivo</th>
+                      <th>Ações</th>
+                </tr>
+                <tr tal:repeat="msg batch">
+                      <td><input type="checkbox" class="fale-select" name="fale-select"></td>
+                      <td tal:content="msg/assunto">assunto</td>
+                      <td tal:content="msg/nome">nome</td>
+                      <td tal:content="msg/observacao">motivo</td>
+                      <td>
+
+                        <a href="justificar-desarquivamento-de-mensagem?uids=${msg/UID}"
+                           title="Desarquivar Mensagem"
+                           tal:attributes="href string:justificar-desarquivamento-de-mensagem?uids=${msg/UID}">
+                           <img width="22" height="15" alt="Desarquivar mensagem"
+                                src="++resource++mpdg.govbr.faleconosco/desarquivar.png" />
+                        </a>
+
+                      </td>
+                </tr>
+          </table><!-- .listing-table -->
+
+          <div class="fale-tabela-resultado"
+           tal:condition="mensagem">
+
+              <ul>
+                  <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
+                  <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li>
+                  <!-- <li><a href="@@encaminhar-mensagem" class="fale-encaminhar-selecionados">Encaminhar selecionados</a></li> -->
+                  <li>
+                      <a href=""
+                         tal:attributes="href string:@@fale-conosco-admin" class="">Painel do fale conosco</a>
+                  </li>
+              </ul>
+
+          </div><!-- .fale-tabela-resultado -->
+
+          <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </div><!-- .table-box -->
+
+      
+      
+
+      <hr />
+
+      <table class="listing auto-table"
+             width="100%"
+             tal:condition="not: mensagem">
+        <tr class="fale-mais-mensagem">
+          <th width="5%">
+              <input type="checkbox" class="fale-select" name="fale-select">
+          </th>
+          <th >Assunto</th>
+          <th>Quem arquivou</th>
+          <th>Motivo</th>
+          <th>Ações</th>
+        </tr>
+        <tr >
+          <td colspan="5">
+            <p>Nenhuma mensagem arquivada até o momento.</p>
+          </td>
+        </tr>
+
+      </table>
+
+    </div><!-- .container-results -->
+        
+
+        
+</metal:block>
+
+</html>

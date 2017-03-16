@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+
+<metal:block fill-slot="main">
+
+  <div class="tile tile-default" style="margin-top:10px;">
+    <div class="outstanding-header">
+      <h2 class="outstanding-title" tal:content="view/label | nothing" />
+    </div>
+  </div>
+    <div id="fale-form">
+        <p>1- Preencha o formulário.</p>
+        <p>2- Clique no botão enviar.</p>
+        <p>3- Acesse sua caixa de mensagens e siga as instruções para confirmar ou cancelar sua mensagem.</p>
+        <p>4- Após a sua confirmação, a mensagem eletrônica será encaminhada.</p>
+        <p>5- Ao enviar a mensagem, o usuário concorda com as <a href="https://www.governoeletronico.gov.br/politica-de-privacidade" > Políticas de Uso </a> do sítio.</p>
+
+        <div id="content-core">
+            <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+        </div>
+    </div>
+    <div id="fale-faq"
+         tal:define="respostas view/faq" 
+         tal:condition="respostas">
+        <h2>Perguntas Frequentes  </h2>
+        <ul>
+            <li tal:repeat="item respostas">
+                <a href=""
+                   title=""
+                   tal:attributes="href item/url;
+                                   title item/titulo"
+                   tal:content="item/titulo">FAQ</a>
+            </li>
+        </ul>
+    </div>
+
+</metal:block>
+
+</html>

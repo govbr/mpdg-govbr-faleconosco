@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registry>
+  <record interface="mpdg.govbr.faleconosco.controlpanel.IFaleSettings" field="enviar_email">
+    <value>True</value>
+  </record>
+  <record interface="mpdg.govbr.faleconosco.controlpanel.IFaleSettings" field="admfale">
+    <value>idg</value>
+  </record>
+</registry>
