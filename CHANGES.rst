@@ -1,6 +1,16 @@
 Changelog
 =========
 
+1.1.0 (2017-03-29)
+--------------------
+
+### R2 - Sprint 8
+
+- Implementa funcionalidade para categorizar mensagens recebidas no Fale Conosco;
+- Implementa gráfico de estatísticas das mensagens categorizadas;
+- Implementa a parametrização no painel de controle das mensagens de email;
+
+
 1.0.0 (2017-02-28)
 --------------------
 
