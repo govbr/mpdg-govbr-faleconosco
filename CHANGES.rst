@@ -1,17 +1,19 @@
 Changelog
 =========
 
+1.1.0 (2017-03-29)
+--------------------
 
-1.0a1 (unreleased)
-------------------
+### R2 - Sprint 8
 
-- Initial release.
-  [samuel]
+- Implementa funcionalidade para categorizar mensagens recebidas no Fale Conosco;
+- Implementa gráfico de estatísticas das mensagens categorizadas;
+- Implementa a parametrização no painel de controle das mensagens de email;
+
 
 1.0.0 (2017-02-28)
 --------------------
 
 ### R2 - Sprint 7
 
-- Desacoplar o produto Fale Conosco do liberium.govfale, para que o seu funcionamento, não seja dependente de outros produtos.
-
+- Desacopla o produto Fale Conosco do liberium.govfale, para que o seu funcionamento, não seja dependente de outros produtos.

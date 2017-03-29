@@ -16,12 +16,18 @@ DIAS_ATRASO = 6
 KEY_CONFIRMA ='mpdg.govbr.faleconosco.confrma'
 
 
-EMAIL_FALE = "<p> Obrigado %s pelo seu contato! </p> \n"\
-              "<b>Sua mensagem:</b>\n"\
-              "<ul>\n"\
-              "<li>Título: <i> %s </i></li>\n"\
-              "<li>Mensagem: <i> %s </i> </li>\n"\
-              "</ul>\n"\
-              "\n"\
-              "<p> <b>Por favor, confirme o envio da sua mensagem no e-mail %s . Após sua confirmação, a sua mensagem será enviada para os responsáveis do Sítio do Governo Eletrônico.</p> \n"\
-              "Para confirmar esta mensagem, por favor, acesse o link  %s"
+EMAIL_FALE = u"<p> Obrigado [nome] pelo seu contato! </p> \n"\
+              u"<b>Sua mensagem: </b>\n"\
+              u"<ul>\n"\
+              u"<li>Título: <i> [assunto] </i></li>\n"\
+              u"<li>Mensagem: <i> [mensagem] </i> </li>\n"\
+              u"</ul>\n"\
+              u"\n"\
+
+EMAIL_FALE_LINK = u"\n"\
+                  u"<p>Para confirmar esta mensagem, por favor, acesse o link %s</p>"\
+                  u"<p>Após sua confirmação, a sua mensagem será enviada para os responsáveis do site.</p> \n"\
+
+
+EMAIL_FALE_ASSINATURA =u"\n"\
+                       u"<p>Atenciosamente,</p> \n"\
