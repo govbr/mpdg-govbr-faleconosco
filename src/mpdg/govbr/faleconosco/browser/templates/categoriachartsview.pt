@@ -30,7 +30,7 @@
                 var data = {
                     labels: <tal:block replace="view/get_tags_list" />,
                     datasets: [
-                        {   
+                        {
                             label: "Categorias de mensagens",
                             data: <tal:block replace="view/get_tags_data" />,
                             backgroundColor: <tal:block replace="view/gera_cor" />,
@@ -56,7 +56,7 @@
                 var data = {
                     labels: <tal:block replace="view/get_tags_list" />,
                     datasets: [
-                        {   
+                        {
                             label: "Categorias de mensagens",
                             data: <tal:block replace="view/get_tags_data" />,
                             backgroundColor: <tal:block replace="view/gera_cor" />,
@@ -108,8 +108,11 @@
     </style>
 
     <h1 class="documentFirstHeading">Fale Conosco | Gráficos de Categorias</h1>
-    <a
-        href="" title="Gráficos de Pesquisas" tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts" class="btn btn-success btn-color">Gráficos de Pesquisas
+    <a href="" title="Gráficos de Pesquisas" class="btn btn-success btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de Pesquisas
+    </a>
+    <a href="" title="Gráficos de Pesquisas" class="btn btn-info btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
     </a>
         <form id="fale-grafico-params" name="fale-grafico-params">
             <select id="tipo-grafico"

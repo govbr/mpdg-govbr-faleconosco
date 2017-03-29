@@ -24,7 +24,7 @@
         });
 
         $(function () {
-            
+
             var colors = ['#00a859', '#ffde21', '#ee3237', '#00b0f0'];
 
             var data = [];
@@ -33,7 +33,7 @@
                 var data = {
                     labels: ["Prazo", "Alerta", "Atraso", "Respondido"],
                     datasets: [
-                        {   
+                        {
                             label: "Gráfico de Pesquisa",
                             data: [
                                 <tal:block replace="view/no_prazo" />,
@@ -121,8 +121,12 @@
     </style>
 
     <h1 class="documentFirstHeading">Fale Conosco | Gráficos de Pesquisas</h1>
-    <a 
-        href="" type="button" title="Gráfico de Categorias" tal:attributes=" href string:${context/absolute_url}/@@categoria-charts-view" class="btn btn-success btn-color">Gráfico de Categorias
+    <a href="" type="button" title="Gráfico de Categorias" class="btn btn-success btn-color"
+       tal:attributes=" href string:${context/absolute_url}/@@categoria-charts-view">
+       Gráfico de Categorias
+    </a>
+    <a href="" title="Gráficos de Pesquisas" class="btn btn-info btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
     </a>
         <div>
             <h2>Parâmetros do filtro:</h2>
@@ -172,7 +176,7 @@
                        tal:attributes="value context/REQUEST/responsavel|nothing" />
                 <input type="hidden" name="Searchable" value=""
                        tal:attributes="value context/REQUEST/Searchable|nothing" />
-                
+
                 <select id="tipo-grafico"
                         tal:define='tipo context/REQUEST/tipo-grafico|nothing'>
                     <option value="pizza" tal:attributes="selected python:'selected' if tipo == 'pizza' else ''">Pizza</option>
