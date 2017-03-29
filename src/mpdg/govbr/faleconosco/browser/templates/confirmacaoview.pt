@@ -9,16 +9,10 @@
 
     <h1 class="documentFirstHeading">Fale Conosco</h1>
 
-    <div tal:define="dados view/dados">
-        <h3>
-              <p>Obrigado <span tal:content="dados/nome">NOME</span>  pelo seu contato!</p>
-                <b >Sua mensagem:</b> 
-                <ul>
-        ​             <li>Título: <i><span tal:content="dados/titulo">TITULO</span></i></li> 
-                     <li>Mensagem: <i><span tal:content="dados/mensagem">MENSAGEM</span></i></li>
-                 </ul> <br>
-                 <p> <b>Por favor, confirme o envio da sua mensagem no e-mail <span tal:content="dados/email">EMAIL</span> .Após sua confirmação, a sua mensagem será enviada para os responsáveis do Sítio do Governo Eletrônico.</p> 
-        </h3>
+    <div tal:define="fale view/get_message">
+        <h3 tal:replace="structure fale/msg" >mensagem</h3>
+        
+        <p> <b>Por favor, confirme o envio da sua mensagem no e-mail <span tal:content="fale/email">EMAIL</span>. Após sua confirmação, a sua mensagem será enviada para os responsáveis do Site.</p> 
 
           <a href="" tal:attributes= "href view/get_portal_url">Voltar pagina inicial </a> 
     </div>
