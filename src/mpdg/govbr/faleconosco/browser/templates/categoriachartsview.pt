@@ -9,7 +9,6 @@
 
     <script src="++resource++mpdg.govbr.faleconosco/Chart.min.js"></script>
     <script src="++resource++mpdg.govbr.faleconosco/chroma.min.js"></script>
-    <tal:block tal:define="tags view/get_tags_dict">
     <script>
         $(document).ready(function(){
             $('#tipo-grafico').change(function() {
@@ -26,23 +25,25 @@
         $(function () {
             var colors = <tal:block replace="view/gera_cor" />;
             var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
-            if (tipo == 'barra') {
-                var data = {
-                    labels: <tal:block replace="view/get_tags_list" />,
-                    datasets: [
-                        {
-                            label: "Categorias de mensagens",
-                            data: <tal:block replace="view/get_tags_data" />,
-                            backgroundColor: <tal:block replace="view/gera_cor" />,
-                            borderColor:<tal:block replace="view/gera_cor" />,
 
-                            borderWidth:1
-                        }
-                    ]
-                }
-                var context = $("#fale-grafico").get(0).getContext("2d");
-                var chart = new Chart(context, {
-                    type: 'bar',
+            var data = {
+                labels: <tal:block replace="view/taglist" />,
+                datasets: [
+                    {
+                        label: "Categorias de mensagens",
+                        data: <tal:block replace="view/tagdata" />,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth:1
+                    }
+                ]
+            }
+
+            var context = $("#fale-grafico").get(0).getContext("2d");
+
+            function renderChart(type) {
+                new Chart(context, {
+                    type: type,
                     data: data,
                     options: {
                         animateRotate: true,
@@ -52,31 +53,12 @@
                         tooltipFontSize: 16
                     }
                 });
+            };
+
+            if (tipo == 'barra') {
+                renderChart('bar');
             }else {
-                var data = {
-                    labels: <tal:block replace="view/get_tags_list" />,
-                    datasets: [
-                        {
-                            label: "Categorias de mensagens",
-                            data: <tal:block replace="view/get_tags_data" />,
-                            backgroundColor: <tal:block replace="view/gera_cor" />,
-                            borderColor:<tal:block replace="view/gera_cor" />,
-                            borderWidth:1
-                        }
-                    ]
-                }
-                var context = $("#fale-grafico").get(0).getContext("2d");
-                var chart = new Chart(context, {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        animateRotate: true,
-                        animationSteps: 30,
-                        animationEasing: "easeInOutCirc",
-                        segmentStrokeWidth: 1,
-                        tooltipFontSize: 16
-                    }
-                });
+                renderChart('pie');
             }
         });
     </script>
@@ -88,10 +70,6 @@
 
         .fale-total-mensagens, .fale-grafico-legenda {
             float: left;
-        }
-
-        .fale-grafico-legenda li {
-            list-style: none !important;
         }
 
         .fale-grafico-legenda {
@@ -107,11 +85,11 @@
         }
     </style>
 
-    <h1 class="documentFirstHeading">Fale Conosco | Gráficos de Categorias</h1>
-    <a href="" title="Gráficos de Pesquisas" class="btn btn-success btn-color"
-       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de Pesquisas
+    <h1 class="documentFirstHeading">Fale Conosco | Gráfico de categorias</h1>
+    <a href="" title="Gráficos de categorias" class="btn btn-success btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de categorias
     </a>
-    <a href="" title="Gráficos de Pesquisas" class="btn btn-info btn-color"
+    <a href="" title="Voltar para o painel" class="btn btn-info btn-color"
        tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
     </a>
         <form id="fale-grafico-params" name="fale-grafico-params">
@@ -123,16 +101,22 @@
         </form>
 
         <div class="fale-resultado-grafico">
+            <h3>Exibindo as <span tal:replace="view/qtd">10</span> categorias com mais objetos</h3>
+            <br />
+            <h3 class="fale-total-mensagens">Total: <span tal:replace="view/total_obj">11</span> objetos categorizados</h3>
             <div style="clear: both;"></div>
             <br />
             <div >
+            <ul class="fale-grafico-legenda">
+                <li tal:repeat="tag view/zipped_tags">
+                    <span tal:replace="python:tag[0]">coppe</span> (<span tal:replace="python:tag[1]">7</span>)
+                </li>
+            </ul>
             <div class="fale-grafico">
                 <canvas id="fale-grafico" width="245" height="245"></canvas>
             </div>
             </div>
         </div>
-
-    </tal:block>
 </metal:block>
 
 </html>

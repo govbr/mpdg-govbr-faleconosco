@@ -5,7 +5,7 @@ from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
 
-from mpdg.govbr.faleconosco.browser import falecategorizar 
+from mpdg.govbr.faleconosco.browser import falecategorizar
 
 grok.templatedir('templates')
 
@@ -19,8 +19,11 @@ class CategoriaChartsView(grok.View):
     grok.context(ISiteRoot)
 
     def update(self):
-        self.qtd = int(self.request.form.get('qtd', 10))
+        qtd_get = int(self.request.form.get('qtd', 10))
+        self.qtd = qtd_get if qtd_get >= 0 else 0
         self.tagdict = self.get_tags_dict()
+        self.taglist = self.get_tags_list()
+        self.tagdata = self.get_tags_data()
         self.request.set('disable_border', True)
         self.request.set('disable_plone.leftcolumn', True)
 
@@ -61,20 +64,25 @@ class CategoriaChartsView(grok.View):
         (lista -> self.get_tags_list)
         [2, 3, 4, 1, 5, ...]
         """
-        tags = self.get_tags_list()
         result = []
-        for tag in tags:
+        for tag in self.taglist:
             result.append(self.tagdict[tag])
         return result
 
+    def zipped_tags(self):
+        return zip(self.taglist, self.tagdata)
+
+    def total_obj(self):
+        return sum(self.tagdata)
+
     def _filter_tags(self):
         """
-        Filtra a quantidade de tags que serão exibidas de acordo com 
+        Filtra a quantidade de tags que serão exibidas de acordo com
         a variável de instância self.qtd
         """
         taglist = sorted(
-            self.tagdict.items(), 
-            key=operator.itemgetter(1), 
+            self.tagdict.items(),
+            key=operator.itemgetter(1),
             reverse=True
         )
         return taglist[:self.qtd]

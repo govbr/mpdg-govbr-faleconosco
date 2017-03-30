@@ -41,14 +41,12 @@
                                 <tal:block replace="view/atraso"/>,
                                 <tal:block replace="view/respondido"/>
                             ],
-                            backgroundColor: ["#00a859", "#ffde21","#ee3237","#00b0f0"],
-                            borderColor:["#00a859", "#ffde21","#ee3237","#00b0f0"],
+                            backgroundColor: colors,
+                            borderColor: colors,
                             borderWidth:1
                         }
                     ]
                 }
-                // var context = $('.fale-grafico > canvas').get(0).getContext("2d");
-                // var context = $("#fale-grafico");
                 var context = $("#fale-grafico").get(0).getContext("2d");
                 var chart = new Chart(context, {
                     type: 'bar',
@@ -120,10 +118,10 @@
         }
     </style>
 
-    <h1 class="documentFirstHeading">Fale Conosco | Gráficos de Pesquisas</h1>
+    <h1 class="documentFirstHeading">Fale Conosco | Gráfico de mensagens</h1>
     <a href="" type="button" title="Gráfico de Categorias" class="btn btn-success btn-color"
        tal:attributes=" href string:${context/absolute_url}/@@categoria-charts-view">
-       Gráfico de Categorias
+       Gráfico de categorias
     </a>
     <a href="" title="Gráficos de Pesquisas" class="btn btn-info btn-color"
        tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
