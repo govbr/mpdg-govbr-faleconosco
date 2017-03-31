@@ -10,7 +10,7 @@ ADD_PERMISSIONS = {
 
 
 DIAS_PRAZO = 2
-DIAS_ALERTA= 5 
+DIAS_ALERTA= 5
 DIAS_ATRASO = 6
 
 KEY_CONFIRMA ='mpdg.govbr.faleconosco.confrma'
@@ -29,5 +29,5 @@ EMAIL_FALE_LINK = u"\n"\
                   u"<p>Após sua confirmação, a sua mensagem será enviada para os responsáveis do site.</p> \n"\
 
 
-EMAIL_FALE_ASSINATURA =u"\n"\
-                       u"<p>Atenciosamente,</p> \n"\
+EMAIL_FALE_ASSINATURA = u"<p>Atenciosamente,</p>"\
+                        u'<p>Equipe do Governo Digital.</p>'
