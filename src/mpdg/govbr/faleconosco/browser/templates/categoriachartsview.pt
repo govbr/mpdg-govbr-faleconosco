@@ -87,7 +87,7 @@
 
     <h1 class="documentFirstHeading">Fale Conosco | Gráfico de categorias</h1>
     <a href="" title="Gráficos de categorias" class="btn btn-success btn-color"
-       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de categorias
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de mensagens
     </a>
     <a href="" title="Voltar para o painel" class="btn btn-info btn-color"
        tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
