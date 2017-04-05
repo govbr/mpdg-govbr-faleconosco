@@ -14,9 +14,10 @@ from zope.annotation import IAnnotations
 from zope.component import getUtility
 from z3c.form import button
 from Products.CMFCore.utils import getToolByName
-from mpdg.govbr.faleconosco.config import KEY_CONFIRMA, EMAIL_FALE
+from mpdg.govbr.faleconosco.config import KEY_CONFIRMA, EMAIL_FALE_LINK
 from mpdg.govbr.faleconosco.mailer import simple_send_mail
 from mpdg.govbr.faleconosco.utils import prepare_email_message
+from mpdg.govbr.faleconosco.browser.utilities import transform_message, get_fale_config
 
 grok.templatedir('templates')
 
@@ -98,8 +99,8 @@ class FaleConoscoForm(form.SchemaForm):
         assunto  = data['assunto']
         mensagem = data['mensagem']
 
-        registry    = getUtility(IRegistry)
-        adm_fale    = registry.records['mpdg.govbr.faleconosco.controlpanel.IFaleSettings.admfale'].value
+
+        adm_fale = get_fale_config('admfale')
         responsavel = adm_fale or u'idg'
 
         portal = api.portal.get()
@@ -125,12 +126,26 @@ class FaleConoscoForm(form.SchemaForm):
         annotation[KEY_CONFIRMA] = fale
         
         url_confirm = portal.absolute_url() + '/fale_confirma?h=' + hash
-
         endereco = email
-        texto = EMAIL_FALE % (nome,assunto,mensagem,email, url_confirm)
+        texto = self.get_message(
+            text=get_fale_config('enviar_email_form'),
+            nome=nome,
+            email =email,
+            mensagem = mensagem,
+            url_confirm=url_confirm,
+            assunto = assunto
+        )
+        # texto = EMAIL_FALE % url_confirm
         mensagem = prepare_email_message(texto, html=True)
         simple_send_mail(mensagem, endereco, assunto)
 
         dados = urllib.urlencode(conteudo)
         contextURL = "{0}/@@confirmacao?{1}".format(self.context.absolute_url(), dados)
         self.request.response.redirect(contextURL)
+
+    def get_message(self, text, nome, email, mensagem, url_confirm,assunto):
+        assinatura = get_fale_config('enviar_email_assinatura')
+        msg = transform_message(text, nome, email, mensagem,assunto)
+
+        result = '{0}{1}{2}'.format(msg, EMAIL_FALE_LINK % url_confirm , assinatura)
+        return result

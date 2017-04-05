@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from five import grok
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from DateTime import DateTime
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
@@ -127,59 +127,58 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
             item_dict['uid'] = item.UID
             item_dict['status'] = self.get_status(item)
             item_dict['path'] = '/'.join(obj.getPhysicalPath())
+            item_dict['categorias'] = ', '.join(obj.Subject())
 
             resultado.append(item_dict)
 
         return resultado
 
     def get_status(self, conteudo):
-
-        # metodo para verificar o status da mensagem
+        """metodo para verificar o status da mensagem"""
         hoje        = datetime.today()
         prazo       = datetime.fromordinal(hoje.toordinal()- DIAS_PRAZO)
         alerta      = datetime.fromordinal(prazo.toordinal()- DIAS_ALERTA)
         atraso      = datetime.fromordinal(alerta.toordinal()- DIAS_ATRASO)
         data        = conteudo.created.asdatetime().replace(tzinfo=None)
 
+        fimalerta = prazo - timedelta(1)
+
+        status = ''
         if conteudo.review_state == 'respondido':
-            return 'respondido'
+            status = 'respondido'
 
-        if prazo <= data:
-            return 'prazo'
+        elif (data >= prazo) and (data <= hoje):
+            status = 'prazo'
 
-        if alerta <= data:
-            return 'alerta'
+        elif (data >= alerta) and (data <= fimalerta):
+            status = 'alerta'
 
-        if atraso >= data:
-            return 'atraso'
+        else:
+            status = 'atraso'
+
+        return status
 
     def get_assunto(self, conteudo):
-
-        # metodo para buscar o titulo do assunto
+        """metodo para buscar o titulo do assunto"""
         factory = getUtility(IVocabularyFactory, u'mpdg.govbr.faleconosco.Assuntos')
         vocab   = factory(self.context)
         termo   = conteudo.getObject().getAssunto()
 
         try:
-
             assunto = vocab.getTerm(termo)
             return assunto.title
-
         except LookupError:
-
             return ''
 
     def assuntos(self):
-        # metodo para retornar os assuntos
-
+        """metodo para retornar os assuntos"""
         factory = getUtility(IVocabularyFactory, u'mpdg.govbr.faleconosco.Assuntos')
         vocab = factory(self.context)
 
         return vocab._terms
 
     def get_responsaveis_filtro(self):
-        # metodo para retornar os responsaveis
-        # catalog = getToolByName(self.context, 'portal_catalog')
+        """metodo para retornar os responsaveis"""
         usuarios_fale      = api.user.get_users(groupname="adm-fale-conosco")
         lista_responsaveis = []
 
@@ -194,12 +193,20 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
         return lista_responsaveis
 
     def can_reply(self, estado, resp):
+        """Retorna True se o estado do objeto não for 'respondido', se o usuário
+        logado for adm do fale conosco ou se o usuário logado é o responsável da mensagem
+        """
         if estado != 'respondido':
             if self.logged_user == self.get_adm_fale() or self.logged_user == resp:
                 return True
         return False
 
     def get_responder_url(self, msgresp, uid):
+        """Se o usuário for o adm do fale conosco ele pode responder por email
+        diretamente ao usuário, então ele irá para a view @@responder-selecionados.
+        Caso ele seja apenas um usuário comum do fale consoco, o que ele pode fazer
+        é encaminhar a mensagem para o admin do fale, na view @@encaminhar-admin-view
+        """
         result = ''
         if self.logged_user == self.get_adm_fale():
             # se usuario logado é admin do fale
@@ -210,58 +217,51 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
         return result
 
     def get_adm_fale(self):
-        # Pega o usuário administrador do fale conosco.
+        """
+        Retorna o usuário administrador do fale conosco.
+        """
         registry = getUtility(IRegistry)
         adm_fale = registry.records['mpdg.govbr.faleconosco.controlpanel.IFaleSettings.admfale'].value
         return adm_fale
 
     def is_admin(self):
-        # metodo para pegar o usuário logado e chegar se ele é
-        # o administrador do Fale Conosco
+        """
+        metodo para pegar o usuário logado e chegar se ele é
+        o administrador do Fale Conosco
+        """
         adm_fale = self.get_adm_fale()
         if self.logged_user == adm_fale:
             return True
         return False
 
     def is_user(self):
-
         adm_fale = self.get_adm_fale()
-
         if self.logged_user != adm_fale:
-
             return True
-
         return False
 
     def can_rescue(self, fale, estado):
-
         if estado == 'encaminhado':
-
             if self.is_admin():
-
                 return True
 
             catalog = api.portal.get_tool('portal_catalog')
-            brain   = catalog.searchResults(
-                    portal_type = 'Mensagem',
-                    path        = fale['path'],
-                    sort_limit  = 1,
-                    sort_on     = 'created',
-                    sort_order  = "reverse"
-                    )[:1]
+            brain = catalog.searchResults(
+                portal_type = 'Mensagem',
+                path = fale['path'],
+                sort_limit = 1,
+                sort_on = 'created',
+                sort_order = "reverse"
+            )[:1]
 
             if brain:
-
-                item        = brain[0]
-                obj         = item.getObject()
+                item = brain[0]
+                obj = item.getObject()
                 responsavel = obj.getResponsavel()
 
                 if self.logged_user == responsavel:
-
                     return True
-
                 else:
-
                     return False
 
         return False

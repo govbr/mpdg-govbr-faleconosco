@@ -5,6 +5,16 @@ from plone.registry.interfaces import IRegistry
 from AccessControl import Unauthorized
 
 
+def get_fale_config(config_name):
+    registry = getUtility(IRegistry)
+    value_config = 'mpdg.govbr.faleconosco.controlpanel.IFaleSettings.{0}'.format(config_name)
+    return registry.records[value_config].value
+
+
+def transform_message(text, nome, email, mensagem, assunto ):
+    return text.replace('[nome]', nome).replace('[email]', email ).replace('[mensagem]', mensagem).replace('[assunto]', assunto )
+
+
 def get_wf_history(brains, item, count):
     """Retorna histórico de workflow das mensagens do fale conosco
     :param brains: Resultado da busca no portal_catalog do objeto Mensagem
@@ -107,8 +117,7 @@ class FaleConoscoAdminRequired(object):
             user_id = api.user.get_current().id
             users_fale = api.user.get_users(groupname='adm-fale-conosco')
 
-            registry = getUtility(IRegistry)
-            adm_fale = registry.records['mpdg.govbr.faleconosco.controlpanel.IFaleSettings.admfale'].value
+            adm_fale = get_fale_config('admfale')
 
             if user_id in [user.id for user in users_fale] \
                     or 'Manager' in api.user.get(user_id).getRoles() \
