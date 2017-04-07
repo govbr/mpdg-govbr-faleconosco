@@ -24,7 +24,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="mpdg.govbr.faleconosco"
+      title="mpdg.govbr.faleconosco: Fale Conosco"
       directory="profiles/default"
       description="Installs the mpdg.govbr.faleconosco add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
