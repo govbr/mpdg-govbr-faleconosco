@@ -6,7 +6,7 @@ from setuptools import setup
 
 
 long_description = '\n\n'.join([
-    open('README.rst').read(),
+    open('README.md').read(),
     open('CONTRIBUTORS.rst').read(),
     open('CHANGES.rst').read(),
 ])
@@ -27,9 +27,9 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    keywords='Python Plone',
-    author='Samuel Carlos',
-    author_email='samuel.moraisbsb@gmail.com',
+    keywords='Python Plone FaleConosco GovBR',
+    author='COPPE',
+    author_email='contato.capgov@gmail.com',
     url='https://pypi.python.org/pypi/mpdg.govbr.faleconosco',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
