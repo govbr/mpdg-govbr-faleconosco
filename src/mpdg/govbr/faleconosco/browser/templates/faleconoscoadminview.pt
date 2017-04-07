@@ -8,8 +8,11 @@
 <metal:block fill-slot="javascript_head_slot">
   <script src="++resource++mpdg.govbr.faleconosco/easy_ajax.js">
   </script>
+  <script src="++resource++mpdg.govbr.faleconosco/jquery.tagsinput.js">
+  </script>
+  <script src="++resource++mpdg.govbr.faleconosco/controll_dialog.js">
+  </script>
 </metal:block>
-
 
 
 <metal:block fill-slot="main">
@@ -283,6 +286,23 @@
                                         | <a href="" id="fale-mensagem-arquivar"
                                              tal:attributes="href string:${context/portal_url}/@@justificar-arquivamento-de-mensagem?uids=${UID}">Arquivar</a>
                                       </span>
+                                      <span tal:condition= "view/is_admin">
+                                        | <a href="#" class="categorizar-msg" data-dialog=""
+                                              tal:attributes="data-dialog string:dialog-${item/uid}">Categorizar</a>
+                                      </span>
+                                      <div id="" class="dialog" title="Categorização" style="font-size: large"
+                                           tal:attributes="id string:dialog-${item/uid}">
+                                          <form method="post" action=""
+                                                tal:attributes="action string:${context/portal_url}/@@fale-categorizar">
+                                            <label for="tags">Categorizar: </label>
+                                            <input type="hidden" name="fale_uid"
+                                                   tal:attributes="value item/uid"/>
+                                            <input class="tags" type="text" name="tags"
+                                                   tal:attributes="value item/categorias" />
+                                            <input type="submit" value="Salvar" />
+                                          </form>
+                                      </div>
+                                  
                                     </p>
 
                               </div>
@@ -355,7 +375,6 @@
            </div>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
         </div>
-
     </div>
     
 </div>

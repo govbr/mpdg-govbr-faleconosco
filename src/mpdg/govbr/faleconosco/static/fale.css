@@ -241,3 +241,7 @@ table.auto-table {
   table.auto-table th {
     vertical-align: middle;
   }
+
+  .btn-color{
+    color: #ffffff !important;
+}
