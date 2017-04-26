@@ -17,6 +17,8 @@
 
   <grok:grok package="." />
 
+  <include package=".browser" />
+
   <genericsetup:registerProfile
       name="testing"
       title="mpdg.govbr.faleconosco tests"

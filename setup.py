@@ -38,6 +38,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'five.grok',
+        'plone.directives.form',
         'plone.api',
         'Products.GenericSetup>=1.8.2',
         'setuptools',

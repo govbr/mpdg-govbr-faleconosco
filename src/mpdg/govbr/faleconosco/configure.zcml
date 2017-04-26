@@ -95,7 +95,7 @@
       handler="mpdg.govbr.faleconosco.setuphandlers.create_link"
       />
 
-      <genericsetup:importStep
+    <genericsetup:importStep
       name="mpdg.govbr.faleconosco.create_folder_fale"
       title="Cria pasta pra armazenar o faleconosco"
       description="Criar link na home fale conosco"
