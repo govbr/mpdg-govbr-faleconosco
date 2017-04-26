@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.1.1 (2017-04-27)
+--------------------
+
+### R3 - Sprint 2
+
+- Implementação inicial de testes automatizados nas views.
+
+
 1.1.0 (2017-03-29)
 --------------------
 
