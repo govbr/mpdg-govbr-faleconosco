@@ -24,7 +24,7 @@
         <form action="" method="GET" class="form-filter use-ajax">
             <div class="top-filter clearfix">
                 <div class="left call-refinar-busca">
-                    <span><span class="sign">+</span> Refinar Busca</span>
+                    <a href=""><span class="sign">+</span> Refinar Busca</a>
                 </div>
 
                 <div class="right">

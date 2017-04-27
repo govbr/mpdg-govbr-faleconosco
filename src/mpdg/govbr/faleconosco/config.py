@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from Products.CMFPlone import interfaces as plone_interfaces
+from zope.interface import implementer
 
 PROJECTNAME = 'mpdg.govbr.faleconosco'
 
@@ -31,3 +33,12 @@ EMAIL_FALE_LINK = u"\n"\
 
 EMAIL_FALE_ASSINATURA = u"<p>Atenciosamente,</p>"\
                         u'<p>Equipe do Governo Digital.</p>'
+
+
+@implementer(plone_interfaces.INonInstallable)
+class HiddenProfiles(object):
+
+    def getNonInstallableProfiles(self):
+        return [
+            u'mpdg.govbr.faleconosco:testing',
+        ]
