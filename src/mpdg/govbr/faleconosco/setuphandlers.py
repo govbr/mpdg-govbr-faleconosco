@@ -84,9 +84,6 @@ def create_link(portal):
     )
 
 
-
-
-
 def create_textos_prontos(portal):
     portal = api.portal.get()
     # textos = getattr(portal, 'textos-prontos' ,None )

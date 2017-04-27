@@ -52,7 +52,7 @@ class FaleSettingsEditForm(RegistryEditForm):
     """
     """
     schema = IFaleSettings
-    label = u"mpdg.govbr: Fale Conosco"
+    label = u"Configurações do Fale Conosco "
 
 
 class SettingsView(grok.View):

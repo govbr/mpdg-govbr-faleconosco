@@ -86,7 +86,7 @@
 }
 
 .container-search .container-filter .mid-filter select,
-.container-search .container-filter .mid-filter input[type="text"] {
+.container-search .container-filter .mid-filter input[type="link"] {
     margin: 7px 0 17px 0;
 }
 
