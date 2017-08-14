@@ -24,6 +24,7 @@ class EncaminharMsgFormTest(unittest.TestCase):
         self.request.form['form.widgets.uids'] = '123123132131'
         self.view = EncaminharMensagemView(self.portal, self.request)
 
+
     def test_view_is_protected(self):
         """Somente admin do fale ou manager pode acessar essa view"""
         self.assertRaises(Unauthorized, self.view.update)
@@ -39,3 +40,11 @@ class EncaminharMsgFormTest(unittest.TestCase):
         expected = ['uids', 'usuario', 'mensagem']
         for field in expected:
             self.assertIn(field, self.view.schema.names())
+
+     # """Verifica se o buttão enviar está enviando dados corretamente """
+     # def test_form_button(self):
+     #     button = self.portal.getControl(name="Enviar")
+     #     button.click()
+    
+
+    
