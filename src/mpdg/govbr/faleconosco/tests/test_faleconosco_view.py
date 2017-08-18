@@ -1,29 +1,32 @@
 #-*- coding: utf-8 -*-
-import unittest
-from plone.app.testing import TEST_USER_ID
+import unittest as unittest
 from plone import api
 from z3c.form import button
 from z3c.form.interfaces import IFormLayer
 from zope.interface import alsoProvides
 from plone.app.testing import setRoles
-from mpdg.govbr.faleconosco.browser.faleconoscoform import IFaleConoscoForm, FaleConoscoForm
-import unittest2 as unittest
+
 from email import message_from_string
 from plone.app.testing import TEST_USER_NAME, TEST_USER_ID
 from plone.app.testing import login, logout
 from plone.app.testing import setRoles
 from plone.testing.z2 import Browser
+
 from Acquisition import aq_base
 from zope.component import getSiteManager
 from Products.CMFPlone.tests.utils import MockMailHost
 from Products.MailHost.interfaces import IMailHost
 from AccessControl import Unauthorized
-from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+
 import transaction
+
 from mpdg.govbr.faleconosco.config import KEY_CONFIRMA, EMAIL_FALE_LINK
 from mpdg.govbr.faleconosco.mailer import simple_send_mail
 from mpdg.govbr.faleconosco.utils import prepare_email_message
-from mpdg.govbr.faleconosco.browser.utilities import transform_message, get_fale_config
+from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+
+from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
 
 
 class FaleConoscoForm(unittest.TestCase):
@@ -31,22 +34,22 @@ class FaleConoscoForm(unittest.TestCase):
     layer = MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
 
     def setUp(self):
+        self.app = self.layer['app']
         self.portal = self.layer['portal']
         self.request = self.layer["request"]
+        self.portal_url = self.portal.absolute_url()
+        self.browser = Browser(self.layer['app'])
+        self.portal._original_MailHost = self.portal.MailHost
+        self.portal.MailHost = mailhost = MockMailHost('MailHost')
+        sm = getSiteManager(context=self.portal)
+        sm.unregisterUtility(provided=IMailHost)
+        sm.registerUtility(mailhost, provided=IMailHost)
+
+        self.portal.email_from_address = 'govbr@planejamento.gov.br'
+        transaction.commit()
+
         alsoProvides(self.request, IFormLayer)
         """Definição codigo email"""
-        # self.app = self.layer['app']
-        # self.portal._original_MailHost = self.portal.MailHost
-        # self.portal.MailHost = mailhost = MockMailHost('MailHost')
-        # sm = getSiteManager(context=self.portal)
-        # sm.unregisterUtility(provided=IMailHost)
-        # sm.registerUtility(mailhost, provided=IMailHost)
-        
-        # self.portal.email_from_address = 'govbr@planejamento.gov.br'
-        # transaction.commit()
-        # self.request = self.layer["request"]
-       
-
         # # self.view = FaleConoscoForm(self.portal, self.request, self.views)
         # self.request.form['form','form-widgets-email','form-widgets-assunto','form-widgets-mensagem'] = '123123132131'
         # self.view = FaleConoscoForm(self.portal, self.request)
@@ -78,7 +81,16 @@ class FaleConoscoForm(unittest.TestCase):
 
 
 
-
+    # def test_controlpanel_view_protected(self):
+    #     """ Acesso a view nao pode ser feito por usuario anonimo """
+    #     # Importamos a excecao esperada
+    #     from AccessControl import Unauthorized
+    #     # Deslogamos do portal
+    #     logout()
+    #     # Ao acessar a view como anonimo, a excecao e levantada
+    #     self.assertRaises(Unauthorized,
+    #                       self.portal.restrictedTraverse,
+    #                       '@@site-controlpanel')
 
     """Verifica se o buttão enviar está enviando dados corretamente"""
     # def test_form_button(self):
@@ -86,43 +98,135 @@ class FaleConoscoForm(unittest.TestCase):
     #     button.click()
 
     # """teste SAÍDA Enviar email quando o usuário preenche o formulário"""
-    # def tearDown(self):
-    #     self.portal.MailHost = self.portal._original_MailHost
-    #     sm = getSiteManager(context=self.portal)
-    #     sm.unregisterUtility(provided=IMailHost)
-    #     sm.registerUtility(aq_base(self.portal._original_MailHost), provided=IMailHost)
-     
+    def tearDown(self):
+        self.portal.MailHost = self.portal._original_MailHost
+        sm = getSiteManager(context=self.portal)
+        sm.unregisterUtility(provided=IMailHost)
+        sm.registerUtility(aq_base(self.portal._original_MailHost), provided=IMailHost)
+
     """teste SAÍDA Enviar email quando o usuário preenche o formulário"""
-    # def test_mockmailhost_setting(self):
-    #     #open contact form
-    #     browser = Browser(self.app)
-    #     browser.open('http://localhost:8080/Plone/fale-conosco/@@fale-conosco'
-    #     # Now fill in the form:
 
-    #     form = browser.getForm(name='')
-    #     form.getControl(name='nome').value = 'T\xc3\xa4st user'
-    #     form.getControal(name='email').value = 'test@plone.test'
-    #     form.getControl(name='assunto').value = 'Saluton amiko to\xc3\xb1o'
-    #     form.getControl(name='mensagem').value = 'Message with funny chars: \xc3\xa1\xc3\xa9\xc3\xad\xc3\xb3\xc3\xba\xc3\xb1.'
+    def test_mockmailhost_setting(self):
+        #open contact form
+        browser = Browser(self.app)
+        browser.open('http://nohost/plone/contact-info')
+        # Now fill in the form:
+        # import pdb; pdb.set_trace()
+        form = browser.getForm(name='feedback_form')
+        form.getControl(name='sender_fullname').value = 'T\xc3\xa4st user'
+        form.getControl(name='sender_from_address').value = 'test@plone.test'
+        form.getControl(name='subject').value = 'Saluton amiko to\xc3\xb1o'
+        form.getControl(name='message').value = 'Message with funny chars: \xc3\xa1\xc3\xa9\xc3\xad\xc3\xb3\xc3\xba\xc3\xb1.'
 
-    #     # And submit it:
-    #     form.submit()
-    #     self.assertEqual(browser.url, 'http://localhost:8080/Plone/fale-conosco/@@fale-conosco')
-    #     self.assertIn('E-mail enviado', browser.contents)
+        # And submit it:
+        form.submit()
+        self.assertEqual(browser.url, 'http://nohost/plone/contact-info')
+        self.assertIn('Mail sent', browser.contents)
 
-    #     # As part of our test setup, we replaced the original MailHost with our
-    #     # own version.  Our version doesn't mail messages, it just collects them
-    #     # in a list called ``messages``:
-    #     mailhost = self.portal.MailHost
-    #     self.assertEqual(len(mailhost.messages), 1)
-    #     msg = message_from_string(mailhost.messages[0])
+        # As part of our test setup, we replaced the original MailHost with our
+        # own version.  Our version doesn't mail messages, it just collects them
+        # in a list called ``messages``:
+        mailhost = self.portal.MailHost
+        self.assertEqual(len(mailhost.messages), 1)
+        msg = message_from_string(mailhost.messages[0])
 
-    #     self.assertEqual(msg['MIME-Version'], '1.0')
-    #     self.assertEqual(msg['Content-Type'], 'text/plain; charset="utf-8"')
-    #     self.assertEqual(msg['Content-Transfer-Encoding'], 'quoted-printable')
-    #     self.assertEqual(msg['Subject'], '=?utf-8?q?Saluton_amiko_to=C3=B1o?=')
-    #     self.assertEqual(msg['From'], 'govbr@planejamento.gov.br')
-    #     self.assertEqual(msg['To'], 'govbr@planejamento.gov.br')
-    #     msg_body = msg.get_payload()
-    #     self.assertIn(u'Message with funny chars: =C3=A1=C3=A9=C3=AD=C3=B3=C3=BA=C3=B1',
-    #                   msg_body)
+        self.assertEqual(msg['MIME-Version'], '1.0')
+        self.assertEqual(msg['Content-Type'], 'text/plain; charset="utf-8"')
+        self.assertEqual(msg['Content-Transfer-Encoding'], 'quoted-printable')
+        self.assertEqual(msg['Subject'], '=?utf-8?q?Saluton_amiko_to=C3=B1o?=')
+        self.assertEqual(msg['From'], 'govbr@planejamento.gov.br')
+        self.assertEqual(msg['To'], 'govbr@planejamento.gov.br')
+        msg_body = msg.get_payload()
+        self.assertIn(u'Message with funny chars: =C3=A1=C3=A9=C3=AD=C3=B3=C3=BA=C3=B1',
+                      msg_body)
+
+    def logoutWithTestBrowser(self):
+
+        browser = Browser(self.app)
+        self.browser.open(self.portal.absolute_url() + '/logout')
+            
+        html = self.browser.contents
+
+        self.assertTrue("You are now logged out" in html)
+
+        print browser.contents # O navegador é instância zope.testbrowser.Browser
+            
+        form = browser.getForm(index=2) # Salte o login e o formulário de pesquisa no Plone 4
+
+            # Obter o formulário de login do zope.testbrowser
+        login_form = self.browser.getForm('login_form')
+            # get and print all controls
+        controls = login_form.mech_form.controls
+        for control in controls:
+            print "%s: %s" % (control.attrs['name'], control.attrs['type'])
+
+        for c in form.mech_form.controls: print c
+        print browser.contents
+
+        self.browser.open(self.portal.absolute_url() + "/search")
+
+        # Input some values to the search that we see we get
+        # zero hits and at least one hit
+        for search_terms in [u"Plone", u"youcantfindthis"]:
+            form = self.browser.getForm("searchform")
+
+            # Fill in the search field
+            input = form.getControl(name="SearchableText")
+            input.value = search_terms
+
+            # Submit the search form
+            form.submit(u"Search")
+
+        button = form.getControl(name="mybuttonname")
+        button.click()
+
+        login_form = self.browser.getForm('login_form')
+        login_form.submit('Log in')
+
+    def checkIsUnauthorized(self, url):
+        """
+        Check whether URL gives Unauthorized response.
+        """
+
+        import urllib2
+
+        # Disable redirect on security error
+        self.portal.acl_users.credentials_cookie_auth.login_path = ""
+
+        # Unfuse exception tracking for debugging
+        # as set up in afterSetUp()
+        self.browser.handleErrors = True
+
+        def raising(self, info):
+            pass
+        self.portal.error_log._ignored_exceptions = ("Unauthorized")
+        from Products.SiteErrorLog.SiteErrorLog import SiteErrorLog
+        SiteErrorLog.raising = raising
+
+        try:
+            self.browser.open(url)
+            raise AssertionError("No Unauthorized risen:" + url)
+        except urllib2.HTTPError,  e:
+            # Mechanize, the engine under testbrowser
+            # uses urlllib2 and will raise this exception
+            self.assertEqual(e.code, 401, "Got HTTP response code:" + str(e.code))
+        # Another example where test browser / Zope 2 publisher where invalidly handling Unauthorized exception:
+
+    def test_anon_access_forum(self):
+        """
+        Anonymous users should not be able to open the forum page.
+        """
+
+        self.portal.error_log._ignored_exceptions = ()
+        self.portal.acl_users.credentials_cookie_auth.login_path = ""
+
+        exception = None
+        try:
+            self.browser.open(self.portal.intranet.forum.absolute_url())
+        except:
+            # Handle a broken case where
+            # test browser spits out an exception without a base class (WTF)
+            import sys
+            exception = sys.exc_info()[0]
+
+        self.assertFalse(exception is None)
