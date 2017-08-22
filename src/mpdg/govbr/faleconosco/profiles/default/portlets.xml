@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<portlets>
+<assignment name="sistema-fale-conosco" category="context" key="/"
+    manager="plone.leftcolumn" type="portlets.Navigation" visible="True">
+  <property name="topLevel">0</property>
+  <property name="currentFolderOnly">False</property>
+  <property name="name">Sistema Fale Conosco</property>
+  <property name="includeTop">False</property>
+  <property name="bottomLevel">0</property>
+  <property name="root">/sistema-fale-conosco</property>
+ </assignment>
+
+</portlets>

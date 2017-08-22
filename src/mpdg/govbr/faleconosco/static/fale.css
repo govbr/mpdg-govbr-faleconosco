@@ -1,0 +1,247 @@
+*, *:before, *:after {
+        box-sizing: border-box;
+}
+
+.legendas ul li {
+    display: inline !important;
+    margin-right: 50px;
+}
+
+.fale-tabela-resultado {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.negrito{
+    font-family: Arial;font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;"
+}
+
+.fale-tabela-resultado ul li {
+    display: inline !important;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 1px solid #000000;
+}
+
+.fale-tabela-resultado ul li:last-child {
+    border: none;
+}
+
+.fale-tabela-resultado ul li:first-child {
+    padding-left: 0;
+}
+
+.fale-busca {
+    background-color: #edeff1;
+}
+
+.fale-mensagens {
+    display: none;
+}
+
+.fale-mensagem {
+    border: 1px #333 solid;
+    padding:10px;
+}
+
+.fale-mensagem-cabecalho {
+    background-color: #fff;
+    border: 1px solid #333;
+    margin-bottom: 5px;
+    padding: 10px;;
+}
+
+.fale-mensagem-texto{
+    margin-top:15px;
+}
+
+.fale-mensagem-acao-responder-encaminhar{
+    margin-top:5px;
+    border: 1px #333 solid;
+}
+
+.fale-mensagem-acao-responder-encaminhar p{
+    margin:10px;
+}
+
+.fale-mensagem-header{
+    margin-top: 10px;
+    border: 1px #333 solid;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.fale-mensagem-acao{
+    padding: 10px;
+    border: 1px #333 solid;
+    margin-top: 5px;
+}
+
+.container-search .container-filter {
+    border: #AAA solid 1px;
+    background: #F3F3F3;
+}
+
+.container-search .container-filter .mid-filter select,
+.container-search .container-filter .mid-filter input[type="link"] {
+    margin: 7px 0 17px 0;
+}
+
+.container-search .container-filter .mid-filter select {
+    width: 100%;
+}
+
+.container-search .container-filter .top-filter,
+.container-search .container-filter .mid-filter,
+.container-search .container-filter .bot-filter {
+    padding: 10px;
+}
+
+.container-search .container-filter .top-filter {
+    border-bottom: #AAA solid 1px;
+}
+
+.container-search .container-filter .mid-filter {
+    background: #FFF;
+    border-bottom: #AAA solid 1px;
+}
+
+.container-search .container-filter .dates-box {
+    margin-top: 7px;
+}
+
+.container-search .container-filter .dates-box input.date {
+    width: 75px;
+    font-size: 12px;
+    text-align: left;
+    padding: 3px;
+}
+
+.container-search .container-filter .top-filter .left,
+.container-search .container-filter .top-filter .right {
+    margin: 0;
+}
+
+.container-search .container-filter .top-filter > span {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.container-search .container-filter .top-filter input[type="text"] {
+    padding: 4px;
+    width: 205px;
+    font-size: 13px;
+}
+
+./*container-search .navigation-govtiles { padding: 15px 10px 10px; }
+*/
+#fale-faq {
+    width: 48%;
+    float: right;
+}
+
+#fale-form {
+    width: 48%;
+    float: left;
+}
+
+#calroot {
+    width: 205px !important;
+}
+
+div.overlay2 {
+    z-index: 10050 !important;
+}
+
+.data {
+
+    margin-top: -18px;
+}
+
+/* ajusta css do historico de mensagens no accordion */
+.ui-accordion h3 {
+    padding-left: 25px !important;
+}
+#content .accordion .ui-state-hover {
+     color:blue !important;
+ }
+ .ui-state-active,
+ .ui-widget-content .ui-state-active,
+ .ui-widget-header .ui-state-active,
+ a.ui-button:active,
+ .ui-button:active,
+ .ui-button.ui-state-active:hover {
+    background: #2c66ce none repeat scroll 0 0 !important;
+ }
+
+
+/* ajusta o fundo da cor do titulo do painel de administração do fale conosco */ 
+
+#listing-table thead {
+    background-color: #c3c3c3
+}
+
+/* ajustar a cor do fundo do painel de adminstração do fale conosco*/
+#listing-table tbody .even {
+    background-color: #e3e3e3;
+}
+
+
+table.auto-table {
+  background: white;
+  margin-bottom: 1.25rem;
+  border: solid 1px #dddddd;
+  table-layout: fixed;
+  width: 100%; }
+  table.auto-table caption {
+    background: transparent;
+    color: #222222;
+    font-size: 1rem;
+    font-weight: bold; }
+  table.auto-table thead {
+    background: whitesmoke; }
+    table.auto-table thead tr th,
+    table.auto-table thead tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222222; }
+  table.auto-table tfoot {
+    background: whitesmoke; }
+    table.auto-table tfoot tr th,
+    table.auto-table tfoot tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222222; }
+  table.auto-table tr,
+  table.auto-table tr td {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+    color: #222222;
+    text-align: left; }
+  table.auto-table tr.even, table.auto-table tr.alt, table.auto-table tr:nth-of-type(even) {
+    background: #f9f9f9; }
+  table.auto-table thead tr th,
+  table.auto-table tfoot tr th,
+  table.auto-table tfoot tr td,
+  table.auto-table tbody tr th,
+  table.auto-table tbody tr td,
+  table.auto-table tr td {
+    display: table.auto-table-cell;
+    line-height: 1.125rem; }
+  table.auto-table td {
+    vertical-align: middle;
+    margin:10px;
+  }
+  table.auto-table th {
+    vertical-align: middle;
+  }
+
+  .btn-color{
+    color: #ffffff !important;
+}

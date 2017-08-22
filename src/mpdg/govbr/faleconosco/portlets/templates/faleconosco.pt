@@ -1,0 +1,28 @@
+<dl class="portlet portletFaleConosco"
+    tal:define="no_prazo view/no_prazo;
+                alerta view/alerta;
+                atraso view/atraso;">
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        Fale Conosco
+        <span class="portletTopRight"></span>
+    </dt>
+    <dd class="portletItem lastItem">
+        <img src="" alt="No Prazo"
+             tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />
+        <span tal:content="no_prazo" /> - No Prazo <br />
+        <img src="" alt="Alerta"
+             tal:attributes="src string:++resource++mpdg.govbr.faleconosco/alerta.png" />
+        <span tal:content="alerta" /> - Alerta <br />
+        <img src="" alt="Atraso"
+             tal:attributes="src string:++resource++mpdg.govbr.faleconosco/atraso.png" />
+        <span tal:content="atraso" /> - Atraso <br />
+    </dd>
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <a href=""
+           title="Acesse a lista"
+           tal:attributes="href string:@@fale-conosco-admin">ACESSE A LISTA</a>
+        <span class="portletBottomRight"></span>
+    </dd>
+</dl>

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="example.dexterityforms"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+
+    <h1 class="documentFirstHeading">Fale Conosco</h1>
+
+    <div tal:define="fale view/get_message">
+        <h3 tal:replace="structure fale/msg" >mensagem</h3>
+        
+        <p> <b>Por favor, confirme o envio da sua mensagem no e-mail <span tal:content="fale/email">EMAIL</span>. Após sua confirmação, a sua mensagem será enviada para os responsáveis do Site.</p> 
+
+          <a href="" tal:attributes= "href view/get_portal_url">Voltar pagina inicial </a> 
+    </div>
+
+</metal:block>
+
+</html>

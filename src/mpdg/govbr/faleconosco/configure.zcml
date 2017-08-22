@@ -1,0 +1,128 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="mpdg.govbr.faleconosco"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <includeDependencies package="." />
+
+  <include package="five.grok" />
+
+  <grok:grok package="." />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <include package=".browser" />
+  <include file="upgrades.zcml" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="mpdg.govbr.faleconosco: Fale Conosco"
+      directory="profiles/default"
+      description="Installs the mpdg.govbr.faleconosco add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+<!-- PERMISSÕES  -->
+
+  <permission
+      id="mpdg.govbr.faleconosco.AddFaleConosco"
+      title="mpdg.govbr.faleconosco: Add FaleConosco"
+      />
+
+  <permission
+      id="mpdg.govbr.faleconosco.AddHistorico"
+      title="mpdg.govbr.historico: Add Historico"
+      />
+  <permission
+      id="mpdg.govbr.faleconosco.AddMensagem"
+      title="mpdg.govbr.Mensagem: Add Mensagem"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="mpdg.govbr.faleconosco (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the mpdg.govbr.faleconosco add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+<!-- Recursos estáticos -->
+  <browser:resourceDirectory
+      name="mpdg.govbr.faleconosco"
+      directory="static" />
+
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="mpdg.govbr.faleconosco-hiddenprofiles" />
+
+  <utility
+      factory=".config.HiddenProfiles"
+      name="mpdg.govbr.faleconosco"
+      provides="Products.CMFPlone.interfaces.INonInstallable"
+      />
+
+
+  <!-- Register the import step -->
+  <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_groups"
+      title="mpdg.govbr.faleconosco special import handlers"
+      description="Create group Usuários Fale Conosco"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_groups"
+      />
+
+
+  <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_faq_folder"
+      title="Cria pasta faq do fale conosco"
+      description="Create faq no fale conosco"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_faq"
+      />
+
+
+  <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_link"
+      title="Cria Link na home Fale Conosco"
+      description="Criar link na home fale conosco"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_link"
+      />
+
+    <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_folder_fale"
+      title="Cria pasta pra armazenar o faleconosco"
+      description="Criar link na home fale conosco"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_folder_fale"
+      />
+
+      <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_textos_prontos"
+      title="Cria pasta pra armazenar os textos prontos"
+      description="Criar textos prontos"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_textos_prontos"
+      />
+
+
+      <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.create_link_portal"
+      title="Pasta para armazenar link fale conosco"
+      description="Pasta para armazenar link do faleconosco"
+      handler="mpdg.govbr.faleconosco.setuphandlers.create_link_portal"
+      />
+
+      <genericsetup:importStep
+      name="mpdg.govbr.faleconosco.add_catalog_indexes"
+      title="Create indexes assunto"
+      description="criar indexes assunto"
+      handler="mpdg.govbr.faleconosco.setuphandlers.add_catalog_indexes"
+      />
+
+
+</configure>

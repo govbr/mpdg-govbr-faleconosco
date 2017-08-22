@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+<style>
+.textarea-widget {
+  width: 765px !important;
+  height: 100px !important;
+  position: relative !important;
+  left: -5px !important;
+}
+.titulo {
+  margin-top: 10px !important;
+}
+</style>
+<br />
+<h3 class="documentFirstHeading" class="titulo">Fale Conosco | Painel de Administração</h3>
+
+<div class="tile tile-default" style="margin-top:10px;">
+    <div class="outstanding-header">
+      <h4 class="outstanding-title" tal:content="view/label | nothing" />
+    </div>
+</div>
+<!-- tal:content="view/results" -->
+
+<div class="fale-mensagem-form">
+  <div class="fale-mensagem-header"
+       tal:define="DateTime python:modules['DateTime'].DateTime;">
+
+         <span><b>Assunto:</b> <span tal:content="view/assunto">assunto</span>
+
+        <span style="float: right"
+              tal:content="python:context.toLocalizedTime(DateTime())"><br /></span>
+  </div>
+  <tal:repeat repeat="item view/get_messages">
+    <div class="accordion">
+        <h3 tal:content="item/titulo">Titulo da mensagem 1</h3>
+        <div>
+            <div class="accordion"
+                 tal:define="mensagens item/mensagens">
+                 <tal:repeat repeat="mensagem mensagens">
+                  <h3 tal:content="structure mensagem/titulo">Section 1</h3>
+                  <div>
+                    <p tal:content="mensagem/msg">
+                    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                    </p>
+                  </div>
+                </tal:repeat>
+            </div>
+
+        </div>
+    </div>
+    </tal:repeat>
+  <div id="content-core">
+
+      <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+
+  </div>
+</div>
+    <div class="fale-mensagem-acao">
+        <span>
+            <b class="negrito">Adicionar:</b>
+            <a href="@@textos-prontos"
+               class="fale-inserir-textos-sel link-overlay"
+               id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos
+                Prontos</a>   |
+            <a href="@@inserir-faq"
+               class="fale-inserir-faq-sel link-overlay"
+               id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a>
+        </span>
+    </div>
+</metal:block>
+</html>

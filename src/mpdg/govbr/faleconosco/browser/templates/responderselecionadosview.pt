@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.fale_conosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="javascript_head_slot">
+  <script type="text/javascript">
+       $( function() {
+        $( ".accordion" ).accordion({
+          collapsible: true,
+          active: false,
+          heightStyle: "content"
+        });
+        $( ".titulo" ).tooltip();
+      }
+       );
+       
+  </script>
+  <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
+
+</metal:block>
+
+<metal:block fill-slot="main">
+
+<h1 class="documentFirstHeading">Fale Conosco | Painel de Administração</h1>
+
+<div class="tile tile-default" style="margin-top:10px;">
+    <div class="outstanding-header">
+      <h2 class="outstanding-title" tal:content="view/label | nothing" />
+    </div>
+</div>
+
+<div class="fale-mensagem-form">
+    <div class="fale-mensagem-header"
+         tal:define="DateTime python:modules['DateTime'].DateTime;">
+        <span><b>Resposta para:</b> <span tal:content="view/messages"></span></span>
+        <span style="float: right"
+              tal:content="python:context.toLocalizedTime(DateTime())"></span>
+    </div>
+
+    <tal:repeat repeat="item view/get_messages">
+    <div class="accordion" id ="titulo" title="Clique para visualizar fluxo de mensagem ">
+        <h3 tal:content="item/titulo">Titulo da mensagem 1</h3>
+        <div>
+            <div class="accordion"
+                 tal:define="mensagens item/mensagens">
+                 <tal:repeat repeat="mensagem mensagens">
+                  <h3 tal:content="structure mensagem/titulo">Section 1</h3>
+                  <div>
+                    <p tal:content="mensagem/msg">
+                    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                    </p>
+                  </div>
+                </tal:repeat>
+            </div>
+            
+        </div>
+    </div>
+    </tal:repeat>
+
+    <div id="content-core">
+        <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+    </div>
+
+    <div class="fale-mensagem-acao">
+        <span>
+            <b class="negrito">Adicionar:</b>
+            <a href="@@textos-prontos"
+               class="fale-inserir-textos-sel link-overlay"
+               id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos
+                Prontos</a>   <!-- | -->
+            <!-- <a href="@@inserir-faq"
+               class="fale-inserir-faq-sel link-overlay"
+               id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a> -->
+        </span>
+    </div>
+
+    <!-- <script>
+        $(document).ready(function(){
+            $('#form-buttons-descartar').click(function(e){
+                e.preventDefault();
+                window.history.go(-1);
+            });
+            $('a.fale-inserir-textos-sel').prepOverlay({
+                subtype: 'ajax',
+                filter: '#content>*',
+                formselector: 'form',
+                closeselector: 'input.fale-texto',
+                cssclass: 'overlay2',
+                config: {
+                    onBeforeClose: function(event){
+                        var input = $('form[name="fale-textos-form"] :checked');
+                        var texto = $(input).next().next().next().next();  // selected text
+                        var textarea = $("#form-widgets-mensagem_ifr").contents().find("#content");
+                        $(textarea).append($(texto).text());
+                    }
+                }
+            });
+            $('a.fale-inserir-faq-sel').prepOverlay({
+                subtype: 'ajax',
+                filter: '#content>*',
+                formselector: 'form',
+                closeselector: 'input.fale-texto',
+                cssclass: 'overlay2',
+                config: {
+                    onBeforeClose: function(event){
+                        var input = $('form[name="fale-textos-form"] :checked');
+                        var texto = $(input).next().next().next().next();  // selected text
+                        var textarea = $("#form-widgets-mensagem_ifr").contents().find("#content");
+                        $(textarea).append($(texto).text());
+                    }
+                }
+            });
+        })
+    </script> -->
+</div>
+</metal:block>
+</html>

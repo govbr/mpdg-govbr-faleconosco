@@ -1,0 +1,207 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+
+    <script src="++resource++mpdg.govbr.faleconosco/Chart.min.js"></script>
+    <script src="++resource++mpdg.govbr.faleconosco/chroma.min.js"></script>
+    <tal:block tal:define="fale view/fale_conosco">
+    <script>
+        $(document).ready(function(){
+            $('#tipo-grafico').change(function() {
+                var $form = $("#fale-grafico-params :input[value!='']");
+                params = $form.serialize();
+                if(params){
+                    window.location = ("@@fale-conosco-charts?tipo-grafico=" + $(this).val() + "&" + params );
+                } else {
+                    window.location = ("@@fale-conosco-charts?tipo-grafico=" + $(this).val());
+                }
+            });
+        });
+
+        $(function () {
+
+            var colors = ['#00a859', '#ffde21', '#ee3237', '#00b0f0'];
+
+            var data = [];
+            var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
+            if (tipo == 'barra') {
+                var data = {
+                    labels: ["Prazo", "Alerta", "Atraso", "Respondido"],
+                    datasets: [
+                        {
+                            label: "Gráfico de Pesquisa",
+                            data: [
+                                <tal:block replace="view/no_prazo" />,
+                                <tal:block replace="view/alerta" />,
+                                <tal:block replace="view/atraso"/>,
+                                <tal:block replace="view/respondido"/>
+                            ],
+                            backgroundColor: colors,
+                            borderColor: colors,
+                            borderWidth:1
+                        }
+                    ]
+                }
+                var context = $("#fale-grafico").get(0).getContext("2d");
+                var chart = new Chart(context, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        animateRotate: true,
+                        animationSteps: 30,
+                        animationEasing: "easeInOutCirc",
+                        segmentStrokeWidth: 1,
+                        tooltipFontSize: 16
+                    }
+                })
+            } else {
+                var data = {
+                labels: ["Prazo", "Alerta", "Atraso", "Respondido"],
+                    datasets: [
+                        {
+                            data: [
+                                <tal:block replace="view/no_prazo" />,
+                                <tal:block replace="view/alerta" />,
+                                <tal:block replace="view/atraso"/>,
+                                <tal:block replace="view/respondido"/>
+                            ],
+                            backgroundColor: ["#00a859", "#ffde21","#ee3237","#00b0f0"],
+                            hoverBlackgroundColor:["#00a859", "#ffde21","#ee3237","#00b0f0"]
+                        }
+                    ]
+                }
+                // var context = $('.fale-grafico > canvas').get(0).getContext("2d");
+                var context = $("#fale-grafico").get(0).getContext("2d");
+                var chart = new Chart(context, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        animateRotate: true,
+                        animationSteps: 30,
+                        animationEasing: "easeInOutCirc",
+                        segmentStrokeWidth: 1,
+                        tooltipFontSize: 16
+                    }
+                });
+            }
+        });
+    </script>
+
+    <style>
+        #tipo-grafico, .fale-grafico {
+            float: right;
+        }
+
+        .fale-total-mensagens, .fale-grafico-legenda {
+            float: left;
+        }
+
+        .fale-grafico-legenda li {
+            list-style: none !important;
+        }
+
+        .fale-grafico-legenda {
+            width: 30%;
+        }
+
+        .fale-grafico {
+            width: 60%;
+        }
+
+        .fale-resultado-grafico {
+            margin-top: 2em;
+        }
+    </style>
+
+    <h1 class="documentFirstHeading">Fale Conosco | Gráfico de mensagens</h1>
+    <a href="" type="button" title="Gráfico de Categorias" class="btn btn-success btn-color"
+       tal:attributes=" href string:${context/absolute_url}/@@categoria-charts-view">
+       Gráfico de categorias
+    </a>
+    <a href="" title="Gráficos de Pesquisas" class="btn btn-info btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
+    </a>
+        <div>
+            <h2>Parâmetros do filtro:</h2>
+            <p>
+                <b>Status:</b>
+                <span tal:content="python: context.REQUEST.get('prazo') and 'Prazo' or ''"></span>
+                <span tal:content="python: context.REQUEST.get('alerta') and ' Alerta' or ''"></span>
+                <span tal:content="python: context.REQUEST.get('atraso') and ' Atraso' or ''"></span>
+                <span tal:content="python: context.REQUEST.get('respondido') and ' Respondido' or ''"></span>
+                <span tal:condition="python: not context.REQUEST.get('prazo') and
+                 not context.REQUEST.get('alerta') and
+                 not context.REQUEST.get('atraso') and
+                 not context.REQUEST.get('respondido')">Todos</span>
+            </p>
+            <p tal:condition="context/REQUEST/data|nothing">
+                <b>Data:</b><span tal:replace="context/REQUEST/data|nothing"></span>
+            </p>
+            <p tal:condition="context/REQUEST/assunto|nothing">
+                <b>Assunto:</b><span tal:replace="context/REQUEST/assunto|nothing"></span>
+            </p>
+            <p tal:condition="context/REQUEST/responsavel|nothing">
+                <b>Responsável:</b><span tal:replace="context/REQUEST/responsavel|nothing"></span>
+            </p>
+            <p tal:condition="context/REQUEST/Searchable|nothing">
+                <b>Palavra-chave:</b><span tal:replace="context/REQUEST/Searchable|nothing"></span>
+            </p>
+        </div>
+
+
+        <div class="fale-resultado-grafico">
+            <div>
+            <h3 class="fale-total-mensagens">Total: <span tal:content="view/quantidade"></span> mensagens</h3>
+            <form id="fale-grafico-params" name="fale-grafico-params">
+                <input type="hidden" name="prazo" value=""
+                       tal:attributes="value context/REQUEST/prazo|nothing" />
+                <input type="hidden" name="alerta" value=""
+                       tal:attributes="value context/REQUEST/alerta|nothing" />
+                <input type="hidden" name="atraso" value=""
+                       tal:attributes="value context/REQUEST/atraso|nothing" />
+                <input type="hidden" name="respondido" value=""
+                       tal:attributes="value context/REQUEST/respondido|nothing" />
+                <input type="hidden" name="data" value=""
+                       tal:attributes="value context/REQUEST/data|nothing" />
+                <input type="hidden" name="assunto" value=""
+                       tal:attributes="value context/REQUEST/assunto|nothing" />
+                <input type="hidden" name="responsavel" value=""
+                       tal:attributes="value context/REQUEST/responsavel|nothing" />
+                <input type="hidden" name="Searchable" value=""
+                       tal:attributes="value context/REQUEST/Searchable|nothing" />
+
+                <select id="tipo-grafico"
+                        tal:define='tipo context/REQUEST/tipo-grafico|nothing'>
+                    <option value="pizza" tal:attributes="selected python:'selected' if tipo == 'pizza' else ''">Pizza</option>
+                    <option value="barra" tal:attributes="selected python:'selected' if tipo == 'barra' else ''">Barra</option>
+                </select>
+            </form>
+            </div>
+            <div style="clear: both;"></div>
+            <br />
+            <div >
+            <ul class="fale-grafico-legenda">
+                <li><img src="" alt="No Prazo"
+                         tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />  No Prazo (<span tal:replace="view/no_prazo"></span>)</li>
+                <li><img src="" alt="Em Alerta"
+                         tal:attributes="src string:++resource++mpdg.govbr.faleconosco/alerta.png" />  Em Alerta (<span tal:replace="view/alerta"></span>)</li>
+                <li><img src="" alt="Em Atraso"
+                         tal:attributes="src string:++resource++mpdg.govbr.faleconosco/atraso.png" />  Em Atraso (<span tal:replace="view/atraso"></span>)</li>
+                <li><img src="" alt="Respondidos"
+                         tal:attributes="src string:++resource++mpdg.govbr.faleconosco/respondido.png" />  Respondidos (<span tal:replace="view/respondido"></span>)</li>
+            </ul>
+            <div class="fale-grafico">
+                <canvas id="fale-grafico" width="245" height="245"></canvas>
+            </div>
+            </div>
+        </div>
+
+    </tal:block>
+</metal:block>
+
+</html>

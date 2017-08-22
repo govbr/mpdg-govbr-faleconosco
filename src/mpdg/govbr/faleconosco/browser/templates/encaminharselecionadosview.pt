@@ -1,0 +1,83 @@
+<div class="fale-mensagem-form">
+    <form name="encaminhar-selecionados" action="@@add-mensagem" method="post">
+        <input type="hidden" name="form.submitted:boolean" value="True" />
+        <div class="fale-mensagem-header"
+             tal:define="DateTime python:modules['DateTime'].DateTime;">
+            <span class="fale-encaminhar-email">
+                <b class="negrito">Encaminhar:</b>
+            </span>
+            <span style="float: right"
+                  tal:content="python:context.toLocalizedTime(DateTime())"></span>
+        </div>
+        <div class="fale-mensagem-corpo" id="fale-mensagem-corpo-sel">
+            <textarea rows="5" name="mensagem"></textarea>
+        </div>
+        <div class="fale-mensagem-acao">
+            <span>
+                <b class="negrito">Adicionar:</b>
+                <a href="@@textos-prontos"
+                   class="fale-inserir-textos-sel link-overlay"
+                   id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos
+                    Prontos</a>   |
+                <a href="@@inserir-faq"
+                   class="fale-inserir-faq-sel link-overlay"
+                   id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a>
+            </span>
+            <input type="button" name="descartar" style="float: right;"
+                   value="Descartar" />
+            <input style="float: right; margin: 0px 5px;" type="submit"
+                   class="fale-mensagem-form-submit"
+                   name="form.button.Submit" value="Enviar" />
+        </div>
+    </form>
+<!--     <script>
+        $(document).ready(function(){
+            $('a.fale-inserir-textos-sel').prepOverlay({
+                subtype: 'ajax',
+                filter: '#content>*',
+                formselector: 'form',
+                closeselector: 'input.fale-texto',
+                cssclass: 'overlay2',
+                config: {
+                    onBeforeLoad: function(event){
+                        $id = event.target.ownerDocument.activeElement.id;
+                        $div = $('div#' + $id);
+                    },
+                    onBeforeClose: function(event){
+                        var $input = $('form[name="fale-textos-form"] :checked');
+                        var $texto = $input.next().next().next().next()
+                        var $textarea = $div.find('textarea[name="mensagem"]');
+                        if ($textarea.val().length > 1) {
+                            $textarea.val($textarea.val() + '\n ' + $texto.text())
+                        } else {
+                            $textarea.val($texto.text())
+                        }
+                    }
+                }
+            });
+            $('a.fale-inserir-faq-sel').prepOverlay({
+                subtype: 'ajax',
+                filter: '#content>*',
+                formselector: 'form',
+                closeselector: 'input.fale-texto',
+                cssclass: 'overlay2',
+                config: {
+                    onBeforeLoad: function(event){
+                        $id = event.target.ownerDocument.activeElement.id;
+                        $div = $('div#' + $id);
+                    },
+                    onBeforeClose: function(event){
+                        var $input = $('form[name="fale-textos-form"] :checked');
+                        var $texto = $input.next().next().next().next()
+                        var $textarea = $div.find('textarea[name="mensagem"]');
+                        if ($textarea.val().length > 1) {
+                            $textarea.val($textarea.val() + '\n ' + $texto.text())
+                        } else {
+                            $textarea.val($texto.text())
+                        }
+                    }
+                }
+            });
+        })
+    </script> -->
+</div>

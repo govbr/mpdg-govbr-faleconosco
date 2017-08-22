@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="mpdg.govbr.faleconosco"
+      metal:use-macro="context/main_template/macros/master">
+
+<metal:block fill-slot="main">
+
+    <script src="++resource++mpdg.govbr.faleconosco/Chart.min.js"></script>
+    <script src="++resource++mpdg.govbr.faleconosco/chroma.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tipo-grafico').change(function() {
+                var $form = $("#fale-grafico-params :input[value!='']");
+                params = $form.serialize();
+                if(params){
+                    window.location = ("@@categoria-charts-view?tipo-grafico=" + $(this).val() + "&" + params );
+                } else {
+                    window.location = ("@@categoria-charts-view?tipo-grafico=" + $(this).val());
+                }
+            });
+        });
+
+        $(function () {
+            var colors = <tal:block replace="view/gera_cor" />;
+            var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
+
+            var data = {
+                labels: <tal:block replace="view/taglist" />,
+                datasets: [
+                    {
+                        label: "Categorias de mensagens",
+                        data: <tal:block replace="view/tagdata" />,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth:1
+                    }
+                ]
+            }
+
+            var context = $("#fale-grafico").get(0).getContext("2d");
+
+            function renderChart(type) {
+                new Chart(context, {
+                    type: type,
+                    data: data,
+                    options: {
+                        animateRotate: true,
+                        animationSteps: 30,
+                        animationEasing: "easeInOutCirc",
+                        segmentStrokeWidth: 1,
+                        tooltipFontSize: 16
+                    }
+                });
+            };
+
+            if (tipo == 'barra') {
+                renderChart('bar');
+            }else {
+                renderChart('pie');
+            }
+        });
+    </script>
+
+    <style>
+        #tipo-grafico, .fale-grafico {
+            float: right;
+        }
+
+        .fale-total-mensagens, .fale-grafico-legenda {
+            float: left;
+        }
+
+        .fale-grafico-legenda {
+            width: 30%;
+        }
+
+        .fale-grafico {
+            width: 60%;
+        }
+
+        .fale-resultado-grafico {
+            margin-top: 2em;
+        }
+    </style>
+
+    <h1 class="documentFirstHeading">Fale Conosco | Gráfico de categorias</h1>
+    <a href="" title="Gráficos de categorias" class="btn btn-success btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de mensagens
+    </a>
+    <a href="" title="Voltar para o painel" class="btn btn-info btn-color"
+       tal:attributes="href string:${context/absolute_url}/@@fale-conosco-admin">Voltar para o painel
+    </a>
+        <form id="fale-grafico-params" name="fale-grafico-params">
+            <select id="tipo-grafico"
+                    tal:define='tipo context/REQUEST/tipo-grafico|nothing'>
+                <option value="pizza" tal:attributes="selected python:'selected' if tipo == 'pizza' else ''">Pizza</option>
+                <option value="barra" tal:attributes="selected python:'selected' if tipo == 'barra' else ''">Barra</option>
+            </select>
+        </form>
+
+        <div class="fale-resultado-grafico">
+            <h3>Exibindo as <span tal:replace="view/qtd">10</span> categorias com mais objetos</h3>
+            <br />
+            <h3 class="fale-total-mensagens">Total: <span tal:replace="view/total_obj">11</span> objetos categorizados</h3>
+            <div style="clear: both;"></div>
+            <br />
+            <div >
+            <ul class="fale-grafico-legenda">
+                <li tal:repeat="tag view/zipped_tags">
+                    <span tal:replace="python:tag[0]">coppe</span> (<span tal:replace="python:tag[1]">7</span>)
+                </li>
+            </ul>
+            <div class="fale-grafico">
+                <canvas id="fale-grafico" width="245" height="245"></canvas>
+            </div>
+            </div>
+        </div>
+</metal:block>
+
+</html>

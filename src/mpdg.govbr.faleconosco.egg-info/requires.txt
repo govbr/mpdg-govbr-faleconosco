@@ -1,0 +1,14 @@
+five.grok
+plone.directives.form
+plone.api
+Products.GenericSetup>=1.8.2
+setuptools
+z3c.jbot
+pandas==0.19.2
+Products.contentmigration
+
+[test]
+plone.app.testing
+plone.testing>=5.0.0
+plone.app.contenttypes
+plone.app.robotframework[debug]
