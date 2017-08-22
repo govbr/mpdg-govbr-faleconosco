@@ -18,6 +18,8 @@
        );
        
   </script>
+
+  <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
 </metal:block>
 
 <metal:block fill-slot="main">
@@ -68,7 +70,7 @@
     </div>
     </tal:repeat>
 
-    <div id="content-core">
+    <div class="content-core">
 
         
         <metal:block use-macro="context/@@ploneform-macros/titlelessform" />       
@@ -78,17 +80,11 @@
     <div class="fale-mensagem-acao">
         <span>
             <b class="negrito">Adicionar:</b>
-            <a href="@@textos-prontos"
-               class="fale-inserir-textos-sel link-overlay"
-               id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos
-                Prontos</a>   |
-            <a href="@@inserir-faq"
-               class="fale-inserir-faq-sel link-overlay"
-               id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a>
+            <a href="@@textos-prontos" class="fale-inserir-textos-sel link-overlay" id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos Prontos</a>
         </span>
     </div>
 
-    <script>
+<!--     <script>
         $(document).ready(function(){
             $('#form-buttons-descartar').click(function(e){
                 e.preventDefault();
@@ -103,12 +99,14 @@
                 config: {
                     onBeforeClose: function(event){
                         var input = $('form[name="fale-textos-form"] :checked');
-                        var texto = $(input).next().next().next().next();  // selected text
+                        var texto = $(input).nextAll()[3];  // selected text
                         var textarea = $("#form-widgets-mensagem_ifr").contents().find("#content");
                         $(textarea).append($(texto).text());
+
                     }
                 }
             });
+                
             $('a.fale-inserir-faq-sel').prepOverlay({
                 subtype: 'ajax',
                 filter: '#content>*',
@@ -125,7 +123,7 @@
                 }
             });
         })
-    </script>
+    </script> -->
 </div>
 </metal:block>
 </html>

@@ -156,13 +156,13 @@
     <ul>
         <!-- <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
         <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li> -->
-        <li tal:condition="python:view.is_admin()">
+        <li tal:condition="python:view.is_user()">
             <a href="@@responder-selecionados" class="fale-responder-selecionados">Responder selecionados</a>
         </li>
         <li tal:condition="python:view.is_user()">
             <a href="@@fale-conosco-admin" onclick="alert('Você não tem permissão para realizar essa ação.')">Responder selecionados</a>
         </li>
-        <li tal:condition="python:view.is_admin()">
+        <li tal:condition="python:view.is_user()">
             <a href="@@encaminhar-mensagem" class="fale-encaminhar-selecionados">Encaminhar selecionados</a>
         </li>
         <li tal:condition="python:view.is_user()">

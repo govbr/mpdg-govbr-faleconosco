@@ -30,7 +30,7 @@
                    name="form.button.Submit" value="Enviar" />
         </div>
     </form>
-    <script>
+<!--     <script>
         $(document).ready(function(){
             $('a.fale-inserir-textos-sel').prepOverlay({
                 subtype: 'ajax',
@@ -79,5 +79,5 @@
                 }
             });
         })
-    </script>
+    </script> -->
 </div>
