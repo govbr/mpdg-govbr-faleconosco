@@ -1,0 +1,2 @@
+ExtensionClass>=4.2.0
+zope.interface

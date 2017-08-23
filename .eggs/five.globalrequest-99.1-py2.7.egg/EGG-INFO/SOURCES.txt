@@ -1,0 +1,15 @@
+CHANGES.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+src/five/__init__.py
+src/five.globalrequest.egg-info/PKG-INFO
+src/five.globalrequest.egg-info/SOURCES.txt
+src/five.globalrequest.egg-info/dependency_links.txt
+src/five.globalrequest.egg-info/namespace_packages.txt
+src/five.globalrequest.egg-info/not-zip-safe
+src/five.globalrequest.egg-info/requires.txt
+src/five.globalrequest.egg-info/top_level.txt
+src/five/globalrequest/__init__.py
+src/five/globalrequest/configure.zcml

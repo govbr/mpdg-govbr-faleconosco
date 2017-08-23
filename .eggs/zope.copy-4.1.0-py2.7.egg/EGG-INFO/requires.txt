@@ -1,0 +1,12 @@
+setuptools
+zope.interface
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+
+[test]
+zope.component
+zope.location
+zope.testing
+zope.testrunner

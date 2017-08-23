@@ -1,0 +1,6 @@
+setuptools
+six
+AccessControl
+transaction
+Zope2>=4.0a5
+zope.component

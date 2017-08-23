@@ -1,0 +1,13 @@
+setuptools
+zope.interface
+zope.i18nmessageid
+
+[test]
+zope.component[zcml]
+zope.configuration
+zope.security[zcml]
+
+[zcml]
+zope.component[zcml]
+zope.configuration
+zope.security[zcml]

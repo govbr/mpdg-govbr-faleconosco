@@ -1,0 +1,5 @@
+persistent
+setuptools
+zope.interface
+zope.location
+zope.testing

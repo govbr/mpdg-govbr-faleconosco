@@ -1,0 +1,6 @@
+setuptools
+Zope2>=4.0a3
+five.localsitemanager
+Products.MailHost
+Products.PythonScripts
+Products.ZCatalog

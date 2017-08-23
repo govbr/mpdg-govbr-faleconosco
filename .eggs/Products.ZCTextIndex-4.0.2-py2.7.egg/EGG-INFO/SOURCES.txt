@@ -1,0 +1,15 @@
+CHANGES.rst
+COPYRIGHT.txt
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+src/Products/__init__.py
+src/Products.ZCTextIndex.egg-info/PKG-INFO
+src/Products.ZCTextIndex.egg-info/SOURCES.txt
+src/Products.ZCTextIndex.egg-info/dependency_links.txt
+src/Products.ZCTextIndex.egg-info/namespace_packages.txt
+src/Products.ZCTextIndex.egg-info/not-zip-safe
+src/Products.ZCTextIndex.egg-info/requires.txt
+src/Products.ZCTextIndex.egg-info/top_level.txt

@@ -1,0 +1,25 @@
+# Fred van Dijk <f.van.dijk@zestsoftware.nl>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: z3c.formwidget.query\n"
+"POT-Creation-Date: 2017-08-09 15:33+0000\n"
+"PO-Revision-Date: 2017-08-09 17:30 +0200\n"
+"Last-Translator: Fred van Dijk <f.van.dijk@zestsoftware.nl>\n"
+"Language-Team: Zest Software <info@zestsoftware.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: nl\n"
+"Language-Name: Nederlands\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: z3c.formwidget.query\n"
+"Language: nl\n"
+
+#: z3c/formwidget/query/widget.py:90
+msgid "(nothing)"
+msgstr "(niets)"
+
+#: z3c/formwidget/query/widget.py:70
+msgid "Search"
+msgstr "zoeken"

@@ -1,0 +1,861 @@
+# Manabu TERADA <terada@cmscom.jp> 2016
+# Gettext Message File for Plone mockup
+msgid ""
+msgstr ""
+"Project-Id-Version: mockup\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2016-12-14 20:19+0000\n"
+"Last-Translator: Takanori Suzuki <takanori@takanory.net>\n"
+"Language-Team: Plone Japanese Team <https://github.com/plonejp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: ja\n"
+"Language-Name: Japanese\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: widgets\n"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid " css files to build"
+msgstr "ビルドするCSSファイル"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "A main resource file to bootstrap bundle or a list of resources to load."
+msgstr "読み込むbootstrapバンドルのメインのリソースファイルまたはリソースのリスト"
+
+#: ./patterns/structure/templates/table.xml
+msgid "Actions"
+msgstr "アクション"
+
+#: ./patterns/filemanager/js/addnew.js
+msgid "Add"
+msgstr "追加"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Add bundle"
+msgstr "バンドルを追加"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Add file"
+msgstr "ファイルを追加"
+
+#: ./patterns/filemanager/js/addnew.js
+msgid "Add new file"
+msgstr "新しいファイルを追加"
+
+#: ./patterns/filemanager/pattern.js
+msgid "Add new file to current folder"
+msgstr "現在のフォルダに新しいファイルを追加"
+
+#: ./patterns/filemanager/js/newfolder.js
+msgid "Add new folder to current directory"
+msgstr "現在のディレクトリに新しいフォルダを追加"
+
+#: ./patterns/filemanager/js/customize.js
+msgid "Add new override"
+msgstr "新しいオーバーライドを追加"
+
+#: ./patterns/resourceregistry/js/patternoptions.js
+msgid "Add pattern"
+msgstr "パターンを追加"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Add resource"
+msgstr "リソースを追加"
+
+#: ./patterns/resourceregistry/js/less.js
+msgid "Add variable"
+msgstr "変数を追加"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Align"
+msgstr "整列"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Alternative Text"
+msgstr "代替テキスト"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Anchor"
+msgstr "アンカー"
+
+#: ./patterns/structure/js/views/generic-popover.js
+msgid "Apply"
+msgstr "適用"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Are you sure you want to cancel? You will lose all changes."
+msgstr "キャンセルしますか? 変更が削除されます。"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Are you sure you want to delete the ${name} bundle?"
+msgstr "${name} バンドルを削除しますか?"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Are you sure you want to delete the ${name} resource?"
+msgstr "${name} リソースを削除しますか?"
+
+#: ./patterns/filemanager/js/delete.js
+msgid "Are you sure you want to delete this resource?"
+msgstr "このリソースを削除しますか?"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Automatically generated path to the compiled CSS."
+msgstr "コンパイルしたCSSの自動生成パス"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Automatically generated path to the compiled JavaScript."
+msgstr "コンパイルしたJavaScriptの自動生成パス"
+
+#: ./patterns/relateditems/pattern.js
+msgid "Browse"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Build"
+msgstr "ビルド"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Build CSS"
+msgstr "CSSをビルド"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Build it"
+msgstr "ビルドする"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Build rule"
+msgstr "ビルド時のルール"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Bundle this depends on"
+msgstr "依存する他のバンドル"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Bundles"
+msgstr "バンドル"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "CSS/LESS"
+msgstr ""
+
+#: ./patterns/structure/js/views/table.js
+msgid "Can not order items while querying"
+msgstr "クエリー中は順番変更できません"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Choose File"
+msgstr "ファイルを選択"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Clear"
+msgstr ""
+
+#: ./patterns/thememapper/js/cacheview.js
+msgid "Clear Cache"
+msgstr ""
+
+#: ./patterns/thememapper/pattern.js
+msgid "Clear cache"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Close"
+msgstr "閉じる"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Close Fullscreen"
+msgstr "全画面表示を閉じる"
+
+#: ./patterns/structure/js/views/columns.js
+msgid "Columns"
+msgstr "カラム"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Comma-separated values of resources for requirejs shim"
+msgstr ""
+
+#: ./patterns/thememapper/pattern.js
+msgid "Compile LESS file"
+msgstr "LESSファイルのコンパイル"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Compiled CSS"
+msgstr "コンパイル済CSS出力先"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Compiled JavaScript"
+msgstr "コンパイル済JS出力先"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Conditional comment"
+msgstr "条件付きコメント"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Conditional expression to decide if this resource will run"
+msgstr "このリソースを実行するための条件式の指定"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Configuration"
+msgstr "構成"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Configuration in JSON for the widget"
+msgstr "ウイジェットの構成(JSON形式)"
+
+#: ./patterns/structure/js/views/app.js
+msgid "Configure displayed columns"
+msgstr "表示列を設定する"
+
+#: ./patterns/structure/js/actions.js
+msgid "Copied"
+msgstr "コピーされました"
+
+#: ./patterns/relateditems/pattern.js
+msgid "Current path:"
+msgstr ""
+
+#: ./patterns/filemanager/js/customize.js
+msgid "Customize"
+msgstr "カスタマイズ"
+
+#: ./patterns/structure/js/actions.js
+msgid "Cut"
+msgstr "カット"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Date/Time when your bundle was last compiled. Empty, if it was never compiled."
+msgstr "バンドルの最終コンパイル日時 (未コンパイルの場合は空白)"
+
+#: ./patterns/filemanager/js/delete.js
+msgid "Delete"
+msgstr "削除"
+
+#: ./patterns/filemanager/pattern.js
+msgid "Delete currently selected resource"
+msgstr "現在選択されているリソースを削除"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Delete customizations"
+msgstr "カスタマイズ内容を削除"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Dependencies"
+msgstr "依存関係"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Depends"
+msgstr "依存関係"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Develop CSS"
+msgstr "CSSを生成"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Develop JavaScript"
+msgstr "JavaScriptを生成"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Development Mode(only logged in users)"
+msgstr "開発者モード(ログインユーザーのみ)"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Does your bundle contain any RequireJS or LESS files?"
+msgstr "バンドルにはRequireJSあるいはLESSのファイルが含まれる"
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Drag and drop files from your computer onto the area below or click the Browse button."
+msgstr ""
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Drop files here..."
+msgstr "ここにファイルをドラッグ&ドロップ..."
+
+#: ./patterns/tinymce/pattern.js
+msgid "Email Address"
+msgstr ""
+
+#: ./patterns/tinymce/pattern.js
+msgid "Email Subject (optional)"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Enabled"
+msgstr "有効にする"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Enter date..."
+msgstr "日付を入力..."
+
+#: ./patterns/filemanager/js/addnew.js
+msgid "Enter filename"
+msgstr "ファイルネームを入力"
+
+#: ./patterns/filemanager/js/newfolder.js
+msgid "Enter folder name"
+msgstr "フォルダ名を入力"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Enter time..."
+msgstr "時間を入力..."
+
+#: ./patterns/pickadate/pattern.js
+msgid "Enter timezone..."
+msgstr "タイムゾーンを入力..."
+
+#: ./patterns/livesearch/pattern.js
+msgid "Error"
+msgstr "エラー"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error building bundle"
+msgstr "バンドル生成エラー"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error building css bundle"
+msgstr "CSSバンドル生成エラー"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error building resources"
+msgstr "リソース生成エラー"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error compiling less"
+msgstr "LESSコンパイルエラー"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error in build process"
+msgstr "ビルド中のエラー"
+
+#: ./patterns/structure/js/views/generic-popover.js
+msgid "Error loading popover from server."
+msgstr ""
+
+#: ./patterns/structure/js/actions.js
+msgid "Error pasting into"
+msgstr "ペースト時にエラー:"
+
+#: ./patterns/resourceregistry/pattern.js
+msgid "Error processing ajax request for action: "
+msgstr "Ajaxリクエスト処理時のエラー:"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Error saving css bundle"
+msgstr "CSSバンドル保存エラー"
+
+#: ./patterns/upload/pattern.js
+msgid "Error uploading with TUS resumable uploads"
+msgstr "TUSアップロードエラー"
+
+#: ./patterns/structure/templates/tablerow.xml
+msgid "Expired"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Export"
+msgstr "エクスポート"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Export vars for requirejs shim"
+msgstr "RequireJS shim 向けに変数をエクスポート"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Expression"
+msgstr "条件式"
+
+#: ./patterns/tinymce/pattern.js
+msgid "External Image URL (can be relative within this site or absolute if it starts with http:// or https://)"
+msgstr ""
+
+#: ./patterns/tinymce/pattern.js
+msgid "External URL (can be relative within this site or absolute if it starts with http:// or https://)"
+msgstr ""
+
+#: ./patterns/relateditems/pattern.js
+msgid "Favorites"
+msgstr ""
+
+#: ./patterns/filemanager/js/addnew.js
+msgid "Filename"
+msgstr "ファイル名"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Filename must start with ++plone++static/"
+msgstr "ファイル名は ++plone++static/ から必ず始める"
+
+#: ./patterns/structure/js/views/textfilter.js
+msgid "Filter"
+msgstr "フィルター"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Filter..."
+msgstr "フィルター..."
+
+#: ./patterns/filemanager/js/customize.js
+msgid "Find resource in plone to override"
+msgstr "上書きするPlone内のリソースを探す"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Finished!"
+msgstr "完了!"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Fullscreen"
+msgstr "全画面"
+
+#: ./patterns/thememapper/pattern.js
+msgid "HTML mockup"
+msgstr "HTMLモックアップ"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Image"
+msgstr "画像"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Init"
+msgstr "初期処理"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Init instruction for requirejs shim"
+msgstr "RequireJS shimの初期処理命令"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Insert"
+msgstr "挿入"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Insert Image"
+msgstr "画像の挿入"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Insert link"
+msgstr "リンクの挿入"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Internal"
+msgstr "内部"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Internet Explorer conditional comment"
+msgstr "Internet Explorerの条件付きコメント"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "JS"
+msgstr ""
+
+#: ./patterns/thememapper/js/lessbuilderview.js
+msgid "LESS Builder"
+msgstr "LESSビルダー"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Last compilation"
+msgstr "最終コンパイル"
+
+#: ./patterns/resourceregistry/pattern.js
+msgid "Less Variables"
+msgstr "LESS変数"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "List of CSS/LESS files to use for resource"
+msgstr "リソースに使用するCSS/LESSファイルの一覧"
+
+#: ./patterns/structure/js/views/generic-popover.js
+msgid "Loading..."
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Main JavaScript file"
+msgstr "メインのJavaScriptファイル"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Name"
+msgstr "名前"
+
+#: ./patterns/filemanager/js/newfolder.js
+msgid "New folder"
+msgstr "新規フォルダ"
+
+#: ./patterns/livesearch/pattern.js
+msgid "Next"
+msgstr "次へ"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Next month"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "No javascripts to build, skipping"
+msgstr "ビルド対象のJavaScriptがないためスキップ"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Only ++plone++ resources are available to override"
+msgstr "++plone++ リソースのみが上書き可能"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Open in new window"
+msgstr "新しいウィンドウで開く"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Open in parent window / frame"
+msgstr "親のウィンドウ/フレームで開く"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Open in this window / frame"
+msgstr "現在のウィンドウ/フレームで開く"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Open in top frame (replaces all frames)"
+msgstr "最上位のフレームで開く (すべてのフレームを置換え)"
+
+#: ./patterns/resourceregistry/pattern.js
+msgid "Overrides"
+msgstr "オーバーライド"
+
+#: ./patterns/structure/templates/paging.xml
+msgid "Page:"
+msgstr "ページ:"
+
+#: ./patterns/structure/js/actions.js
+msgid "Pasted into"
+msgstr "内部にペースト"
+
+#: ./patterns/resourceregistry/pattern.js
+msgid "Pattern Options"
+msgstr "パターンオプション"
+
+#: ./patterns/querystring/pattern.js
+msgid "Preview"
+msgstr "プレビュー"
+
+#: ./patterns/querystring/pattern.js
+msgid "Preview of at most 10 items"
+msgstr "最大10個のアイテムのプレビュー"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Preview theme"
+msgstr "テーマのプレビュー"
+
+#: ./patterns/livesearch/pattern.js
+msgid "Previous"
+msgstr "前へ"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Previous month"
+msgstr ""
+
+#: ./patterns/structure/js/views/textfilter.js
+msgid "Query"
+msgstr "クエリー"
+
+#: ./patterns/structure/js/views/app.js
+msgid "Rearrange"
+msgstr "並び替え"
+
+#: ./patterns/structure/js/views/app.js
+msgid "Rearrange folder contents"
+msgstr "フォルダの内容を並べ替え"
+
+#: ./patterns/structure/js/views/rearrange.js
+msgid "Rearrange items in this folder"
+msgstr "このフォルダ内のアイテムを並べ替え"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Refresh"
+msgstr ""
+
+#: ./patterns/resourceregistry/pattern.js
+msgid "Registry"
+msgstr "レジストリ"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Reload the current file"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/fields.js
+msgid "Remove"
+msgstr "削除"
+
+#: ./patterns/filemanager/js/rename.js
+msgid "Rename"
+msgstr "名前の変更"
+
+#: ./patterns/filemanager/pattern.js
+msgid "Rename currently selected resource"
+msgstr "現在選択されたリソースの名前の変更"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Resources"
+msgstr "リソース"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Resources base URL"
+msgstr "リソースのベースURL"
+
+#: ./patterns/structure/js/views/rearrange.js
+msgid "Reverse"
+msgstr "降順"
+
+#: ./patterns/querystring/pattern.js
+msgid "Reversed Order"
+msgstr "降順で並び替える"
+
+#: ./patterns/thememapper/js/rulebuilderview.js
+msgid "Rule Builder"
+msgstr "ルールビルダー"
+
+#: ./patterns/filemanager/pattern.js
+msgid "Save"
+msgstr "保存"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "Saved javascript bundle, Build results"
+msgstr "JavaScript バンドルを保存済み。ビルドしてください。"
+
+#: ./patterns/filemanager/js/customize.js
+msgid "Search"
+msgstr "検索"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Search for item on site..."
+msgstr "サイト内のアイテムを検索..."
+
+#: ./patterns/pickadate/pattern.js
+msgid "Select a month"
+msgstr ""
+
+#: ./patterns/pickadate/pattern.js
+msgid "Select a year"
+msgstr ""
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Select another destination folder or leave blank to add files to the current location."
+msgstr ""
+
+#: ./patterns/structure/js/views/columns.js
+msgid "Select columns to show, drag and drop to reorder"
+msgstr "表示する列を選択します。ドラッグ&ドロップで並べ替えできます。"
+
+#: ./patterns/querystring/pattern.js
+msgid "Select criteria"
+msgstr "選択基準"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "Select resource to override..."
+msgstr "上書きするリソースを選択..."
+
+#: ./patterns/structure/js/views/app.js
+msgid "Selected"
+msgstr "選択済"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Show help"
+msgstr "ヘルプを表示"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Show inspector panels"
+msgstr "インスペクターパネルを表示"
+
+#: ./patterns/thememapper/pattern.js
+msgid "Show inspectors"
+msgstr "インスペクターを表示"
+
+#: ./patterns/structure/templates/paging.xml
+msgid "Show:"
+msgstr "閲覧件数:"
+
+#: ./patterns/tinymce/pattern.js
+msgid "Size"
+msgstr "サイズ"
+
+#: ./patterns/querystring/pattern.js
+msgid "Sort on"
+msgstr "並び替え"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Stop Developing CSS"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Stop Developing JavaScript"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "Stub JS Modules"
+msgstr ""
+
+#: ./patterns/upload/pattern.js
+msgid "The file transfer failed"
+msgstr ""
+
+#: ./patterns/modal/pattern.js
+msgid "There was an error loading modal."
+msgstr "モデルのロードでエラーが発生しました"
+
+#: ./patterns/livesearch/pattern.js
+msgid "There was an error searching…"
+msgstr "検索でエラーが発生しました..."
+
+#: ./patterns/modal/pattern.js
+msgid "There was an error submitting the form."
+msgstr "フォームの投稿でエラーが発生しました"
+
+#: ./patterns/structure/js/views/rearrange.js
+msgid "This permanently changes the order of items in this folder. This operation may take a long time depending on the size of the folder."
+msgstr ""
+
+#: ./patterns/tinymce/pattern.js
+msgid "Title"
+msgstr "タイトル"
+
+#: ./patterns/pickadate/pattern.js
+msgid "Today"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "URL"
+msgstr ""
+
+#: ./patterns/thememapper/pattern.js
+msgid "Unthemed content"
+msgstr ""
+
+#: ./patterns/filemanager/js/upload.js
+msgid "Upload"
+msgstr "アップロード"
+
+#: ./patterns/filemanager/pattern.js
+msgid "Upload file to current directory"
+msgstr "現在のディレクトリにファイルをアップロード"
+
+#: ./patterns/relateditems/pattern.js
+msgid "Upload files"
+msgstr "ファイルをアップロード"
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Upload here"
+msgstr "ここでアップロード"
+
+#: ./patterns/upload/templates/upload.xml
+msgid "Upload to..."
+msgstr "アップロード先..."
+
+#: ./patterns/structure/js/views/rearrange.js
+msgid "What to rearrange on"
+msgstr "何で並び替えしますか"
+
+#: ./patterns/filemanager/js/delete.js
+msgid "Yes, delete"
+msgstr "はい、削除します"
+
+#: ./patterns/resourceregistry/js/registry.js
+msgid "You have unsaved changes. Save or discard before building."
+msgstr "保存されていない変更があります。ビルドの前に保存または破棄してください。"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "building CSS bundle"
+msgstr "CSSバンドルをビルドする"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "building javascripts"
+msgstr "javascriptをビルドする"
+
+#: ./patterns/structure/js/actions.js
+msgid "copying"
+msgstr "コピー中"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "customized"
+msgstr ""
+
+#: ./patterns/structure/js/actions.js
+msgid "cutting"
+msgstr "カット中"
+
+#: ./patterns/querystring/pattern.js
+msgid "days"
+msgstr ""
+
+#: ./patterns/livesearch/pattern.js
+msgid "enter search phrase"
+msgstr "検索語を入力"
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "error loading resource for editing"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "finished saving css bundles"
+msgstr ""
+
+#: ./patterns/livesearch/pattern.js
+msgid "found"
+msgstr "検索結果"
+
+#: ./patterns/resourceregistry/js/builder.js
+msgid "less compilation error on file "
+msgstr ""
+
+#: ./patterns/livesearch/pattern.js
+msgid "no results found"
+msgstr "検索結果が見つかりません"
+
+#: ./patterns/structure/templates/paging.xml
+msgid "of"
+msgstr "/"
+
+#: ./patterns/structure/js/views/app.js
+msgid "operation url ${url} is not valid"
+msgstr ""
+
+#: ./patterns/thememapper/pattern.js
+msgid "preview theme in a new window"
+msgstr ""
+
+#: ./patterns/structure/js/views/selectionwell.js
+msgid "remove all"
+msgstr "全て削除する"
+
+#: ./patterns/livesearch/pattern.js
+msgid "results"
+msgstr "件"
+
+#: ./patterns/thememapper/pattern.js
+msgid "rule building wizard"
+msgstr ""
+
+#: ./patterns/livesearch/pattern.js
+msgid "searching…"
+msgstr "検索中..."
+
+#: ./patterns/structure/templates/paging.xml
+msgid "shown"
+msgstr "を表示中"
+
+#: ./patterns/structure/js/views/app.js
+msgid "there was an error performing action"
+msgstr ""
+
+#: ./patterns/querystring/pattern.js
+msgid "to"
+msgstr ""
+
+#: ./patterns/upload/pattern.js
+msgid "uploading..."
+msgstr "アップロード中..."
+
+#: ./patterns/thememapper/pattern.js
+msgid "view the editor in fullscreen"
+msgstr ""
+
+#: ./patterns/resourceregistry/js/overrides.js
+msgid "you-filename.js"
+msgstr ""

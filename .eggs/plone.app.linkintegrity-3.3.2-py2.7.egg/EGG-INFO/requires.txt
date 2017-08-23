@@ -1,0 +1,8 @@
+setuptools
+plone.app.intid
+plone.app.relationfield
+
+[test]
+plone.app.testing
+plone.app.contenttypes
+plone.app.dexterity[relations]

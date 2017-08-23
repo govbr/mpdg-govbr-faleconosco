@@ -1,0 +1,25 @@
+Test for scripts
+================
+
+This test suite tests various python scripts. Ultimately these tests should be
+doctests provided directly in the implementation (as utilities for example).
+
+
+Tests for unique.py
+-------------------
+
+Test a list of numbers which contains duplicates:
+
+  >>> portal = layer['portal']
+  >>> portal.unique([1,2,3,1,2,3])
+  [1, 2, 3]
+
+Test a string sequence:
+
+  >>> portal.unique('abcabc')
+  ['a', 'c', 'b']
+
+And finally a tuple of lists:
+
+  >>> portal.unique(([1, 2], [2, 3], [1, 2]))
+  [[1, 2], [2, 3]]

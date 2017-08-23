@@ -1,0 +1,11 @@
+ZEO>=4.0.0dev
+ZODB>=4.0.0dev
+persistent>=4.0.0dev
+BTrees>=4.0.0dev
+transaction
+
+[test]
+ZEO[test]
+ZODB[test]
+BTrees[test]
+persistent[test]

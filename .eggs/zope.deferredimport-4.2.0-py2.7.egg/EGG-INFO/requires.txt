@@ -1,0 +1,9 @@
+setuptools
+zope.proxy
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+
+[test]
+zope.testrunner

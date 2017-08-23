@@ -1,0 +1,15 @@
+CHANGES.rst
+COPYRIGHT.txt
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+include/ExtensionClass/ExtensionClass.h
+src/Record/__init__.py
+src/Record/tests.py
+src/Record.egg-info/PKG-INFO
+src/Record.egg-info/SOURCES.txt
+src/Record.egg-info/dependency_links.txt
+src/Record.egg-info/not-zip-safe
+src/Record.egg-info/requires.txt
+src/Record.egg-info/top_level.txt

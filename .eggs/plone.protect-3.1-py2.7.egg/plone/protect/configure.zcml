@@ -1,0 +1,62 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="plone">
+
+    <include package="AccessControl"
+             zcml:condition="installed AccessControl.rolemanager" />
+    <include package="plone.keyring" />
+    <include package="plone.transformchain" />
+    <include package="five.globalrequest" />
+
+    <browser:page
+       for="*"
+       name="authenticator"
+       class=".authenticator.AuthenticatorView"
+       permission="zope.Public"
+       allowed_interface=".interfaces.IAuthenticatorView"
+       />
+
+    <genericsetup:registerProfile
+        zcml:condition="installed Products.CMFCore"
+        name="default"
+        directory="profiles/default"
+        title="plone.protect configuration"
+        description="Local configuration for plone.protect"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFCore.interfaces.ISiteRoot"
+        />
+
+    <adapter
+        name="plone.protect.autocsrf"
+        factory=".auto.ProtectTransform"
+        />
+
+    <browser:resource
+        name="protect.js"
+        file="protect.js"
+        />
+
+    <browser:page
+        name="confirm-action"
+        for="*"
+        class=".views.ConfirmView"
+        template="confirm.pt"
+        permission="zope2.View"
+    />
+
+    <subscriber handler=".subscribers.onUserLogsIn" />
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="Special handling for write on read Zope2 locking issues"
+        class="webdav.Lockable.LockableItem"
+        original="wl_lockmapping"
+        replacement=".monkey.wl_lockmapping"
+        preserveOriginal="True"
+        />
+</configure>

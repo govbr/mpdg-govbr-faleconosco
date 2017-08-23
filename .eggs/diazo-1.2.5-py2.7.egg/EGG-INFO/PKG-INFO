@@ -1,0 +1,220 @@
+Metadata-Version: 1.1
+Name: diazo
+Version: 1.2.5
+Summary: Diazo implements a Deliverance like language using a pure
+        XSLT engine. With Diazo, you "compile" your theme and ruleset in one
+        step, then use a superfast/simple transform on each request thereafter.
+        Alternatively, compile your theme during development, check it into
+        version control, and not touch Diazo during deployment.
+Home-page: http://diazo.org
+Author: Paul Everitt, Laurence Rowe and Martin Aspeli.
+Author-email: laurence@lrowe.co.uk
+License: New BSD
+Description: .. image:: https://travis-ci.org/plone/diazo.svg?branch=master
+            :target: https://travis-ci.org/plone/diazo
+        
+        ==============================================
+        Diazo - We Write XSLT, So You Don't Have To
+        ==============================================
+        
+        Diazo allows you to apply a theme contained in a static HTML web page to a
+        dynamic website created using any server-side technology. With Diazo, you can
+        take an HTML wireframe created by a web designer and turn it into a theme for
+        your favourite CMS, redesign the user interface of a legacy web application
+        without even having access to the original source code, or build a unified
+        user experience across multiple disparate systems, all in a matter of hours,
+        not weeks.
+        
+        When using Diazo, you will work with syntax and concepts familiar from working
+        with HTML and CSS. And by allowing you seamlessly integrate XSLT into your
+        rule files, Diazo makes common cases simple and complex requirements possible.
+        
+        For detailed documentation, please see diazo.org_.
+        
+        .. _diazo.org: http://diazo.org
+        
+        
+        
+        Changelog
+        =========
+        
+        1.2.5 (2017-02-12)
+        ------------------
+        
+        Bug fixes:
+        
+        - Fix test with webob 1.7
+          [davisagli]
+        
+        
+        1.2.4 (2016-11-17)
+        ------------------
+        
+        New features:
+        
+        - only add absolute prefix for xlink:href attributes if url doesn't start
+          with a '#' (use anchor_safe_urljoin)
+          [huubbouma]
+        
+        
+        1.2.3 (2016-06-07)
+        ------------------
+        
+        New:
+        
+        - Add absolute url prefix to xlink:href attributes
+          [krissik]
+        
+        
+        1.2.2 (2015-10-30)
+        ------------------
+        
+        New:
+        
+        * Allowed content-to-content inclusion.
+          [elro, ebrehault]
+        
+        
+        1.2.1 (2015-09-07)
+        ------------------
+        
+        * Absolute prefix support for srcset attributes
+          [huubbouma]
+        
+        
+        1.2.0 (2015-09-03)
+        ------------------
+        
+        * Extend cssselect instead of using experimental.cssselect
+          [elro]
+        
+        
+        1.1.2 (2015-09-03)
+        ------------------
+        
+        * Allow inline content for after and before.
+          [ebrehault, elro]
+        
+        * Fixed issue with remote themes via https connections
+          [loechel]
+        
+        
+        1.1.1 (2015-03-21)
+        ------------------
+        
+        * Make flake8 happy by moving imports to top of file.
+          [elro]
+        
+        
+        1.1.0 (2014-10-23)
+        ------------------
+        
+        * Python 3 support.
+          [regebro, elro]
+        
+        
+        1.0.6 (2014-09-11)
+        ------------------
+        
+        * Use formencode's xml_compare method to compare test results. This solves test
+          failures on several systems.
+          [timo]
+        
+        * Also evaluate if-not-content. However, we are at risk of replicating
+          apply-conditions.xsl in it's entirety. this needs refactoring.
+          [lentinj]
+        
+        * Remove any xml:lang attribute from content to prevent multiple
+          xml:lang attributes when the html tag's attributes are copied.
+          [danjacka]
+        
+        1.0.5 (2014-01-27)
+        ------------------
+        
+        * Escape curly brackets on theme attributes.
+          [TracyWebTech]
+        
+        1.0.4 (2013-08-14)
+        ------------------
+        
+        * Provide the request's query string as the ``$query_string`` variable
+          for use in the rules file.
+          [davidjb]
+        
+        * Fix ``diazo.scheme`` definition to be correct. Previously, this was
+          defined as ``request.host``.
+          [davidjb]
+        
+        1.0.3 (2012-11-11)
+        ------------------
+        
+        * Support selectors matching multiple elements for merge attributes, e.g.
+          ``<merge attributes="class" css:theme="body" css:content="#one, #two"/>``
+          [elro]
+        
+        * Also evaluate merged-condition. This means a rule tag will turn red
+          when a condition on an outer rules tag doesn't match.
+          [lentinj]
+        
+        * use boolean(), not count() for if-content. Otherwise we
+          generate expressions like "count(nodeset and other_nodeset)",
+          which aren't valid.
+          [lentinj]
+        
+        * Output contents of error log as part of debugging output
+          [lentinj]
+        
+        * Debugging output.
+          [lentinj]
+        
+        * Don't close the response unless Diazo is transforming it.
+          [mitchellrj]
+        
+        * fix error caused by empty style tag e.g. <style/>
+          [djay]
+        
+        1.0.2 (2012-08-30)
+        ------------------
+        
+        * Handle error when serializing empty responses by returning an unthemed
+          response. Previously, empty text/html responses resulted in an raised
+          exception, resulting in a 500 response and no output.
+          [davidjb]
+        
+        * Allow attributes (i.e. xml:id) to pass through on drop @attribute nodes
+          [lentinj]
+        
+        1.0.1 (2012-05-09)
+        ------------------
+        
+        * Fixed to not apply absolute prefix for relative urls starting with '#'.
+          [datakurre]
+        
+        1.0 (2012-04-15)
+        ----------------
+        
+        * Preserve resolvers in the rules document when updating from an old namespace.
+        
+        * Add javascript / css include support to WSGIResolver.
+        
+        * Refactoring if WSGI middleware to use WebOb better and fix corner cases.
+        
+        * Use same xpath prefix for css:if-not-content and css:if-content.
+        
+        * Add support for @if-not-path.
+        
+        Note: for older changes, see ``docs/changelog.rst``.
+        
+Keywords: web theming
+Platform: UNKNOWN
+Classifier: Development Status :: 6 - Mature
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
+Classifier: Topic :: Text Processing :: Markup :: XML

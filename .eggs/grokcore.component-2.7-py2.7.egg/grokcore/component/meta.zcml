@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    xmlns:grok="http://namespaces.zope.org/grok">
+
+  <meta:directives namespace="http://namespaces.zope.org/grok">
+    <meta:directive
+        name="grok"
+        schema=".zcml.IGrokDirective"
+        handler=".zcml.grokDirective"
+        />
+  </meta:directives>
+
+  <!-- Load the grokkers -->
+  <grok:grok package=".compat" />
+  <grok:grok package=".meta" />
+
+</configure>

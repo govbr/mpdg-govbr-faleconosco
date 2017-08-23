@@ -1,0 +1,17 @@
+setuptools
+zope.i18nmessageid>=4.1.0
+zope.interface
+
+[extract]
+zope.tal
+
+[test]
+zope.i18n
+zope.security
+zope.tal
+zope.testing
+zope.testrunner
+
+[zcml]
+zope.i18n
+zope.configuration

@@ -1,0 +1,11 @@
+Products.CMFCore
+Products.GenericSetup
+Products.MimetypesRegistry
+Products.PortalTransforms>=2.0a1
+setuptools
+unidecode
+
+[test]
+plone.app.contenttypes
+plone.app.testing
+plone.app.robotframework

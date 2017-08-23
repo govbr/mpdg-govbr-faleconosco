@@ -1,0 +1,11 @@
+setuptools
+zope.interface>=3.6.0
+zope.event
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+
+[test]
+zope.testing
+zope.testrunner

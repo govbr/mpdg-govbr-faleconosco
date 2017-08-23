@@ -1,0 +1,14 @@
+zope.interface
+setuptools
+
+[docs]
+Sphinx
+repoze.sphinx.autointerface
+
+[test]
+zope.security
+
+[testing]
+nose
+coverage
+zope.security

@@ -1,0 +1,17 @@
+persistent
+BTrees
+setuptools
+zope.lifecycleevent>=3.5.2
+zope.component
+zope.event
+zope.interface
+zope.keyreference
+zope.location>=3.5.4
+zope.security
+
+[test]
+ZODB
+zope.testing
+zope.site
+zope.traversing
+zope.container

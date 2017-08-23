@@ -1,0 +1,2 @@
+setuptools
+Zope2>=4.0a3

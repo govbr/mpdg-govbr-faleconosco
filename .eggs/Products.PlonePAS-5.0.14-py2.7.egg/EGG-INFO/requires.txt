@@ -1,0 +1,14 @@
+plone.i18n
+plone.memoize
+plone.protect>=2.0.3
+plone.session
+Products.CMFCore
+Products.GenericSetup
+Products.PluggableAuthService
+setuptools
+zope.deprecation
+Zope2>=2.13.22
+
+[test]
+plone.app.testing
+plone.testing

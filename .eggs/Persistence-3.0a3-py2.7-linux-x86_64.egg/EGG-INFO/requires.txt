@@ -1,0 +1,3 @@
+ExtensionClass>=4.2.0
+persistent>=4.1.1
+six

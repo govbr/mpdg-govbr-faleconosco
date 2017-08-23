@@ -1,0 +1,16 @@
+plone.caching
+python-dateutil
+setuptools
+z3c.caching
+zope.component
+zope.configuration
+zope.filerepresentation
+zope.interface
+zope.publisher
+zope.schema
+zope.traversing
+Zope2
+
+[test]
+plone.app.testing
+unittest2

@@ -1,0 +1,114 @@
+Collection (Topic) views
+------------------------
+
+Ensure Title, description and text are actually shown at the various views for
+a Collection - #10226:
+
+listing_view (Standard view)
+summary_view (Summary view)
+full_view (All content)
+tabular_view (Tabular view)
+
+    >>> from plone.testing.z2 import Browser
+    >>> from plone.app.testing import SITE_OWNER_NAME
+    >>> from plone.app.testing import SITE_OWNER_PASSWORD
+    >>> app = layer['app']
+    >>> browser = Browser(app)
+    >>> browser.open('http://nohost/plone/login_form')
+
+Log in.
+
+    >>> browser.getControl('Login Name').value = SITE_OWNER_NAME
+    >>> browser.getControl('Password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl('Log in').click()
+
+First create a folder and a demo collection:
+
+    >>> browser.getLink('Folder').click()
+    >>> browser.getControl('Title').value = 'Folder'
+    >>> browser.getControl('Summary').value = 'Folder description'
+    >>> browser.getControl('Save').click()
+
+    >>> browser.getLink('Collection').click()
+    >>> collection_title = 'Collection'
+    >>> browser.getControl(name='form.widgets.IDublinCore.title').value = collection_title
+    >>> collection_description = 'Description. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.'
+    >>> browser.getControl(name='form.widgets.IDublinCore.description').value = collection_description
+    >>> collection_text = '<p>Text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>'
+    >>> browser.getControl(name='form.widgets.IRichText.text').value = collection_text
+    >>> browser.getControl(name='form.widgets.IRichText.text.mimeType').value = ['text/html']
+    >>> browser.getControl('Save').click()
+
+Now let's login and visit the collection in the test browser:
+
+    >>> browser = Browser(app)
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('Login Name').value = SITE_OWNER_NAME
+    >>> browser.getControl('Password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone/folder/collection')
+
+Lets check the listing_view (Standard view):
+
+    >>> browser.getLink('Standard view').click()
+    >>> collection_title in browser.contents
+    True
+    >>> collection_description in browser.contents
+    True
+    >>> collection_text in browser.contents
+    True
+
+Lets check the summary_view (Summary view):
+
+    >>> browser.getLink('Standard view').click()
+    >>> collection_title in browser.contents
+    True
+    >>> collection_description in browser.contents
+    True
+    >>> collection_text in browser.contents
+    True
+
+Lets check the full_view (All content):
+
+    >>> browser.getLink('All content').click()
+    >>> collection_title in browser.contents
+    True
+    >>> collection_description in browser.contents
+    True
+    >>> collection_text in browser.contents
+    True
+
+Lets check the tabular_view (Tabular view):
+
+    >>> browser.handleErrors = False
+    >>> browser.getLink('Tabular view').click()
+    >>> collection_title in browser.contents
+    True
+    >>> collection_description in browser.contents
+    True
+    >>> collection_text in browser.contents
+    True
+
+Lets ensure that the text field is not requested on a folder. We
+are pragmatic here and only test on the default view of a folder
+- folder_contents:
+
+    >>> browser.open('http://nohost/plone/folder')
+    >>> browser.getLink('Standard view').click()
+    >>> 'Folder' in browser.contents
+    True
+    >>> 'Folder description' in browser.contents
+    True
+
+Lets ensure text is shown when Collection is default view of a folder
+
+    >>> browser.open('http://nohost/plone/folder')
+    >>> browser.getLink('Select a content item as default view...').click()
+    >>> browser.getControl(name='objectId').value = ['collection']
+    >>> browser.getControl('Save').click()
+    >>> collection_title in browser.contents
+    True
+    >>> collection_description in browser.contents
+    True
+    >>> collection_text in browser.contents
+    True

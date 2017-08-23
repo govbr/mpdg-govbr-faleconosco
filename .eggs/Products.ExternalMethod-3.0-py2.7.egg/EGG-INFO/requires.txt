@@ -1,0 +1,7 @@
+setuptools
+AccessControl
+Acquisition
+ExtensionClass>=4.1a1
+Persistence
+ZODB
+Zope2>=2.13.0a1

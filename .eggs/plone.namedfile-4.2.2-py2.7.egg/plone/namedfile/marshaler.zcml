@@ -1,0 +1,8 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <adapter factory=".marshaler.NamedFileFieldMarshaler" />
+  <adapter factory=".marshaler.NamedImageFieldMarshaler" />
+  <adapter factory=".marshaler.NamedBlobFileFieldMarshaler" />
+  <adapter factory=".marshaler.NamedBlobImageFieldMarshaler" />
+
+</configure>

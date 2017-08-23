@@ -1,0 +1,120 @@
+#trans-selector {
+    text-align: center;
+}
+
+#babel-edit #trans-selector {
+    margin-top: 3px;
+    min-height: 26px;
+}
+
+#babel-edit #frame-content {
+    line-height: 1.5em;
+    margin: 1em 0;
+    padding: 0 1em 1em;
+    width: auto;
+}
+
+#babel-edit #lang-select {
+    float: right;
+    margin-right: 20px;
+}
+
+#babel-edit .field, #babel-edit #frame-content .field  {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+#babel-edit .selected, #babel-edit #frame-content .selected{
+    background-color: #99B0C4;
+    color: #0A0909;
+}
+
+#babel-edit .selected .formHelp {
+    color: white;
+}
+
+#babel-edit .richtext-field {
+    background-color: white;
+    color: black;
+}
+
+#babel-edit .languageindependent {
+    opacity: 0.2;
+}
+
+.overml {
+    position: relative;
+    float: right;
+}
+
+#view_language {
+    display: none;
+}
+
+.translator-widget {
+    position: relative;
+    float: right;
+    background: url('++resource++plone.app.multilingual.images/gtranslate.png');
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.currentLanguage {
+    font-weight: bold;
+}
+/* Specific rule needed to fix a js error (position null in a field) */
+#archetypes-fieldname-contributors{
+    display:block;
+}
+
+a.contentmenuflags img {
+    margin-bottom: 2pt;
+}
+
+.plone-icon-contentmenu-multilingual:before { content: '\e81A'; } /* '' */
+
+#translations-overview td {
+    line-height: 1;
+}
+#translations-overview .activeLanguage {
+    font-weight: bold;
+    color: black;
+}
+#translations-overview h3 {
+    margin: 0;
+}
+#translations-overview h3.discreet {
+    font-style: italic;
+}
+
+#translations-overview .translationURL {
+    margin-top: 0.5em;
+    font-size: 80%;
+}
+#translations-overview .langColumn,
+#translations-overview .actionColumn {
+    width: 1em;
+    padding-top: 0.75em;
+}
+#translations-overview .actionColumn a {
+    height: 1em;
+    width: auto;
+    border: 0;
+}
+#translations-overview a svg {
+    height: 1.25em;
+    width: auto;
+    fill: currentColor;
+}
+#translations-overview .actionLabel {
+    display: none;
+}
+#edit-zone nav > ul ul li.plonetoolbar-multilingual.actionSeparator {
+    margin: 0;
+    padding: 5px 0 0;
+    border-top: 1px solid rgba(255,255,255,0.17);
+}
+#edit-zone nav>ul ul li.plonetoolbar-multilingual.actionSeparator>span {
+    font-weight: 400;
+    color: #ccc;
+}

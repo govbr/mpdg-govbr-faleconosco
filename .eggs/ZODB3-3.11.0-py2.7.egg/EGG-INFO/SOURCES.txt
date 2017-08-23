@@ -1,0 +1,15 @@
+.gitignore
+.travis.yml
+CHANGES.txt
+HISTORY.txt
+MANIFEST.in
+README.txt
+buildout.cfg
+setup.cfg
+setup.py
+ZODB3.egg-info/PKG-INFO
+ZODB3.egg-info/SOURCES.txt
+ZODB3.egg-info/dependency_links.txt
+ZODB3.egg-info/not-zip-safe
+ZODB3.egg-info/requires.txt
+ZODB3.egg-info/top_level.txt

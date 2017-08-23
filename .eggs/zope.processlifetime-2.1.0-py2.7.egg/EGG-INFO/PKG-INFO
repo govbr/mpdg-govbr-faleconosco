@@ -1,0 +1,69 @@
+Metadata-Version: 1.1
+Name: zope.processlifetime
+Version: 2.1.0
+Summary: Zope process lifetime events
+Home-page: http://pypi.python.org/pypi/zope.processlifetime
+Author: Zope Foundation and Contributors
+Author-email: zope-dev@zope.org
+License: ZPL 2.1
+Description: ``zope.processlifetime``
+        ========================
+        
+        This package provides interfaces / implementations for events relative to
+        the lifetime of a server process (startup, database opening, etc.)
+        
+        It is derived from Zope 3.4's ``zope.app.appsetup``.
+        
+        
+        Changes
+        =======
+        
+        2.1.0 (2014-12-27)
+        ------------------
+        
+        - Add support for PyPy and PyPy3.
+        
+        - Add support for Python 3.4.
+        
+        - Add support for testing on Travis.
+        
+        
+        2.0.0 (2013-02-22)
+        ------------------
+        
+        - Replace deprecated ``zope.interface.implements`` usage with equivalent
+          ``zope.interface.implementer`` decorator.
+        
+        - Add support for Python 3.2 and 3.3
+        
+        - Drop support for Python 2.4 and 2.5.
+        
+        
+        
+        1.0 (2009-05-13)
+        ----------------
+        
+        - Split out event interfaces / implementations from ``zope.app.appsetup``
+          version 3.10.2.
+        
+Keywords: zope process lifetime events
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Framework :: Zope3
+Classifier: Framework :: Zope2

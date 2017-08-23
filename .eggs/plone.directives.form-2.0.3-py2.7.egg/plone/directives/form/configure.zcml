@@ -1,0 +1,7 @@
+<configure xmlns="http://namespaces.zope.org/zope" i18n_domain="plone">
+
+    <include package="five.grok" />
+    <include package="plone.autoform" />
+    <include package="plone.rfc822" />
+
+</configure>

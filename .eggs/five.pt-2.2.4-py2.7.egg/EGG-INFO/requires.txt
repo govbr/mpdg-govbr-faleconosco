@@ -1,0 +1,5 @@
+setuptools
+sourcecodegen>=0.6.14
+z3c.pt>=2.2
+zope.pagetemplate>=3.6.2
+Chameleon>=2.14

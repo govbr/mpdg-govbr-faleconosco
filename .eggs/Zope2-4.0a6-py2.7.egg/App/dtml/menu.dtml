@@ -1,0 +1,52 @@
+<dtml-var manage_page_header>
+
+<table width="100%">
+<tr bgcolor="#eeeeee">
+  <td>
+  <a href="Control_Panel/manage_main" target="manage_main">
+      Control Panel
+  </a>
+  </td>
+</tr>
+</table>
+<br />
+
+<table width="100%">
+<tr bgcolor="#000000">
+  <td valign="top" nowrap="nowrap">
+  <a href="manage_workspace" target="manage_main" style="color: #ffffff;">
+  <dtml-if expr="URLPATH1==BASEPATH1">
+  Root Folder
+  <dtml-else>
+  &dtml-id;
+  </dtml-if>
+  </a>
+  </td>
+</tr>
+</table>
+
+<dtml-tree nowrap=1>
+<a href="&dtml.url_quote-tree-item-url;/manage_workspace" 
+ target="manage_main">&dtml-id;</a>
+</dtml-tree>
+<br />
+
+<table width="100%" bgcolor="#6699cc">
+<tr>
+<td valign="top" align="center">
+<div class="form-element">
+<form action="&dtml-BASEPATH1;/manage_zmi_logout" method="POST" target="manage_main">
+<span class="std-text">Logged in as <strong>&dtml-AUTHENTICATED_USER;</strong></span>
+&nbsp;&nbsp;
+<br />
+<dtml-if "AUTHENTICATED_USER.getUserName() != 'Anonymous User'">
+<input class="form-element" type="submit" name="submit" value="Logout" />
+</dtml-if>
+&nbsp;
+</form>
+</div>
+</td>
+</tr>
+</table>
+
+<dtml-var manage_page_footer>

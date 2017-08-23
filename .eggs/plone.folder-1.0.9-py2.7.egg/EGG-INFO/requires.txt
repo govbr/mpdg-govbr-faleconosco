@@ -1,0 +1,13 @@
+plone.memoize
+Products.BTreeFolder2
+Products.CMFCore
+Products.ZCatalog
+setuptools
+zope.annotation
+zope.component
+zope.container
+zope.interface
+Zope2
+
+[test]
+profilehooks

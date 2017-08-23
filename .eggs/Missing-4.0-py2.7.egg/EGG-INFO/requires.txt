@@ -1,0 +1,1 @@
+ExtensionClass>=4.1a1

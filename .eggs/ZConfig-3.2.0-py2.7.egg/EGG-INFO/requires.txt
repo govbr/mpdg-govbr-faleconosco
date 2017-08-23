@@ -1,0 +1,8 @@
+
+[docs]
+sphinxcontrib-programoutput
+
+[test]
+docutils
+manuel
+zope.testrunner

@@ -1,0 +1,36 @@
+***************
+*** 6,12 ****
+  
+  Breaking changes:
+  
+- - *add item here*
+  
+  New features:
+  
+--- 6,13 ----
+  
+  Breaking changes:
+  
++ - Remove backwards compatibility for Zope 2.12
++   [davisagli]
+  
+  New features:
+  
+***************
+*** 14,20 ****
+  
+  Bug fixes:
+  
+- - *add item here*
+  
+  
+  2.2.11 (2017-04-01)
+--- 15,22 ----
+  
+  Bug fixes:
+  
++ - Remove deprecated __of__ for BrowserViews.
++   [MrTango]
+  
+  
+  2.2.11 (2017-04-01)

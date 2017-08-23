@@ -1,0 +1,13 @@
+setuptools
+zope.deferredimport
+five.grok>=1.0b2
+grokcore.view>=2.2
+plone.autoform>=1.2dev
+plone.z3cform>=0.6.0
+Products.statusmessages
+plone.supermodel>=1.1dev
+zope.i18nmessageid
+zope.publisher
+plone.rfc822
+
+[test]
