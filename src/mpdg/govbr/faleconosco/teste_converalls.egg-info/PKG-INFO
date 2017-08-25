@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: teste-converalls
+Version: 0.1.1
+Summary: Tutorial de teste unitário em Python para o blog Código Avulso
+Home-page: https://github.com/mstuttgart/codigo-avulso-test-tutorial
+Author: Michell Stuttgart
+Author-email: michellstut@gmail.com
+License: MIT License
+Description: UNKNOWN
+Keywords: tutorial test unittest codigoavulso
+Platform: UNKNOWN
