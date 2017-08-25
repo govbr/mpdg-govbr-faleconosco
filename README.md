@@ -1,8 +1,6 @@
 mpdg.govbr.faleconosco: Fale Conosco
 ====================================
 
-![coverage](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg?job=coverage)
-
 Introdução
 -----------
 
