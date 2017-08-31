@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: mpdg.govbr.faleconosco
-Version: 1.1.0
+Version: 1.1.1
 Summary: An add-on for Plone
 Home-page: https://pypi.python.org/pypi/mpdg.govbr.faleconosco
 Author: COPPE
@@ -80,6 +80,14 @@ Description: mpdg.govbr.faleconosco: Fale Conosco
         
         Changelog
         =========
+        
+        1.1.1 (2017-04-27)
+        --------------------
+        
+        ### R3 - Sprint 2
+        
+        - Implementação inicial de testes automatizados nas views.
+        
         
         1.1.0 (2017-03-29)
         --------------------
