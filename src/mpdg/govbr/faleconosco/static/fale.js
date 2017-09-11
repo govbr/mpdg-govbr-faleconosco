@@ -189,7 +189,7 @@
                     var $input = $('form[name="fale-textos-form"] :checked');
                     var $texto = $input.next().next().next().next()
                     var $textarea = $div.find('textarea[name="mensagem"]');
-                    $textarea.val($texto.text())
+                    $textarea.val($texto.html())
                 }
             }
         });
@@ -208,7 +208,7 @@
                     var $input = $('form[name="fale-textos-form"] :checked');
                     var $texto = $input.next().next().next().next()
                     var $textarea = $div.find('textarea[name="mensagem"]');
-                    $textarea.val($texto.text())
+                    $textarea.val($texto.html())
                 }
             }
         });
@@ -242,24 +242,40 @@
             }
         });
 
+        // $('a.fale-inserir-textos-sel').prepOverlay({
+        //     subtype: 'ajax',
+        //     filter: '#content>*',
+        //     formselector: 'form',
+        //     closeselector: 'input.fale-texto',
+        //     config: {
+        //         onBeforeLoad: function(event){
+        //             $id = event.target.ownerDocument.activeElement.id;
+        //             $div = $('div#' + $id);
+        //         },
+        //         onBeforeClose: function(event){
+        //             var $input = $('form[name="fale-textos-form"] :checked');
+        //             var $texto = $input.next().next().next().next()
+        //             var $textarea = $div.find('textarea[name="mensagem"]');
+        //             $textarea.val($texto.text())
+        //         }
+        //     }
+        // });
         $('a.fale-inserir-textos-sel').prepOverlay({
-            subtype: 'ajax',
-            filter: '#content>*',
-            formselector: 'form',
-            closeselector: 'input.fale-texto',
-            config: {
-                onBeforeLoad: function(event){
-                    $id = event.target.ownerDocument.activeElement.id;
-                    $div = $('div#' + $id);
-                },
-                onBeforeClose: function(event){
-                    var $input = $('form[name="fale-textos-form"] :checked');
-                    var $texto = $input.next().next().next().next()
-                    var $textarea = $div.find('textarea[name="mensagem"]');
-                    $textarea.val($texto.text())
+                subtype: 'ajax',
+                filter: '#content>*',
+                formselector: 'form',
+                closeselector: 'input.fale-texto',
+                cssclass: 'overlay2',
+                config: {
+                    onBeforeClose: function(event){
+                        var input = $('form[name="fale-textos-form"] :checked').next().next().next().next();
+                        // var texto = $(input);  // selected text
+                        var textarea = $("#form-widgets-mensagem_ifr").contents().find("#content");
+                        $(textarea).append($(input).html());
+
+                    }
                 }
-            }
-        });
+            });
 
         $(document).on('click', '#fale-gerar-charts', function(){
             var $form = $('form.use-ajax');
