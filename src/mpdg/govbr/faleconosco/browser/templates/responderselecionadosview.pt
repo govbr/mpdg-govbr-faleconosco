@@ -18,6 +18,8 @@
        );
        
   </script>
+  <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
+
 </metal:block>
 
 <metal:block fill-slot="main">
@@ -71,14 +73,14 @@
             <a href="@@textos-prontos"
                class="fale-inserir-textos-sel link-overlay"
                id="fale-mensagem-corpo-sel" rel="div.overlay:eq(0)" style="cursor: pointer;">Textos
-                Prontos</a>   |
-            <a href="@@inserir-faq"
+                Prontos</a>   <!-- | -->
+            <!-- <a href="@@inserir-faq"
                class="fale-inserir-faq-sel link-overlay"
-               id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a>
+               id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a> -->
         </span>
     </div>
 
-    <script>
+    <!-- <script>
         $(document).ready(function(){
             $('#form-buttons-descartar').click(function(e){
                 e.preventDefault();
@@ -115,7 +117,7 @@
                 }
             });
         })
-    </script>
+    </script> -->
 </div>
 </metal:block>
 </html>

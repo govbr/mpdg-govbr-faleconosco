@@ -27,7 +27,7 @@
             var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
 
             var data = {
-                labels: <tal:block replace="view/taglist" />,
+                labels: <tal:block content='view/get_tags_list ' />,
                 datasets: [
                     {
                         label: "Categorias de mensagens",
