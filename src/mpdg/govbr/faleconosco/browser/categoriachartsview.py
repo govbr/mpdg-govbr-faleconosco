@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
+# -*- coding: iso-8859-1 -*
+
+# from __future__ import unicode_literals
 import operator
 import random
+import unicodedata 
+import re
+from unidecode import unidecode
+from unicodedata import normalize
+
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
@@ -17,6 +25,7 @@ class CategoriaChartsView(grok.View):
     grok.name('categoria-charts-view')
     grok.require('zope2.View')
     grok.context(ISiteRoot)
+    
 
     def update(self):
         qtd_get = int(self.request.form.get('qtd', 10))
@@ -38,24 +47,29 @@ class CategoriaChartsView(grok.View):
         portal = api.portal.get()
         path = '/'.join(portal.getPhysicalPath()) + '/fale-conosco/'
         tagdict = {}
+
         for tag in tags:
+
             brains = catalog.searchResults(
                 portal_type='FaleConosco',
                 Subject=tag,
                 path=path
             )
             qtd_tags = len(brains)
-            tagdict[tag] = qtd_tags
+            tagdict[unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore')] = qtd_tags
         return tagdict
+
 
     def get_tags_list(self):
         """Retorna uma lista de tags
             ['apple', 'orange', ...]
         """
+        # import pdb; pdb.set_trace()
         tags = self._filter_tags()
         result = []
         for tag, v in tags:
-            result.append(tag)
+                
+                result.append(unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore'))
         return result
 
     def get_tags_data(self):
@@ -66,7 +80,7 @@ class CategoriaChartsView(grok.View):
         """
         result = []
         for tag in self.taglist:
-            result.append(self.tagdict[tag])
+            result.append(self.tagdict[unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore')])
         return result
 
     def zipped_tags(self):
@@ -96,4 +110,5 @@ class CategoriaChartsView(grok.View):
             cor = '#{:02x}{:02x}{:02x}'.format(*map(lambda x: random.randint(0, 255), range(0,10)))
             result.append(cor)
         return result
+
 
