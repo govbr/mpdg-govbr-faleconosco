@@ -1,8 +1,0 @@
-setuptools
-
-[docs]
-Sphinx
-sphinx_rtd_theme
-
-[test]
-zope.testrunner

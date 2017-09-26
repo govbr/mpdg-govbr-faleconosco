@@ -1,9 +1,0 @@
-setuptools
-martian>=0.14
-zope.component
-zope.configuration
-zope.interface
-zope.testing
-
-[test]
-zope.event

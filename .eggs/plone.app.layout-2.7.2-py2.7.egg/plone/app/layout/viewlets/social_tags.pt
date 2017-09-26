@@ -1,1 +1,0 @@
-<meta tal:repeat="tag view/tags" tal:attributes="tag" />

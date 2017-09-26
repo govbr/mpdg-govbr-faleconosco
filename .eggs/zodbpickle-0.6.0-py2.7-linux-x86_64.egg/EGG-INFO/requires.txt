@@ -1,7 +1,0 @@
-setuptools
-
-[test]
-
-[testing]
-nose
-coverage

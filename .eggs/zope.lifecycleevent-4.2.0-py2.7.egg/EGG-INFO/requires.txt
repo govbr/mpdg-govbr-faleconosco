@@ -1,9 +1,0 @@
-setuptools
-zope.interface
-zope.event
-
-[test]
-zope.component
-zope.configuration
-zope.testing
-zope.testrunner

@@ -17,14 +17,12 @@ src/mpdg.govbr.faleconosco.egg-info/not-zip-safe
 src/mpdg.govbr.faleconosco.egg-info/requires.txt
 src/mpdg.govbr.faleconosco.egg-info/top_level.txt
 src/mpdg/govbr/__init__.py
-src/mpdg/govbr/faleconosco/.coverage
 src/mpdg/govbr/faleconosco/__init__.py
 src/mpdg/govbr/faleconosco/config.py
 src/mpdg/govbr/faleconosco/configure.zcml
 src/mpdg/govbr/faleconosco/controlpanel.py
 src/mpdg/govbr/faleconosco/interfaces.py
 src/mpdg/govbr/faleconosco/mailer.py
-src/mpdg/govbr/faleconosco/setup.py
 src/mpdg/govbr/faleconosco/setuphandlers.py
 src/mpdg/govbr/faleconosco/testing.py
 src/mpdg/govbr/faleconosco/testing.zcml
@@ -128,10 +126,6 @@ src/mpdg/govbr/faleconosco/static/readme.txt
 src/mpdg/govbr/faleconosco/static/respondido.png
 src/mpdg/govbr/faleconosco/static/tag-it.js
 src/mpdg/govbr/faleconosco/static/widgEditor_1.0.1.zip
-src/mpdg/govbr/faleconosco/teste_converalls.egg-info/PKG-INFO
-src/mpdg/govbr/faleconosco/teste_converalls.egg-info/SOURCES.txt
-src/mpdg/govbr/faleconosco/teste_converalls.egg-info/dependency_links.txt
-src/mpdg/govbr/faleconosco/teste_converalls.egg-info/top_level.txt
 src/mpdg/govbr/faleconosco/tests/__init__.py
 src/mpdg/govbr/faleconosco/tests/test_arquivarmensagem_view.py
 src/mpdg/govbr/faleconosco/tests/test_categoriacharts_view.py

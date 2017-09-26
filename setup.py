@@ -44,7 +44,7 @@ setup(
         'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
-        'pandas==0.20.1',
+        'pandas==0.19.2',
         'Products.contentmigration',
     ],
     extras_require={
@@ -53,9 +53,10 @@ setup(
             # Plone KGS does not use this version, because it would break
             # Remove if your package shall be part of coredev.
             # plone_coredev tests as of 2016-04-01.
-            'plone.testing>=5.0.0',
+            # 'plone.testing>=5.0.0',
+            'plone.testing',
             'plone.app.contenttypes',
-            'plone.app.robotframework[debug]',
+            # 'plone.app.robotframework[debug]',
         ],
     },
     entry_points="""

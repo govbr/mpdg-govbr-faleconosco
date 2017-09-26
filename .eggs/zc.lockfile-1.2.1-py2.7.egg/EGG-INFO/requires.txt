@@ -1,5 +1,0 @@
-setuptools
-
-[test]
-mock
-zope.testing

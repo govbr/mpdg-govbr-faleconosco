@@ -1,2 +1,0 @@
-setuptools
-Products.ZCatalog>=4.0a2

@@ -1,9 +1,0 @@
-setuptools
-ZODB
-zope.component
-zope.i18nmessageid
-zope.interface
-zope.schema
-
-[test]
-zope.testing

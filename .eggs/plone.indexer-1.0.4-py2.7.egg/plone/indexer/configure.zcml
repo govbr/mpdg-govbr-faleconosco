@@ -1,3 +1,0 @@
-<configure xmlns="http://namespaces.zope.org/zope">
-  <!-- empty to not break packages, who use zcml include on this package -->
-</configure>

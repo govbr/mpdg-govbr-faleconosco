@@ -1,6 +1,0 @@
-setuptools
-Products.CMFPlone
-
-[test]
-plone.app.contenttypes
-plone.app.testing

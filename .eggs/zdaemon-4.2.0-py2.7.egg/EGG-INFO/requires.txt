@@ -1,9 +1,0 @@
-ZConfig
-setuptools
-
-[test]
-zope.testing
-zope.testrunner
-manuel
-mock
-zc.customdoctests

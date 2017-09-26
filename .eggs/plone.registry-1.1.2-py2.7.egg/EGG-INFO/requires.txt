@@ -1,9 +1,0 @@
-setuptools
-zope.component
-zope.dottedname
-zope.event
-zope.interface
-zope.schema
-
-[test]
-BTrees

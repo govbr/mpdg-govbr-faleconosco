@@ -189,7 +189,7 @@
                     var $input = $('form[name="fale-textos-form"] :checked');
                     var $texto = $input.next().next().next().next()
                     var $textarea = $div.find('textarea[name="mensagem"]');
-                    $textarea.val($texto.text())
+                    $textarea.val($texto.html())
                 }
             }
         });
@@ -208,7 +208,7 @@
                     var $input = $('form[name="fale-textos-form"] :checked');
                     var $texto = $input.next().next().next().next()
                     var $textarea = $div.find('textarea[name="mensagem"]');
-                    $textarea.val($texto.text())
+                    $textarea.val($texto.html())
                 }
             }
         });

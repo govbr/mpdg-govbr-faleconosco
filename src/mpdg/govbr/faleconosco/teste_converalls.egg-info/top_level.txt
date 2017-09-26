@@ -1,5 +1,0 @@
-browser
-content
-portlets
-tests
-upgrades

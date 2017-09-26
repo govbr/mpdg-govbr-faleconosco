@@ -1,0 +1,15 @@
+language: python
+
+python:
+  - "2.7"
+
+sudo: required
+
+install:
+  - pip install coveralls
+
+script:
+  - coverage run --source=src/mpdg/govbr/faleconosco/tests ../../bin/test faleconosco setup.py test
+
+after_success:
+  - coveralls

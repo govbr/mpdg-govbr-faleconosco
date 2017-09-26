@@ -1,9 +1,0 @@
-setuptools
-zope.annotation
-zope.component
-zope.configuration
-zope.interface
-zope.schema
-
-[test]
-zope.lifecycleevent

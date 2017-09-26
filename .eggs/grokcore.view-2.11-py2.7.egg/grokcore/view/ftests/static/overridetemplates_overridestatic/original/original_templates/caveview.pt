@@ -1,5 +1,0 @@
-<tal:block>
-  Cave view
-  <tal:resource tal:replace="static/resource.css" />
-</tal:block>
-

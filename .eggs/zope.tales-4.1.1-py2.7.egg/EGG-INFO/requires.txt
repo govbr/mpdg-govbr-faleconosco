@@ -1,9 +1,0 @@
-setuptools
-zope.interface
-six
-
-[tal]
-zope.tal
-
-[test]
-zope.testing

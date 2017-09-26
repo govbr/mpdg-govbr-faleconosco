@@ -1,5 +1,0 @@
-zope.interface
-setuptools
-
-[test]
-zope.testing
