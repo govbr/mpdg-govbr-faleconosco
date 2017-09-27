@@ -1,8 +1,7 @@
 mpdg.govbr.faleconosco: Fale Conosco
 ====================================
 
-[![Build Status](https://travis-ci.org/Samuelbsb/mpdg-govbr-faleconosco.svg?branch=desenvolvimento)](https://travis-ci.org/Samuelbsb/mpdg-govbr-faleconosco)
-[![Coverage Status](https://coveralls.io/repos/github/govbr/mpdg-govbr-faleconosco/badge.svg?branch=master)](https://coveralls.io/github/govbr/mpdg-govbr-faleconosco?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/govbr/mpdg-govbr-faleconosco/badge.svg)](https://coveralls.io/github/govbr/mpdg-govbr-faleconosco)   [![Build Status](https://travis-ci.org/Samuelbsb/mpdg-govbr-faleconosco.svg?branch=master)](https://travis-ci.org/Samuelbsb/mpdg-govbr-faleconosco)
 
 
 Introdução
