@@ -18,19 +18,19 @@ matrix:
 install:
 - test $MASTER && sed -ie '/https:\/\/raw\.githubusercontent\.com\/plonegovbr\/portal\.buildout\/master\/buildout\.d\/versions\.cfg/d' buildout.cfg || true
 - python bootstrap-buildout.py
-- bin/buildout annotate
-- bin/buildout versions:selenium=2.53.5
+- ./bin/buildout annotate
+- ./bin/buildout versions:selenium=2.53.5
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - firefox -v
 script:
 - bin/code-analysis
-- bin/test
+- ./bin/test
 after_script:
 - pkill -9 firefox
 after_success:
-- bin/createcoverage -t "--layer=!Acceptance"
+- ./bin/createcoverage -t "--layer=!Acceptance"
 - pip install -q coveralls
 - coveralls
 notifications:
