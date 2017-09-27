@@ -17,7 +17,7 @@ matrix:
   fast_finish: true
 install:
 - test $MASTER && sed -ie '/https:\/\/raw\.githubusercontent\.com\/plonegovbr\/portal\.buildout\/master\/buildout\.d\/versions\.cfg/d' buildout.cfg || true
-- python bootstrap.py
+- python bootstrap-buildout.py
 - bin/buildout annotate
 - bin/buildout versions:selenium=2.53.5
 before_script:
