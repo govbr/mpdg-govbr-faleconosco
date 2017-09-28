@@ -6,4 +6,4 @@ python:
 sudo: required
 
 script:
-  - python setup.py ../../bin/test faleconosco
+  - python setup.py ../../bin/test
