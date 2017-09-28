@@ -24,8 +24,8 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - firefox -v
 script:
-  - bin/code-analysis
-  - bin/test
+  - ../../bin/code-analysis
+  - ../../bin/test
 after_script:
   - pkill -9 firefox
 after_success:
