@@ -7,3 +7,4 @@ sudo: required
 
 script:
   - python setup.py ../../bin/test
+  - --source=src/mpdg/govbr/faleconosco/tests ../../bin/test faleconosco
