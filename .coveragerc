@@ -2,7 +2,7 @@
 omit =
     /home/*/.buildout/eggs/*
     /usr/*
-    bin/test
+    ./bin/test
     buildout-cache/eggs/*
     eggs/*
     parts/*
