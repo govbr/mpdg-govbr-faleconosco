@@ -24,8 +24,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - firefox -v
 script:
-  - coverage run --source=mpdg.govbr.faleconosco ../../bin/test
-
+  - coverage run --source=src/mpdg/govbr/faleconosco/tests ../bin/test
 after_script:
   - pkill -9 firefox
 after_success:
