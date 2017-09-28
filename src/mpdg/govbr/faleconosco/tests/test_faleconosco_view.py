@@ -35,9 +35,21 @@ class FaleConoscoForms(unittest.TestCase):
         self.request.form['form.widgets.nome'] = '123123132131'
 
     """Testa se a view está funcionando corretamente"""
-    def test_fale_conosco(self):
-        view = self.portal.restrictedTraverse('@@fale-conosco')
-        self.assertTrue(view)
+    # def test_fale_conosco(self):
+    #     portal = self.portal
+    #     view = portal.restrictedTraverse('@@fale-conosco')
+    #     self.assertTrue(view)
+
+    def test_controlpanel_view_protected(self):
+        """ Acesso a view nao pode ser feito por usuario anonimo """
+        # Importamos a excecao esperada
+        from AccessControl import Unauthorized
+        # Deslogamos do portal
+        logout()
+        # Ao acessar a view como anonimo, a excecao e levantada
+        self.assertRaises(Unauthorized,
+                          self.portal.restrictedTraverse,
+                          '@@site-controlpanel')
 
     """Verifica se o objeto fale conosco existe na dentro da pasta fale conosco"""
     def test_object_in_folder(self):
@@ -54,7 +66,7 @@ class FaleConoscoForms(unittest.TestCase):
         expected = ['nome', 'email', 'assunto', 'mensagem']
         for field in expected:
             self.assertIn(field, self.view.schema.names())
-    
+
     def logoutWithTestBrowser(self):
 
         browser = Browser(self.app)
@@ -97,36 +109,6 @@ class FaleConoscoForms(unittest.TestCase):
 
         login_form = self.browser.getForm('login_form')
         login_form.submit('Log in')
-
-
-    def checkIsUnauthorized(self, url):
-        """
-        Verifique se o URL fornece resposta não autorizada.
-        """
-
-        import urllib2
-
-        # Desativar redirecionamento no erro de segurança
-        self.portal.acl_users.credentials_cookie_auth.login_path = ""
-
-        # Desligar o rastreamento de exceção para depuração configurada em afterSetUp ()
-
-        self.browser.handleErrors = True
-
-        def raising(self, info):
-            pass
-        self.portal.error_log._ignored_exceptions = ("Unauthorized")
-        from Products.SiteErrorLog.SiteErrorLog import SiteErrorLog
-        SiteErrorLog.raising = raising
-
-        try:
-            self.browser.open(url)
-            raise AssertionError("No Unauthorized risen:" + url)
-        except urllib2.HTTPError,  e:
-            # Teste testbrowser
-            # uses urlllib2 and will raise this exception
-            self.assertEqual(e.code, 401, "Got HTTP response code:" + str(e.code))
-        # Another example where test browser / Zope 2 publisher where invalidly handling Unauthorized exception:
 
 
     def test_anon_access_forum(self):

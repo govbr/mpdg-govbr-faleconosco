@@ -1,6 +1,9 @@
 mpdg.govbr.faleconosco: Fale Conosco
 ====================================
 
+
+[![Coverage Status](https://coveralls.io/repos/github/Samuelbsb/mpdg.govbr.faleconosco/badge.svg?branch=master)](https://coveralls.io/github/Samuelbsb/mpdg.govbr.faleconosco?branch=master)
+
 Introdução
 -----------
 
