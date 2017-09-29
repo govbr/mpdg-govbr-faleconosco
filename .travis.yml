@@ -19,7 +19,6 @@ install:
 - test $MASTER && sed -ie '/https:\/\/raw\.githubusercontent\.com\/plonegovbr\/portal\.buildout\/master\/buildout\.d\/versions\.cfg/d' buildout.cfg || true
 - python bootstrap-buildout.py
 - bin/buildout annotate
-- bin/buildout versions:selenium=2.53.5
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
