@@ -26,11 +26,6 @@ before_script:
 script:
 - bin/test
 - bin/createcoverage
-after_script:
-- pkill -9 firefox
 after_success:
-- bin/createcoverage -t "--layer=!Acceptance"
 - pip install coverage==3.6 coveralls
 - coveralls
-notifications:
-  irc: irc.freenode.org#plonegovbr
