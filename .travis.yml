@@ -1,31 +1,17 @@
 language: python
-python: 2.7
-sudo: false
-cache:
-  directories:
-  - eggs
-  - parts/node
-addons:
-  firefox: 46.0.1
-env:
-  matrix:
-    - MASTER=true
-    - PENDING_RELEASE=true
-matrix:
-  allow_failures:
-    - env: MASTER=true
-  fast_finish: true
+
+python:
+  - "2.7"
+
+sudo: required
+
 install:
-- test $MASTER && sed -ie '/https:\/\/raw\.githubusercontent\.com\/plonegovbr\/portal\.buildout\/master\/buildout\.d\/versions\.cfg/d' buildout.cfg || true
-- python bootstrap-buildout.py
-- bin/buildout annotate
-before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- firefox -v
+  - pip install coveralls
+
 script:
-- bin/test
-- bin/createcoverage
+  - bin/test
+  - bin/createcoverage
+
 after_success:
-- pip install coverage==3.6 coveralls
-- coveralls
+  - pip install coverage==3.6 coveralls
+  - coveralls
