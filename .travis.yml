@@ -9,9 +9,7 @@ install:
   - pip install coveralls
 
 script:
-  - bin/test
-  - bin/createcoverage
+  - coverage run --source=src/mpdg/govbr/faleconosco/tests ../../bin/test faleconosco test
 
 after_success:
-  - pip install coverage==3.6 coveralls
   - coveralls
