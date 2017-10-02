@@ -44,11 +44,7 @@ setup(
         'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
-<<<<<<< HEAD
-        'pandas==0.20.1',
-=======
         'pandas==0.19.2',
->>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
         'Products.contentmigration',
     ],
     extras_require={

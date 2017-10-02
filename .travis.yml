@@ -1,32 +1,9 @@
 language: python
+
 python:
-  - 2.7
-  - 3.4
-sudo: false
-cache:
-  directories:
-    - $HOME/buildout-cache
-    - $HOME/parts/node
-    - $HOME/.cache/pip
-env:
-  matrix:
-    - CONF=travis.cfg
-    - CONF=extras.cfg EXTRAS_INSTALLED=true
-matrix:
-  allow_failures:
-    - python: 3.4
-      env: CONF=extras.cfg EXTRAS_INSTALLED=true
-install:
-  - pip install -r requirements.txt
-  - buildout -c $CONF annotate
-  - buildout -N -t 3 -c $CONF
+  - "2.7"
+
+sudo: required
+
 script:
-  - bin/code-analysis
-  - bin/createcoverage -d htmlcov
-after_success:
-  - coveralls
-after_failure:
-  - bin/flake8 --version
-  - bin/csslint --version
-  - bin/jshint --version
-  - bin/jscs --version
+  - run setup.py test
