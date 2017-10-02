@@ -6,4 +6,4 @@ python:
 sudo: required
 
 script:
-  - run setup.py test
+  - python setup.py test
