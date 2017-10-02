@@ -12,7 +12,11 @@
     <div tal:define="fale view/get_message">
         <h3 tal:replace="structure fale/msg" >mensagem</h3>
         
+<<<<<<< HEAD
         <p> <b>Por favor, confirme o envio da sua mensagem no e-mail <span tal:content="fale/email">EMAIL</span>. Após sua confirmação, a sua mensagem será enviada para os responsáveis do Site.</p> 
+=======
+        <p> <b>A sua mensagem somente será confirmada ao clicar no link enviado para o seu e-mail <span tal:content="fale/email">EMAIL</span></p> 
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
 
           <a href="" tal:attributes= "href view/get_portal_url">Voltar pagina inicial </a> 
     </div>

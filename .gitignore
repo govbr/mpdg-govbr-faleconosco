@@ -1,3 +1,30 @@
+<<<<<<< HEAD
 *.pyc
 *.swp
 *.egg-info
+=======
+*.egg-info
+*.log
+*.mo
+*.pyc
+*~
+.*project
+.coverage
+.installed.cfg
+.mr.developer.cfg
+.settings
+bin/
+coverage/
+develop-eggs/
+downloads/
+eggs/
+htmlcov/
+include/
+lib/
+local.cfg
+Makefile
+parts/
+src/collective.cover/
+var/
+dist/
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be

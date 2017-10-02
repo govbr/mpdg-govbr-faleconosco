@@ -1,6 +1,19 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 import operator
 import random
+=======
+# -*- coding: iso-8859-1 -*
+
+# from __future__ import unicode_literals
+import operator
+import random
+import unicodedata 
+import re
+from unidecode import unidecode
+from unicodedata import normalize
+
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
@@ -17,6 +30,10 @@ class CategoriaChartsView(grok.View):
     grok.name('categoria-charts-view')
     grok.require('zope2.View')
     grok.context(ISiteRoot)
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
 
     def update(self):
         qtd_get = int(self.request.form.get('qtd', 10))
@@ -38,24 +55,46 @@ class CategoriaChartsView(grok.View):
         portal = api.portal.get()
         path = '/'.join(portal.getPhysicalPath()) + '/fale-conosco/'
         tagdict = {}
+<<<<<<< HEAD
         for tag in tags:
+=======
+
+        for tag in tags:
+
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
             brains = catalog.searchResults(
                 portal_type='FaleConosco',
                 Subject=tag,
                 path=path
             )
             qtd_tags = len(brains)
+<<<<<<< HEAD
             tagdict[tag] = qtd_tags
         return tagdict
 
+=======
+            tagdict[unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore')] = qtd_tags
+        return tagdict
+
+
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
     def get_tags_list(self):
         """Retorna uma lista de tags
             ['apple', 'orange', ...]
         """
+<<<<<<< HEAD
         tags = self._filter_tags()
         result = []
         for tag, v in tags:
             result.append(tag)
+=======
+        # import pdb; pdb.set_trace()
+        tags = self._filter_tags()
+        result = []
+        for tag, v in tags:
+                
+                result.append(unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore'))
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
         return result
 
     def get_tags_data(self):
@@ -66,7 +105,11 @@ class CategoriaChartsView(grok.View):
         """
         result = []
         for tag in self.taglist:
+<<<<<<< HEAD
             result.append(self.tagdict[tag])
+=======
+            result.append(self.tagdict[unicodedata.normalize('NFKD', tag.decode()).encode('ascii', 'ignore')])
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
         return result
 
     def zipped_tags(self):
@@ -97,3 +140,7 @@ class CategoriaChartsView(grok.View):
             result.append(cor)
         return result
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be

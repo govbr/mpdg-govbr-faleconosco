@@ -23,6 +23,7 @@
         });
 
         $(function () {
+<<<<<<< HEAD
             var colors = <tal:block replace="view/gera_cor" />;
             var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
 
@@ -32,11 +33,26 @@
                     {
                         label: "Categorias de mensagens",
                         data: <tal:block replace="view/tagdata" />,
+=======
+
+            var colors = <tal:block replace="view/gera_cor" />;
+            var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
+            var data = {
+                labels: <tal:block replace="view/get_tags_list"/>,
+                datasets: [
+                    {   
+                        label: "Categorias de mensagens",
+                        data: <tal:block replace="view/zipped_tags" />,
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
                         backgroundColor: colors,
                         borderColor: colors,
                         borderWidth:1
                     }
                 ]
+<<<<<<< HEAD
+=======
+
+>>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
             }
 
             var context = $("#fale-grafico").get(0).getContext("2d");
