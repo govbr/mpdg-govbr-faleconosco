@@ -9,6 +9,11 @@ cache:
   - eggs
   - parts/node
 
+install:
+- python bootstrap.py
+- bin/buildout annotate
+- bin/buildout
+
 script:
 - bin/code-analysis
 - bin/test
