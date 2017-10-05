@@ -56,6 +56,7 @@ setup(
             # 'plone.testing>=5.0.0',
             'plone.testing',
             'plone.app.contenttypes',
+            'unittest2',
             # 'plone.app.robotframework[debug]',
         ],
     },
