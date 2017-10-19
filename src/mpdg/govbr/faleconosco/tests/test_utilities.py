@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Pythonic libraries
 from Acquisition import aq_base
 from email import message_from_string
