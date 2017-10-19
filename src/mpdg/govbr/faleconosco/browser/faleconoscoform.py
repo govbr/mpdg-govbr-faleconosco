@@ -1,46 +1,50 @@
 # -*- coding: utf-8 -*-
+from five import grok
+from mpdg.govbr.faleconosco.browser.utilities import get_fale_config
+from mpdg.govbr.faleconosco.browser.utilities import transform_message
+from mpdg.govbr.faleconosco.config import EMAIL_FALE_LINK
+from mpdg.govbr.faleconosco.config import KEY_CONFIRMA
+from mpdg.govbr.faleconosco.mailer import simple_send_mail
+from mpdg.govbr.faleconosco.utils import prepare_email_message
+from plone import api
+from plone.directives import form
+from plone.supermodel import model
+from Products.CMFCore.utils import getToolByName
+from z3c.form import button
+from zope import schema
+from zope.annotation import IAnnotations
+from zope.interface import Interface
+from zope.schema.interfaces import RequiredMissing
+from zope.schema.interfaces import TooLong
+
 import hashlib
 import random
 import urllib
-from five import grok
-from zope.interface import Interface
-from plone import api
-from plone.supermodel import model
-from plone.directives import form
-from plone.registry.interfaces import IRegistry
-from zope import schema
-from zope.schema.interfaces import RequiredMissing, TooLong
-from zope.annotation import IAnnotations
-from zope.component import getUtility
-from z3c.form import button
-from Products.CMFCore.utils import getToolByName
-from mpdg.govbr.faleconosco.config import KEY_CONFIRMA, EMAIL_FALE_LINK
-from mpdg.govbr.faleconosco.mailer import simple_send_mail
-from mpdg.govbr.faleconosco.utils import prepare_email_message
-from mpdg.govbr.faleconosco.browser.utilities import transform_message, get_fale_config
+
 
 grok.templatedir('templates')
 
 
 class IFaleConoscoForm(model.Schema):
-    nome     = schema.TextLine(title=u"Nome", required=True , max_length=50)
-    email    = schema.TextLine(title=u"E-mail", required=True)
-    assunto  = schema.TextLine(title=u"Título", required=True , max_length=100)
-    mensagem = schema.Text(title=u"Mensagem", required=True)
+    nome = schema.TextLine(title=u'Nome', required=True, max_length=50)
+    email = schema.TextLine(title=u'E-mail', required=True)
+    assunto = schema.TextLine(title=u'Título', required=True, max_length=100)
+    mensagem = schema.Text(title=u'Mensagem', required=True)
 
 
 @form.error_message(field=IFaleConoscoForm['nome'], error=RequiredMissing)
 def nome_error_message(value):
-    return u"Informe o seu nome."
+    return u'Informe o seu nome.'
+
 
 @form.error_message(field=IFaleConoscoForm['nome'], error=TooLong)
 def caracteres_max_nome(value):
-    return u"Quantidade máxima de 50 caracteres permitidos "
+    return u'Quantidade máxima de 50 caracteres permitidos '
 
 
 @form.error_message(field=IFaleConoscoForm['assunto'], error=TooLong)
 def caracteres_max_titulo(value):
-    return u"Quantidade máxima de 100 caracteres permitidos "
+    return u'Quantidade máxima de 100 caracteres permitidos '
 
 
 class FaleConoscoForm(form.SchemaForm):
@@ -53,7 +57,7 @@ class FaleConoscoForm(form.SchemaForm):
     schema = IFaleConoscoForm
     ignoreContext = True
 
-    label = u"Fale conosco"
+    label = u'Fale conosco'
 #    description = u"Um simples fale conosco"
 
     def updateActions(self):
@@ -62,7 +66,7 @@ class FaleConoscoForm(form.SchemaForm):
         super(FaleConoscoForm, self).updateActions()
 
     # def action(self):
-    #     return api.portal.get().absolute_url() + "/@@confirmacao" 
+    #     return api.portal.get().absolute_url() + "/@@confirmacao"
 
     def faq(self):
         portal = api.portal.get()
@@ -71,7 +75,7 @@ class FaleConoscoForm(form.SchemaForm):
         faq = getattr(portal, 'faq', None)
         if faq:
             brain = catalog(
-                portal_type='Document', 
+                portal_type='Document',
                 path='/'.join(faq.getPhysicalPath()),
                 review_state='published'
             )
@@ -85,7 +89,6 @@ class FaleConoscoForm(form.SchemaForm):
 
         return faq_list
 
-    
     @button.buttonAndHandler(u'Enviar')
     def handleApply(self, action):
         data, errors = self.extractData()
@@ -93,12 +96,10 @@ class FaleConoscoForm(form.SchemaForm):
             self.status = self.formErrorsMessage
             return
 
-
-        nome     = data['nome']
-        email    = data['email']
-        assunto  = data['assunto']
+        nome = data['nome']
+        email = data['email']
+        assunto = data['assunto']
         mensagem = data['mensagem']
-
 
         adm_fale = get_fale_config('admfale')
         responsavel = adm_fale or u'idg'
@@ -124,28 +125,28 @@ class FaleConoscoForm(form.SchemaForm):
         dados_fale['conteudo'] = conteudo
         fale.append(dados_fale)
         annotation[KEY_CONFIRMA] = fale
-        
+
         url_confirm = portal.absolute_url() + '/fale_confirma?h=' + hash
         endereco = email
         texto = self.get_message(
             text=get_fale_config('enviar_email_form'),
             nome=nome,
-            email =email,
-            mensagem = mensagem,
+            email=email,
+            mensagem=mensagem,
             url_confirm=url_confirm,
-            assunto = assunto
+            assunto=assunto
         )
         # texto = EMAIL_FALE % url_confirm
         mensagem = prepare_email_message(texto, html=True)
         simple_send_mail(mensagem, endereco, assunto)
 
         dados = urllib.urlencode(conteudo)
-        contextURL = "{0}/@@confirmacao?{1}".format(self.context.absolute_url(), dados)
+        contextURL = '{0}/@@confirmacao?{1}'.format(self.context.absolute_url(), dados)
         self.request.response.redirect(contextURL)
 
-    def get_message(self, text, nome, email, mensagem, url_confirm,assunto):
+    def get_message(self, text, nome, email, mensagem, url_confirm, assunto):
         assinatura = get_fale_config('enviar_email_assinatura')
-        msg = transform_message(text, nome, email, mensagem,assunto)
+        msg = transform_message(text, nome, email, mensagem, assunto)
 
-        result = '{0}{1}{2}'.format(msg, EMAIL_FALE_LINK % url_confirm , assinatura)
+        result = '{0}{1}{2}'.format(msg, EMAIL_FALE_LINK % url_confirm, assinatura)
         return result

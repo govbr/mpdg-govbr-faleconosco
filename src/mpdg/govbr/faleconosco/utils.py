@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from email.MIMEText import MIMEText
+from AccessControl import Unauthorized
 from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import getSiteEncoding
+from Products.CMFPlone.utils import safe_unicode
+from zope.component import getMultiAdapter
+
 
 try:
     from email.utils import parseaddr, formataddr
@@ -9,17 +15,12 @@ except ImportError:
     # BBB for python2.4 (Plone 3)
     from email.Utils import parseaddr, formataddr
 
-from AccessControl import Unauthorized
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import getSiteEncoding
-from Products.CMFPlone.utils import safe_unicode
 try:
     from zope.component.hooks import getSite
     # getSite
 except ImportError:
     # BBB for Plone 3
     from zope.app.component.hooks import getSite
-from zope.component import getMultiAdapter
 
 DEFAULT_CHARSET = 'utf-8'
 

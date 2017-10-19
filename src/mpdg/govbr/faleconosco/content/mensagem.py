@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import implements
-
-from Products.ATContentTypes.content.base import ATContentTypeSchema, ATCTContent
-
+from mpdg.govbr.faleconosco import MessageFactory as _
+from mpdg.govbr.faleconosco.config import PROJECTNAME
+from mpdg.govbr.faleconosco.interfaces import IMensagem
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import schemata
+from Products.ATContentTypes.content.base import ATContentTypeSchema
+from Products.ATContentTypes.content.base import ATCTContent
+from zope.interface import implements
 
-from mpdg.govbr.faleconosco.interfaces import IMensagem
-from mpdg.govbr.faleconosco.config import PROJECTNAME
-from mpdg.govbr.faleconosco import MessageFactory as _
 
 MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
@@ -17,8 +16,8 @@ MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
         name='nome',
         required=True,
         widget=atapi.StringWidget(
-            label=_(u"Nome"),
-            description=_(u"")
+            label=_(u'Nome'),
+            description=_(u'')
         ),
     ),
 
@@ -26,8 +25,8 @@ MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
         name='assunto',
         required=True,
         widget=atapi.StringWidget(
-            label=_(u"Assunto"),
-            description=_(u"")
+            label=_(u'Assunto'),
+            description=_(u'')
         ),
     ),
 
@@ -35,8 +34,8 @@ MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
         name='email',
         required=True,
         widget=atapi.StringWidget(
-            label=_(u"E-mail"),
-            description=_(u"")
+            label=_(u'E-mail'),
+            description=_(u'')
         ),
     ),
 
@@ -44,8 +43,8 @@ MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
         name='responsavel',
         required=False,
         widget=atapi.StringWidget(
-            label=_(u"Responsavel"),
-            description=_(u"")
+            label=_(u'Responsavel'),
+            description=_(u'')
         ),
     ),
 
@@ -55,8 +54,8 @@ MensagemSchema = ATContentTypeSchema.copy() + atapi.Schema((
         searchable=True,
         storage=atapi.AnnotationStorage(migrate=True),
         widget=atapi.TextAreaWidget(
-            label=_(u"Mensagem"),
-            description=_(u""),
+            label=_(u'Mensagem'),
+            description=_(u''),
             rows=5,
         ),
     ),
@@ -72,7 +71,7 @@ class Mensagem(ATCTContent):
 
     implements(IMensagem)
 
-    meta_type = "Mensagem"
+    meta_type = 'Mensagem'
     schema = MensagemSchema
 
 atapi.registerType(Mensagem, PROJECTNAME)

@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 from five import grok
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
 from plone import api
+from plone.autoform import directives
+from plone.directives import form
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
-from plone.directives import form
-from plone.supermodel import model
-from zope import schema
 from z3c.form import button
-from plone.autoform import directives
-
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired, FluxoMensagensView
+from zope import schema
 
 
 grok.templatedir('templates')
@@ -17,7 +16,7 @@ grok.templatedir('templates')
 
 class IResponderSelecionadosForm(form.Schema):
     directives.mode(uids='hidden')
-    uids = schema.TextLine(title=u"UIDS", required=True)
+    uids = schema.TextLine(title=u'UIDS', required=True)
 
     directives.widget(mensagem='plone.app.z3cform.wysiwyg.WysiwygFieldWidget')
     mensagem = schema.Text(
@@ -27,10 +26,11 @@ class IResponderSelecionadosForm(form.Schema):
 
     directives.mode(estado='hidden')
     estado = schema.TextLine(
-        title=u"Workflow",
+        title=u'Workflow',
         required=True,
         default=u'responder'
     )
+
 
 @form.default_value(field=IResponderSelecionadosForm['uids'])
 def default_uids(data):
@@ -47,7 +47,7 @@ class ResponderSelecionadosView(FaleConoscoAdminRequired, FluxoMensagensView, fo
     schema = IResponderSelecionadosForm
     ignoreContext = True
 
-    label = u"Responder Selecionados"
+    label = u'Responder Selecionados'
 
     @property
     def action(self):

@@ -1,9 +1,7 @@
-#-*- coding: utf-8 -*-
-import unittest
+# -*- coding: utf-8 -*-
 from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
-from AccessControl import Unauthorized
-from mpdg.govbr.faleconosco.browser.mensagensarquivadasview import MensagensArquivadasView
-from plone import api
+
+import unittest
 
 
 class MensagensArquivadasViewTest(unittest.TestCase):
@@ -12,10 +10,10 @@ class MensagensArquivadasViewTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.request = self.layer["request"]
+        self.request = self.layer['request']
         # self.view = MensagensArquivadasView(self.portal, self.request)
         # group = api.group.create(groupname='adm-fale-conosco')
-    
+
     def test_view_mensagensarquivadas(self):
         view = self.portal.restrictedTraverse('@@mensagens-arquivadas-admin')
         self.assertTrue(view)
@@ -23,5 +21,3 @@ class MensagensArquivadasViewTest(unittest.TestCase):
     """Somente admin do fale ou manager pode acessar essa view"""
     # def test_view_is_protected(self):
     #     self.assertRaises(Unauthorized, self.view.update)
-
-

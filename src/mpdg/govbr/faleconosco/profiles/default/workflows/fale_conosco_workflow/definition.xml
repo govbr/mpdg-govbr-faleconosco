@@ -162,7 +162,7 @@
   </guard>
 
  </transition>
- 
+
  <worklist worklist_id="reviewer_queue" title="" >
   <description>Reviewer tasks</description>
   <action url="%(portal_url)s/search?review_state=pending" category="global" icon="">Pending (%(count)d)</action>

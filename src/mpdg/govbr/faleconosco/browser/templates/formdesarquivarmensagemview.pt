@@ -16,7 +16,7 @@
         $( ".titulo" ).tooltip();
       }
        );
-       
+
   </script>
 </metal:block>
 
@@ -62,11 +62,11 @@
                   </div>
                 </tal:repeat>
             </div>
-            
+
         </div>
     </div>
     </tal:repeat>
-    
+
     <div id="content-core">
         <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>

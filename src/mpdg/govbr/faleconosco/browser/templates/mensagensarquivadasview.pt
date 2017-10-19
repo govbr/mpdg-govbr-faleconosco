@@ -31,7 +31,7 @@
                        b_size python:20;
                        b_start python:0;
                        b_start request/b_start | b_start;
-                       batch python:Batch(mensagem, b_size, int(b_start), orphan=1);"            
+                       batch python:Batch(mensagem, b_size, int(b_start), orphan=1);"
             tal:condition="mensagem">
 
           <table class="table listing" width="100%">
@@ -81,8 +81,8 @@
 
       </div><!-- .table-box -->
 
-      
-      
+
+
 
       <hr />
 
@@ -107,9 +107,9 @@
       </table>
 
     </div><!-- .container-results -->
-        
 
-        
+
+
 </metal:block>
 
 </html>

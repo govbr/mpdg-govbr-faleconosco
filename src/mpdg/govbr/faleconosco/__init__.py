@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """Init and utils."""
-
-from zope.i18nmessageid import MessageFactory
-
+from mpdg.govbr.faleconosco import config
 from Products.Archetypes import atapi
 from Products.CMFCore.utils import ContentInit
-
-from mpdg.govbr.faleconosco import config
+from zope.i18nmessageid import MessageFactory
 
 
 MessageFactory = MessageFactory('mpdg.govbr.faleconosco')

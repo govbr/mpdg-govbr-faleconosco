@@ -2,8 +2,8 @@
 
 from five import grok
 from plone import api
-
 from Products.CMFCore.interfaces import ISiteRoot
+
 
 grok.templatedir('templates')
 
@@ -17,7 +17,7 @@ class UsuariosView(grok.View):
     grok.context(ISiteRoot)
 
     def usuarios(self):
-        usuarios = api.user.get_users(groupname="adm-fale-conosco")
+        usuarios = api.user.get_users(groupname='adm-fale-conosco')
         logged_user = api.user.get_current().id
         result = []
         for usuario in usuarios:

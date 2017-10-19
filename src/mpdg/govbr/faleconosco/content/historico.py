@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import implements
-
-from Products.ATContentTypes.content.base import ATContentTypeSchema, ATCTContent
-
+from DateTime.DateTime import DateTime
+from mpdg.govbr.faleconosco import MessageFactory as _
+from mpdg.govbr.faleconosco.config import PROJECTNAME
+from mpdg.govbr.faleconosco.interfaces import IHistorico
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import schemata
+from Products.ATContentTypes.content.base import ATContentTypeSchema
+from Products.ATContentTypes.content.base import ATCTContent
+from zope.interface import implements
 
-from mpdg.govbr.faleconosco.interfaces import IHistorico
-from DateTime.DateTime import DateTime
-from mpdg.govbr.faleconosco.config import PROJECTNAME
-from mpdg.govbr.faleconosco import MessageFactory as _
 
 HistoricoSchema = ATContentTypeSchema.copy() + atapi.Schema((
 
@@ -18,8 +17,8 @@ HistoricoSchema = ATContentTypeSchema.copy() + atapi.Schema((
         name='nome',
         required=True,
         widget=atapi.StringWidget(
-            label=_(u"Nome:"),
-            description=_(u"")
+            label=_(u'Nome:'),
+            description=_(u'')
         ),
     ),
 
@@ -28,8 +27,8 @@ HistoricoSchema = ATContentTypeSchema.copy() + atapi.Schema((
         required=True,
         storage=atapi.AnnotationStorage(migrate=True),
         widget=atapi.TextAreaWidget(
-            label=_(u"Observação:"),
-            description=_(u""),
+            label=_(u'Observação:'),
+            description=_(u''),
             rows=5,
         ),
     ),
@@ -41,9 +40,10 @@ HistoricoSchema = ATContentTypeSchema.copy() + atapi.Schema((
         # storage=atapi.AnnotationStorage(migrate=False),
     ),
 
-    atapi.DateTimeField('dataenvio',
-        required = True,
-        default_method = 'getDefaultTime',
+    atapi.DateTimeField(
+        'dataenvio',
+        required=True,
+        default_method='getDefaultTime',
     ),
 
 ))
@@ -57,7 +57,7 @@ class Historico(ATCTContent):
 
     implements(IHistorico)
 
-    meta_type = "Historico"
+    meta_type = 'Historico'
     schema = HistoricoSchema
 
     def getDefaultTime(self):  # function to return the current date and time

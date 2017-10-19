@@ -1,6 +1,7 @@
-#-*- coding: utf-8 -*-
-import unittest
+# -*- coding: utf-8 -*-
 from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+
+import unittest
 
 
 class FaleCategorizarViewTest(unittest.TestCase):

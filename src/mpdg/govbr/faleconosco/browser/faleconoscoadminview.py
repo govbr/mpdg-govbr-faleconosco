@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
-from five import grok
-from datetime import date, datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 from DateTime import DateTime
+from five import grok
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+from mpdg.govbr.faleconosco.config import DIAS_ALERTA
+from mpdg.govbr.faleconosco.config import DIAS_ATRASO
+from mpdg.govbr.faleconosco.config import DIAS_PRAZO
+from mpdg.govbr.faleconosco.interfaces import IFaleConosco
 from plone import api
-from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFCore.utils import getToolByName
 from plone.registry.interfaces import IRegistry
+from Products.CMFCore.interfaces import ISiteRoot
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-from AccessControl import Unauthorized
-from mpdg.govbr.faleconosco.config import DIAS_PRAZO, DIAS_ATRASO, DIAS_ALERTA
-from mpdg.govbr.faleconosco.interfaces import IFaleConosco
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+
 
 grok.templatedir('templates')
+
 
 class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
     """ View para administracao do Fale Conosco
@@ -32,24 +35,24 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
     def fale_conosco(self):
         # metodo que retornara os objetos do tipo FaleConosco
 
-        catalog     = api.portal.get_tool('portal_catalog')
-        request     = self.request
-        query       = {}
-        assunto     = request.form.get('assunto', None)
+        catalog = api.portal.get_tool('portal_catalog')
+        request = self.request
+        query = {}
+        assunto = request.form.get('assunto', None)
         responsavel = request.form.get('responsavel', None)
-        tipo        = request.form.get('tipo', None)
+        tipo = request.form.get('tipo', None)
 
         query['object_provides'] = IFaleConosco.__identifier__
-        query['review_state']    = ['encaminhado', 'novo', 'resgatado', 'respondido']
-        query['sort_on']         = 'Date'
-        query['sort_order']      = 'reverse'
-        query['arquivado']       = False
+        query['review_state'] = ['encaminhado', 'novo', 'resgatado', 'respondido']
+        query['sort_on'] = 'Date'
+        query['sort_order'] = 'reverse'
+        query['arquivado'] = False
 
         if tipo:
 
-            hoje        = datetime.today()
-            prazo       = datetime.fromordinal(hoje.toordinal()- DIAS_PRAZO)
-            alerta      = datetime.fromordinal(prazo.toordinal()- DIAS_ALERTA)
+            hoje = datetime.today()
+            prazo = datetime.fromordinal(hoje.toordinal() - DIAS_PRAZO)
+            alerta = datetime.fromordinal(prazo.toordinal() - DIAS_ALERTA)
             query_range = {}
 
             if tipo != 'todos':
@@ -59,12 +62,12 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
                 query_range = {'query': (prazo, hoje), 'range': 'min:max'}
 
             if tipo == 'alerta':
-                fim = datetime.fromordinal(prazo.toordinal()- 1)
+                fim = datetime.fromordinal(prazo.toordinal() - 1)
                 query_range = {'query': (alerta, fim), 'range': 'min:max'}
 
             if tipo == 'atraso':
-                fim = datetime.fromordinal(alerta.toordinal()- 1)
-                query_range = {'query': (datetime(2010,1,1,0,0,0), fim), 'range':'min:max'}
+                fim = datetime.fromordinal(alerta.toordinal() - 1)
+                query_range = {'query': (datetime(2010, 1, 1, 0, 0, 0), fim), 'range': 'min:max'}
 
             if tipo == 'respondido':
                 query['review_state'] = 'respondido'
@@ -72,12 +75,11 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
             if query_range:
                 query['created'] = query_range
 
-
         if 'inicio' in request.form.keys() or 'termino' in request.form.keys():
 
             query_range = {}
-            inicio      = request.form.get('inicio', None)
-            termino     = request.form.get('termino', None)
+            inicio = request.form.get('inicio', None)
+            termino = request.form.get('termino', None)
 
             if inicio:
 
@@ -100,8 +102,6 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
             elif not inicio and termino:
 
                 query_range = {'query': termino, 'range': 'max'}
-
-
 
             if query_range:
 
@@ -135,11 +135,11 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
 
     def get_status(self, conteudo):
         """metodo para verificar o status da mensagem"""
-        hoje        = datetime.today()
-        prazo       = datetime.fromordinal(hoje.toordinal()- DIAS_PRAZO)
-        alerta      = datetime.fromordinal(prazo.toordinal()- DIAS_ALERTA)
-        atraso      = datetime.fromordinal(alerta.toordinal()- DIAS_ATRASO)
-        data        = conteudo.created.asdatetime().replace(tzinfo=None)
+        hoje = datetime.today()
+        prazo = datetime.fromordinal(hoje.toordinal() - DIAS_PRAZO)
+        alerta = datetime.fromordinal(prazo.toordinal() - DIAS_ALERTA)
+        atraso = datetime.fromordinal(alerta.toordinal() - DIAS_ATRASO)
+        data = conteudo.created.asdatetime().replace(tzinfo=None)
 
         fimalerta = prazo - timedelta(1)
 
@@ -161,8 +161,8 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
     def get_assunto(self, conteudo):
         """metodo para buscar o titulo do assunto"""
         factory = getUtility(IVocabularyFactory, u'mpdg.govbr.faleconosco.Assuntos')
-        vocab   = factory(self.context)
-        termo   = conteudo.getObject().getAssunto()
+        vocab = factory(self.context)
+        termo = conteudo.getObject().getAssunto()
 
         try:
             assunto = vocab.getTerm(termo)
@@ -179,13 +179,13 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
 
     def get_responsaveis_filtro(self):
         """metodo para retornar os responsaveis"""
-        usuarios_fale      = api.user.get_users(groupname="adm-fale-conosco")
+        usuarios_fale = api.user.get_users(groupname='adm-fale-conosco')
         lista_responsaveis = []
 
         for usuario in usuarios_fale:
 
-            responsavel         = {}
-            responsavel['id']   = usuario.id
+            responsavel = {}
+            responsavel['id'] = usuario.id
             responsavel['nome'] = api.user.get(username=usuario.id).getProperty('fullname')
             lista_responsaveis.append(responsavel)
             # responsaveis = catalog.uniqueValuesFor('responsavel')
@@ -247,11 +247,11 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
 
             catalog = api.portal.get_tool('portal_catalog')
             brain = catalog.searchResults(
-                portal_type = 'Mensagem',
-                path = fale['path'],
-                sort_limit = 1,
-                sort_on = 'created',
-                sort_order = "reverse"
+                portal_type='Mensagem',
+                path=fale['path'],
+                sort_limit=1,
+                sort_on='created',
+                sort_order='reverse'
             )[:1]
 
             if brain:

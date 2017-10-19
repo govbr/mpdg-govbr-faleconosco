@@ -1,21 +1,16 @@
-#Pythonic libraries
-import unittest2 as unittest
-from email import message_from_string
-
-#Plone
-from plone.app.testing import TEST_USER_NAME, TEST_USER_ID
-from plone.app.testing import login, logout
-from plone.app.testing import setRoles
-from plone.testing.z2 import Browser
-
+# Pythonic libraries
 from Acquisition import aq_base
-from zope.component import getSiteManager
+from email import message_from_string
+# hkl namespace
+from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+# Plone
+from plone.testing.z2 import Browser
 from Products.CMFPlone.tests.utils import MockMailHost
 from Products.MailHost.interfaces import IMailHost
-import transaction
+from zope.component import getSiteManager
 
-#hkl namespace
-from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
+import transaction
+import unittest2 as unittest
 
 
 class TestFluxoMensagensView(unittest.TestCase):
@@ -42,7 +37,7 @@ class TestFluxoMensagensView(unittest.TestCase):
                            provided=IMailHost)
 
     def test_mockmailhost_setting(self):
-        #open contact form
+        # open contact form
         browser = Browser(self.app)
         browser.open('http://nohost/plone/contact-info')
         # Now fill in the form:

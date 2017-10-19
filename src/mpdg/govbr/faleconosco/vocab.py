@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from five import grok
-
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from zope.schema.interfaces import IVocabularyFactory
-from zope.interface import implements
-
-from Products.CMFCore.utils import getToolByName
-
 from mpdg.govbr.faleconosco.interfaces import IAssunto
+from Products.CMFCore.utils import getToolByName
+from zope.interface import implements
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class Assuntos(object):

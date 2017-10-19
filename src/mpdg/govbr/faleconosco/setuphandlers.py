@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+from mpdg.govbr.faleconosco.config import PROJECTNAME
+from plone import api
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
-from plone import api
+
 import logging
-from mpdg.govbr.faleconosco.config import PROJECTNAME
-from Products.CMFCore.utils import getToolByName
 
 
 logger = logging.getLogger(PROJECTNAME)
+
 
 @implementer(INonInstallable)
 class HiddenProfiles(object):
@@ -28,6 +29,7 @@ def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
 
+
 def create_groups(portal):
     portal = api.portal.get()
     api.group.create(
@@ -37,24 +39,24 @@ def create_groups(portal):
                      Controle do Fale Conosco',
     )
 
-    logger.info("Criado grupo Administradores Fale Conosco")
+    logger.info('Criado grupo Administradores Fale Conosco')
 
 
 def create_faq(portal):
     portal = api.portal.get()
-    if not 'faq' in portal:
+    if 'faq' not in portal:
         obj = api.content.create(
             type='Folder',
             id='faq',
             title='FAQ - Fale conosco',
-            container= portal
+            container=portal
         )
 
-        obj_example= api.content.create(
-        type='Document',
-        title='Exemplo FAQ',
-        description= 'Exemplo de documento do FAQ',
-        container= obj
+        obj_example = api.content.create(
+            type='Document',
+            title='Exemplo FAQ',
+            description='Exemplo de documento do FAQ',
+            container=obj
         )
 
 
@@ -63,14 +65,14 @@ def create_folder_fale(portal):
     # fale_folder = getattr(portal,'fale-conosco',None)
     if 'fale-conosco' not in portal:
         obj_fale = api.content.create(
-
             type='Folder',
             title='Fale Conosco',
             description='Pasta para armazenar o fale conosco',
-            container= portal
+            container=portal
         )
         obj_fale.setLayout('@@fale-conosco')
         return obj_fale
+
 
 def create_link(portal):
     portal = api.portal.get()
@@ -80,8 +82,8 @@ def create_link(portal):
             type='Link',
             remoteUrl='${portal_url}/fale-conosco/@@fale-conosco',
             title='Fale Conosco',
-            container= portal['servicos']
-    )
+            container=portal['servicos']
+        )
 
 
 def create_textos_prontos(portal):
@@ -92,16 +94,16 @@ def create_textos_prontos(portal):
         obj_texto = api.content.create(
             type='Folder',
             title='Textos Prontos',
-            container= portal,
+            container=portal,
             description='Pasta pra armazenar textos prontos',
         )
 
-        obj_example_textos= api.content.create(
+        obj_example_textos = api.content.create(
             type='Document',
             title='Exemplo textos-prontos',
-            description= 'Exemplo de documento de Textos Prontos',
-            container= obj_texto
-            )
+            description='Exemplo de documento de Textos Prontos',
+            container=obj_texto
+        )
 
 
 def create_link_portal(portal):
@@ -111,24 +113,22 @@ def create_link_portal(portal):
         obj_link_portal = api.content.create(
             type='Folder',
             title='Sistema Fale Conosco',
-            container = portal
-
-    )
+            container=portal
+        )
 
         link_painel_adm = api.content.create(
             type='Link',
             title='Painel de Administração',
             remoteUrl='${portal_url}/@@fale-conosco-admin',
             container=portal['sistema-fale-conosco']
-    )
-
+        )
 
         link_cadrastro_faq = api.content.create(
             type='Link',
             title='Cadastrar Perguntas Frequentes ',
             remoteUrl='${portal_url}/faq',
             container=portal['sistema-fale-conosco']
-    )
+        )
 
 
 class Empty:
@@ -180,7 +180,7 @@ def add_catalog_indexes(context, logger=None):
             else:
                 catalog.addIndex(name, meta_type)
             indexables.append(name)
-            logger.info("Added %s for field %s.", meta_type, name)
+            logger.info('Added %s for field %s.', meta_type, name)
     if len(indexables) > 0:
-        logger.info("Indexing new indexes %s.", ', '.join(indexables))
+        logger.info('Indexing new indexes %s.', ', '.join(indexables))
         catalog.manage_reindexIndex(ids=indexables)

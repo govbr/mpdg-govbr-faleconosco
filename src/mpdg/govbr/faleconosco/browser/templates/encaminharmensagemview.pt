@@ -16,7 +16,7 @@
         $( ".titulo" ).tooltip();
       }
        );
-       
+
   </script>
 
   <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
@@ -36,10 +36,10 @@
     <div class="fale-mensagem-header"
          tal:define="DateTime python:modules['DateTime'].DateTime;">
 
-        <span> 
+        <span>
             <b>Mensagem:</b>
             <span tal:content="view/mensagem_title"></span><br>
-            <!--<b>Encaminhar mensagem:</b> 
+            <!--<b>Encaminhar mensagem:</b>
                 <span tal:content="view/results">
                 </span>-->
         </span>
@@ -65,16 +65,16 @@
                   </div>
                 </tal:repeat>
             </div>
-            
+
         </div>
     </div>
     </tal:repeat>
 
     <div class="content-core">
 
-        
-        <metal:block use-macro="context/@@ploneform-macros/titlelessform" />       
-    
+
+        <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+
     </div>
 
     <div class="fale-mensagem-acao">
@@ -106,7 +106,7 @@
                     }
                 }
             });
-                
+
             $('a.fale-inserir-faq-sel').prepOverlay({
                 subtype: 'ajax',
                 filter: '#content>*',
