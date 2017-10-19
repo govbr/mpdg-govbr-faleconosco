@@ -23,3 +23,4 @@ parts/
 src/mpdg.govbr.faleconosco.egg-info/
 var/
 dist/
+venv
