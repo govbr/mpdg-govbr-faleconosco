@@ -14,7 +14,7 @@ class DesarquivarMensagemViewTest(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         self.view = DesarquivarMensagemView(self.portal, self.request)
-        group = api.group.create(groupname='adm-fale-conosco')
+        api.group.create(groupname='adm-fale-conosco')
 
     def test_view_desarquivar_mensagem(self):
         view = self.portal.restrictedTraverse('@@desarquivar-mensagem')
