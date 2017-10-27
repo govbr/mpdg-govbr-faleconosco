@@ -19,7 +19,7 @@ class EncaminharMsgFormTest(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         alsoProvides(self.request, IFormLayer)  # suitable for testing z3c.form views
-        group = api.group.create(groupname='adm-fale-conosco')
+        api.group.create(groupname='adm-fale-conosco')
 
         self.request.form['form.widgets.uids'] = '123123132131'
         self.view = EncaminharMensagemView(self.portal, self.request)

@@ -5,7 +5,7 @@ from DateTime import DateTime
 from five import grok
 from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 from mpdg.govbr.faleconosco.config import DIAS_ALERTA
-from mpdg.govbr.faleconosco.config import DIAS_ATRASO
+# from mpdg.govbr.faleconosco.config import DIAS_ATRASO
 from mpdg.govbr.faleconosco.config import DIAS_PRAZO
 from mpdg.govbr.faleconosco.interfaces import IFaleConosco
 from plone import api
@@ -138,7 +138,7 @@ class FaleConoscoAdminView(FaleConoscoAdminRequired, grok.View):
         hoje = datetime.today()
         prazo = datetime.fromordinal(hoje.toordinal() - DIAS_PRAZO)
         alerta = datetime.fromordinal(prazo.toordinal() - DIAS_ALERTA)
-        atraso = datetime.fromordinal(alerta.toordinal() - DIAS_ATRASO)
+        # atraso = datetime.fromordinal(alerta.toordinal() - DIAS_ATRASO)
         data = conteudo.created.asdatetime().replace(tzinfo=None)
 
         fimalerta = prazo - timedelta(1)

@@ -116,7 +116,7 @@ class MensagemAddView(grok.View):
             email = request.form.get('email', None)
             assunto = request.form.get('assunto', None)
             userid = request.form.get('userid', None)
-            responsavel = request.form.get('responsavel', None)
+            # responsavel = request.form.get('responsavel', None)
             id = idnormalizer.normalize(nome) + \
                 '-' + str(datetime.now().microsecond)
 
@@ -127,7 +127,6 @@ class MensagemAddView(grok.View):
 
             if acao == 'resgatar':
                 member = mtool.getAuthenticatedMember()
-                responsavel = member.getId()
                 email = member.getProperty('email')
                 assunto = fale.getAssunto()
                 fale.setResponsavel(userlogged)

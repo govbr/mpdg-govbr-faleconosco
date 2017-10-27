@@ -15,7 +15,7 @@ class FaleConoscoAdminViewTest(unittest.TestCase):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         self.view = FaleConoscoAdminView(self.portal, self.request)
-        group = api.group.create(groupname='adm-fale-conosco')
+        api.group.create(groupname='adm-fale-conosco')
 
     def test_view_faleconosco_admin(self):
         view = self.portal.restrictedTraverse('@@fale-conosco-admin')

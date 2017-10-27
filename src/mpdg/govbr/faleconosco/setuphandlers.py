@@ -31,7 +31,7 @@ def uninstall(context):
 
 
 def create_groups(portal):
-    portal = api.portal.get()
+    api.portal.get()
     api.group.create(
         groupname='adm-fale-conosco',
         title='Administradores Fale Conosco',
@@ -52,7 +52,7 @@ def create_faq(portal):
             container=portal
         )
 
-        obj_example = api.content.create(
+        api.content.create(
             type='Document',
             title='Exemplo FAQ',
             description='Exemplo de documento do FAQ',
@@ -78,7 +78,7 @@ def create_link(portal):
     portal = api.portal.get()
     servicos = portal['servicos']
     if 'fale-conosco' not in servicos:
-        link_fale = api.content.create(
+        api.content.create(
             type='Link',
             remoteUrl='${portal_url}/fale-conosco/@@fale-conosco',
             title='Fale Conosco',
@@ -98,7 +98,7 @@ def create_textos_prontos(portal):
             description='Pasta pra armazenar textos prontos',
         )
 
-        obj_example_textos = api.content.create(
+        api.content.create(
             type='Document',
             title='Exemplo textos-prontos',
             description='Exemplo de documento de Textos Prontos',
@@ -110,20 +110,20 @@ def create_link_portal(portal):
     portal = api.portal.get()
     # obj_link= getattr(portal, 'sistema-fale-conosco' ,None )
     if 'sistema-fale-conosco' not in portal:
-        obj_link_portal = api.content.create(
+        api.content.create(
             type='Folder',
             title='Sistema Fale Conosco',
             container=portal
         )
 
-        link_painel_adm = api.content.create(
+        api.content.create(
             type='Link',
             title='Painel de Administração',
             remoteUrl='${portal_url}/@@fale-conosco-admin',
             container=portal['sistema-fale-conosco']
         )
 
-        link_cadrastro_faq = api.content.create(
+        api.content.create(
             type='Link',
             title='Cadastrar Perguntas Frequentes ',
             remoteUrl='${portal_url}/faq',
