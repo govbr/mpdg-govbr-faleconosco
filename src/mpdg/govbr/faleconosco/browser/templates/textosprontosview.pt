@@ -10,7 +10,7 @@
     <div class="fale-textos-form">
         <form name="fale-textos-form" method="post">
             <tal:block repeat="item view/textos">
-               <input type="radio" value="texto" name="fale-texto" class="fale-texto" /> 
+               <input type="radio" value="texto" name="fale-texto" class="fale-texto" />
                   <b tal:content="item/titulo" /><br/>
                   <p tal:content="structure item/texto" />
             </tal:block>

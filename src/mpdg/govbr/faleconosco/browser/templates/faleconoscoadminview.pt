@@ -43,7 +43,7 @@
                                 <input type="radio" name="tipo" value="todos" />
                                 <img src="" alt="No Prazo"
                                      tal:attributes="src string:++resource++mpdg.govbr.faleconosco/prazo.png" />  Todos
-                            </div>                 
+                            </div>
                             <div>
                                 <input type="radio" name="tipo" value="prazo" />
                                 <img src="" alt="No Prazo"
@@ -76,7 +76,7 @@
                             <input value="" name="assunto" placeholder="Assunto" type="text"
                             >
 
-                            
+
                         </div>
                         <!-- <div>
                             <select name="assunto">
@@ -302,7 +302,7 @@
                                             <input type="submit" value="Salvar" />
                                           </form>
                                       </div>
-                                  
+
                                     </p>
 
                               </div>
@@ -376,7 +376,7 @@
             <div metal:use-macro="context/batch_macros/macros/navigation" />
         </div>
     </div>
-    
+
 </div>
 
 </metal:block>

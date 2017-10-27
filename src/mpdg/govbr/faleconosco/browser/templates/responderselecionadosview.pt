@@ -16,7 +16,7 @@
         $( ".titulo" ).tooltip();
       }
        );
-       
+
   </script>
   <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
 
@@ -58,7 +58,7 @@
                   </div>
                 </tal:repeat>
             </div>
-            
+
         </div>
     </div>
     </tal:repeat>

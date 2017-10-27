@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from five import grok
-from zope.interface import Interface
+from mpdg.govbr.faleconosco.browser.utilities import get_fale_config
+from mpdg.govbr.faleconosco.browser.utilities import transform_message
 from plone import api
-from mpdg.govbr.faleconosco.browser.utilities import transform_message, get_fale_config
+from zope.interface import Interface
+
 
 grok.templatedir('templates')
 
@@ -21,10 +23,10 @@ class ConfirmacaoView(grok.View):
     def get_message(self):
         nome = self.request.form['nome']
         email = self.request.form['email']
-        mensagem = self.request.form ['mensagem']
+        mensagem = self.request.form['mensagem']
         text = get_fale_config('enviar_email_form')
-        assunto= self.request.form['assunto']
-        msg = transform_message(text, nome, email, mensagem,assunto)
+        assunto = self.request.form['assunto']
+        msg = transform_message(text, nome, email, mensagem, assunto)
         return {
             'msg': msg,
             'email': email

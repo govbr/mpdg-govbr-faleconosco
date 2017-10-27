@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from plone import api
-from zope.component import getUtility
-from plone.registry.interfaces import IRegistry
 from AccessControl import Unauthorized
+from plone import api
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 
 def get_fale_config(config_name):
@@ -11,8 +11,8 @@ def get_fale_config(config_name):
     return registry.records[value_config].value
 
 
-def transform_message(text, nome, email, mensagem, assunto ):
-    return text.replace('[nome]', nome).replace('[email]', email ).replace('[mensagem]', mensagem).replace('[assunto]', assunto )
+def transform_message(text, nome, email, mensagem, assunto):
+    return text.replace('[nome]', nome).replace('[email]', email).replace('[mensagem]', mensagem).replace('[assunto]', assunto)
 
 
 def get_wf_history(brains, item, count):
@@ -32,18 +32,18 @@ def get_wf_history(brains, item, count):
             # De: 'Responsável Atual' para 'Próximo Responsável'
             msg = brains[count + 1].getObject()
             mensagem = '<span class="negrito">de</span> %s <span class="negrito">Para</span> %s' % \
-                                  (item.getResponsavel(), msg.getResponsavel())
+                       (item.getResponsavel(), msg.getResponsavel())
         except IndexError:
             # Caso não identifique o Próximo Responsável, o except faz o tratamento para pegar
             # o nome do último usuário
             msg = brains[-1:][0].getObject()
             mensagem = '<span class="negrito">de</span> %s <span class="negrito">Para</span> %s' % \
-                                  (item.getResponsavel(), msg.getNome())
+                       (item.getResponsavel(), msg.getNome())
     elif estado == 'resgatado':
         try:
             msg = brains[count - 1].getObject()
             mensagem = '<span class="negrito">de</span> %s <span class="negrito">Para</span> %s' % \
-                                  (msg.getResponsavel(), item.getResponsavel(),)
+                       (msg.getResponsavel(), item.getResponsavel(),)
         except IndexError:
             mensagem = item.getResponsavel()
     else:
@@ -124,7 +124,7 @@ class FaleConoscoAdminRequired(object):
                     or user_id == adm_fale:
                 pass
             else:
-                raise Unauthorized("You need permission to access this page")
+                raise Unauthorized('You need permission to access this page')
         else:
-            raise Unauthorized("You need permission to access this page")
+            raise Unauthorized('You need permission to access this page')
         return super(FaleConoscoAdminRequired, self).update()

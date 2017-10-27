@@ -1,11 +1,11 @@
-#-*- coding: utf-8 -*-
-import logging
+# -*- coding: utf-8 -*-
+from mpdg.govbr.faleconosco.config import PROJECTNAME
 from plone import api
 from Products.contentmigration.archetypes import InplaceATFolderMigrator
 from Products.contentmigration.basemigrator.walker import CatalogWalker
 from StringIO import StringIO
 
-from mpdg.govbr.faleconosco.config import PROJECTNAME
+import logging
 
 
 logger = logging.getLogger(PROJECTNAME)
@@ -49,7 +49,7 @@ class FaleConoscoBaseMigrator(InplaceATFolderMigrator):
 
 def upgrade_fale_conosco(context):
     out = StringIO()
-    print >> out, "Starting migration"
+    print >> out, 'Starting migration'
 
     portal = api.portal.get()
     migrators = (FaleConoscoBaseMigrator, HistoricoBaseMigrator, MensagemBaseMigrator)
@@ -59,6 +59,6 @@ def upgrade_fale_conosco(context):
         walker.go(out=out)
         print >> out, walker.getOutput()
 
-    print >> out, "Migration finished"
+    print >> out, 'Migration finished'
     import transaction; transaction.commit()
     logger.info(out.getvalue())

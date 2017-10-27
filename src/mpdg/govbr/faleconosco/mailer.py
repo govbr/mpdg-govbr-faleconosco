@@ -2,13 +2,14 @@
 
 # codigo retirado do produto collective.watcherlist
 
-import logging
+from mpdg.govbr.faleconosco import utils
+from Products.MailHost.MailHost import MailHostError
 from smtplib import SMTPException
+
+import logging
 import pkg_resources
 import socket
-from Products.MailHost.MailHost import MailHostError
 
-from mpdg.govbr.faleconosco import utils
 
 logger = logging.getLogger('correios.normas')
 
@@ -42,8 +43,8 @@ def simple_send_mail(message, address, subject, mcc=None, immediate=True):
     """
     mail_host = utils.get_mail_host()
     if mail_host is None:
-        logger.warn("Cannot send notification email: please configure "
-                    "MailHost correctly.")
+        logger.warn('Cannot send notification email: please configure '
+                    'MailHost correctly.')
         # We print some info, which is perfect for checking in unit
         # tests.
         print 'Subject =', subject
@@ -72,7 +73,5 @@ def simple_send_mail(message, address, subject, mcc=None, immediate=True):
                            charset=header_charset)
     except (socket.error, SMTPException, MailHostError):
         logger.warn(
-          'Could not send email to %s with subject %s',
-          address, subject)
-    except:
-        raise
+            'Could not send email to %s with subject %s',
+            address, subject)

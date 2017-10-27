@@ -1,25 +1,23 @@
-    # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-from zope import schema
 from five import grok
-from Products.CMFCore.interfaces import ISiteRoot
-
-from plone.z3cform import layout
-from plone.directives import form
-from plone.app.registry.browser.controlpanel import RegistryEditForm
+from mpdg.govbr.faleconosco.config import EMAIL_FALE
+from mpdg.govbr.faleconosco.config import EMAIL_FALE_ASSINATURA
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
-from mpdg.govbr.faleconosco.config import EMAIL_FALE, EMAIL_FALE_ASSINATURA
+from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.autoform import directives
-
-
+from plone.directives import form
+from plone.z3cform import layout
+from Products.CMFCore.interfaces import ISiteRoot
+from zope import schema
 
 
 class IFaleSettings(form.Schema):
     """
     """
 
-    enviar_email = schema.Bool(title=u"Enviar e-mail",
-                               description=u"Selecione caso queira que o sistema envie um e-mail de confirmação")
+    enviar_email = schema.Bool(title=u'Enviar e-mail',
+                               description=u'Selecione caso queira que o sistema envie um e-mail de confirmação')
 
     admfale = schema.TextLine(
         title=u'Usuário administrador do Fale Consoco',
@@ -27,7 +25,6 @@ class IFaleSettings(form.Schema):
         required=True,
         default=u'catia.parreira'
     )
-
 
     directives.widget(enviar_email_form='plone.app.z3cform.wysiwyg.WysiwygFieldWidget')
     enviar_email_form = schema.Text(
@@ -39,26 +36,25 @@ class IFaleSettings(form.Schema):
     )
 
     directives.widget(enviar_email_assinatura='plone.app.z3cform.wysiwyg.WysiwygFieldWidget')
-    enviar_email_assinatura =schema.Text(
+    enviar_email_assinatura = schema.Text(
         title=u'Mensagem de Assinatura',
         description=u'Informe a assinatura de email. Será exibida no final da mensagem',
         required=True,
         default=EMAIL_FALE_ASSINATURA
-
-     )
+    )
 
 
 class FaleSettingsEditForm(RegistryEditForm):
     """
     """
     schema = IFaleSettings
-    label = u"Configurações do Fale Conosco "
+    label = u'Configurações do Fale Conosco '
 
 
 class SettingsView(grok.View):
     """
     """
-    grok.name("fale-settings")
+    grok.name('fale-settings')
     grok.context(ISiteRoot)
     grok.require('cmf.ManagePortal')
 

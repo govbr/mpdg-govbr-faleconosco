@@ -1,20 +1,15 @@
-#-*- coding: utf-8 -*-
-import unittest
+# -*- coding: utf-8 -*-
 from mpdg.govbr.faleconosco.testing import MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
-
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.app.testing import TEST_USER_ID
-from plone.app.z3cform.interfaces import IPloneFormLayer
-from plone.dexterity.interfaces import IDexterityFTI
-from plone.namedfile.file import NamedFile
 from plone.testing.z2 import Browser
+
+import unittest
 
 
 class TextosProntosViewTest(unittest.TestCase):
 
     layer = MPDG_GOVBR_FALECONOSCO_INTEGRATION_TESTING
-
 
     def setUp(self):
         app = self.layer['app']
@@ -31,11 +26,10 @@ class TextosProntosViewTest(unittest.TestCase):
     def test_view_textosprontos(self):
         view = self.portal.restrictedTraverse('@@textos-prontos')
         self.assertTrue(view)
-   
-    
+
     # # Teste de Mensagem do TextosProntosViewTest
     # def test_mime_icon_odt_for_file_(self):
-       
+
     #     self.browser.open(self.portal_url)
     #     self.browser.getLink('view').click()
 

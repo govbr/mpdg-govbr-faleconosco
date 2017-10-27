@@ -1,24 +1,22 @@
 # -*- encoding: utf-8 -*-
+from datetime import datetime
 from five import grok
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
 from plone import api
+from plone.autoform import directives
+from plone.directives import form
+from plone.i18n.normalizer import idnormalizer
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
-from plone.directives import form
-from plone.supermodel import model
-from zope import schema
 from z3c.form import button
-from plone.autoform import directives
-from zope.schema.vocabulary import SimpleTerm
-from Products.CMFCore.utils import getToolByName
+from zope import schema
 from zope.schema.interfaces import IContextSourceBinder
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
-from plone.i18n.normalizer import idnormalizer
-from datetime import datetime
-from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
-
+from zope.schema.vocabulary import SimpleTerm
 
 
 grok.templatedir('templates')
+
 
 def make_terms(items):
     """Create zope.schema terms for vocabularies from tuples"""
@@ -30,11 +28,12 @@ def make_terms(items):
 
     return terms
 
+
 @grok.provider(IContextSourceBinder)
 def get_users(context):
 
     group_users = api.user.get_users(groupname='adm-fale-conosco')
-    results     = []
+    results = []
 
     for user in group_users:
 
@@ -48,9 +47,9 @@ def get_users(context):
 
 class IEncaminharMensagemForm(form.Schema):
 
-    directives.mode(uids="hidden")
+    directives.mode(uids='hidden')
     uids = schema.TextLine(
-        title=u"UIDS",
+        title=u'UIDS',
         required=True
     )
 
@@ -82,9 +81,9 @@ class EncaminharMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, form.
     # Quem pode acessar
     grok.context(ISiteRoot)
 
-    schema        = IEncaminharMensagemForm
+    schema = IEncaminharMensagemForm
     ignoreContext = True
-    label         = u"Encaminhar Mensagem"
+    label = u'Encaminhar Mensagem'
 
     def _back_to_admin(self, message=None):
         portal_url = api.portal.get().absolute_url()
@@ -97,17 +96,16 @@ class EncaminharMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, form.
 
         return self.request.response.redirect(fale_conosco)
 
-
     def update(self):
 
         self.uids = self.request.form.get('form.widgets.uids') or self.request.form.get('uids')
 
         if self.uids:
 
-            uids    = self.uids.split(',')
+            uids = self.uids.split(',')
             catalog = api.portal.get_tool(name='portal_catalog')
-            search  = catalog.searchResults(
-                UID = uids
+            search = catalog.searchResults(
+                UID=uids
             )
 
             lista = []
@@ -145,27 +143,27 @@ class EncaminharMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, form.
             return
 
         responsavel = data['usuario']
-        mensagem    = data['mensagem']
-        vocab       = get_users(self.context)
-        catalog     = api.portal.get_tool(name='portal_catalog')
-        uids        = self.uids.split(',')
-        brain       = catalog.searchResults(UID=uids)
+        mensagem = data['mensagem']
+        vocab = get_users(self.context)
+        catalog = api.portal.get_tool(name='portal_catalog')
+        uids = self.uids.split(',')
+        brain = catalog.searchResults(UID=uids)
 
         for item in brain:
-            obj      = item.getObject()
+            obj = item.getObject()
             old_resp = obj.getResponsavel()
             obj.setResponsavel(responsavel)
             obj.reindexObject()
 
-            nome    = vocab.getTerm(responsavel).title
-            assunto =  obj.getAssunto()
-            email   = obj.getEmail()
+            nome = vocab.getTerm(responsavel).title
+            assunto = obj.getAssunto()
+            email = obj.getEmail()
 
             id = idnormalizer.normalize(nome) + \
                 '-' + str(datetime.now().microsecond)
-            pt        = api.portal.get_tool(name='portal_types')
+            pt = api.portal.get_tool(name='portal_types')
             type_info = pt.getTypeInfo('Mensagem')
-            child     = type_info._constructInstance(obj, id)
+            child = type_info._constructInstance(obj, id)
             child.setTitle(nome)
             child.setNome(responsavel)
             child.setEmail(email)

@@ -25,7 +25,7 @@
         </div>
     </div>
     <div id="fale-faq"
-         tal:define="respostas view/faq" 
+         tal:define="respostas view/faq"
          tal:condition="respostas">
         <h2>Perguntas Frequentes  </h2>
         <ul>

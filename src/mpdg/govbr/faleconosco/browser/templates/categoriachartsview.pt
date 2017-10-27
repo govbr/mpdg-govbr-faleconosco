@@ -40,7 +40,7 @@
             var data = {
                 labels: <tal:block replace="view/get_tags_list"/>,
                 datasets: [
-                    {   
+                    {
                         label: "Categorias de mensagens",
                         data: <tal:block replace="view/zipped_tags" />,
 >>>>>>> 096affeeafe575406b6818c6799528ca5591e3be

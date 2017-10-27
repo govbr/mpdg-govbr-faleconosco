@@ -9,23 +9,23 @@
     <div class="fale-usuarios-form" tal:define="user_grups view/usuarios" >
         <a href="@@encaminhar-selecionados" id="fale-usuario-sel"  ></a>
         <form name="fale-usuarios-form" method="post" id="fale-usuarios-form"  >
-            <tal:block repeat="item user_grups"> 
+            <tal:block repeat="item user_grups">
                 <span>
                     <input type="radio" value="email" alt="nome" name="fale-usuario"
                            class="fale-usuario"
                            tal:attributes="value item/email;
                                            alt item/nome" />
                     &nbsp;&nbsp;<strong><span tal:content="item/nome" /></strong>
-                    <span tal:content="item/user_id" style="display: none;" />              
+                    <span tal:content="item/user_id" style="display: none;" />
                     <br />
-                    
-                    
+
+
                 </span>
             </tal:block>
         </form>
-        <p tal:condition = "not: user_grups "> Não há usuarios cadastrado no grupo de administrador   </p> 
+        <p tal:condition = "not: user_grups "> Não há usuarios cadastrado no grupo de administrador   </p>
     </div>
-    
+
 
     <script>
         $(document).ready(function(){

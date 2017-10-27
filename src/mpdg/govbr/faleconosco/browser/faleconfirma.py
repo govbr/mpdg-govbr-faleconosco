@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from five import grok
 from datetime import datetime
-
+from five import grok
+from mpdg.govbr.faleconosco import MessageFactory as _
+from mpdg.govbr.faleconosco.config import KEY_CONFIRMA
+from mpdg.govbr.faleconosco.setuphandlers import create_folder_fale
 from plone import api
 from plone.i18n.normalizer import idnormalizer
-
+from Products.CMFCore.utils import getToolByName
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.annotation import IAnnotations
 from zope.interface import Interface
 
-from Products.statusmessages.interfaces import IStatusMessage
-from Products.CMFCore.utils import getToolByName
-
-from mpdg.govbr.faleconosco.setuphandlers import create_folder_fale
-from mpdg.govbr.faleconosco import MessageFactory as _
-from mpdg.govbr.faleconosco.config import KEY_CONFIRMA
 
 grok.templatedir('templates')
 
@@ -68,8 +65,8 @@ class FaleConfirma(grok.View):
             annotation[KEY_CONFIRMA] = self.fale
 
             IStatusMessage(self.request).addStatusMessage(
-                _(u"Sua confirmação foi realizada com sucesso!"), type='info')
+                _(u'Sua confirmação foi realizada com sucesso!'), type='info')
         else:
             IStatusMessage(self.request).addStatusMessage(
-                _(u"Não existe nenhuma mensagem para ser confirmada"), type='error')
+                _(u'Não existe nenhuma mensagem para ser confirmada'), type='error')
         return self.request.response.redirect(self.portal.absolute_url())
