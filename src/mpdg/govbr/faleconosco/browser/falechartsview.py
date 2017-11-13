@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from DateTime import DateTime
-from five import grok
-from mpdg.govbr.faleconosco.config import DIAS_ALERTA
-from mpdg.govbr.faleconosco.config import DIAS_ATRASO
-from mpdg.govbr.faleconosco.config import DIAS_PRAZO
-from mpdg.govbr.faleconosco.interfaces import IFaleConosco
+import pandas as pd
 from pandas.tseries.offsets import BDay
+
+from DateTime import DateTime
+
+from five import grok
+
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
+
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
-import pandas as pd
-
+from mpdg.govbr.faleconosco.config import DIAS_PRAZO, DIAS_ATRASO, DIAS_ALERTA
+from mpdg.govbr.faleconosco.interfaces import IFaleConosco
 
 grok.templatedir('templates')
 

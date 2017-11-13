@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from five import grok
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 from plone import api
-from Products.CMFCore.interfaces import ISiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
 
+from Products.CMFCore.interfaces import ISiteRoot
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
@@ -27,8 +27,8 @@ class FaleCategorizar(FaleConoscoAdminRequired, grok.View):
         catalog = api.portal.get_tool('portal_catalog')
         # 1. pegar o objeto do fale conosco através do fale_uid
         buscar = catalog.searchResults(
-            portal_type='FaleConosco',
-            UID=self.fale_uid
+            portal_type = 'FaleConosco',
+            UID =  self.fale_uid
         )
         if buscar:
             # pegar o primeiro elemento da lista

@@ -18,15 +18,11 @@
                     &nbsp;&nbsp;<strong><span tal:content="item/nome" /></strong>
                     <span tal:content="item/user_id" style="display: none;" />
                     <br />
-
-
                 </span>
             </tal:block>
         </form>
         <p tal:condition = "not: user_grups "> Não há usuarios cadastrado no grupo de administrador   </p>
     </div>
-
-
     <script>
         $(document).ready(function(){
             $('a#fale-usuario-sel').prepOverlay({

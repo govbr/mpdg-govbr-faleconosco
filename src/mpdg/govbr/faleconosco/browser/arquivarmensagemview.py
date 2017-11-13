@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from five import grok
+from Products.CMFCore.interfaces import ISiteRoot
 from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 from plone import api
-from Products.CMFCore.interfaces import ISiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
-
 
 grok.templatedir('templates')
 
@@ -24,7 +23,7 @@ class ArquivarMensagemView(FaleConoscoAdminRequired, grok.View):
             return self._back_to_admin()
 
         catalog = api.portal.get_tool(name='portal_catalog')
-        brain = catalog.searchResults(UID=uids)
+        brain   = catalog.searchResults(UID=uids)
 
         if brain:
 
@@ -49,7 +48,7 @@ class ArquivarMensagemView(FaleConoscoAdminRequired, grok.View):
 
     def _back_to_admin(self):
 
-        p_url = api.portal.get().absolute_url()
+        p_url  = api.portal.get().absolute_url()
         target = '{0}/@@fale-conosco-admin'.format(p_url)
 
         return self.request.response.redirect(target)

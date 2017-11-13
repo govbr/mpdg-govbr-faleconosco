@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 # -*- coding: iso-8859-1 -*
+
 # from __future__ import unicode_literals
+import operator
+import random
+import unicodedata
+from unidecode import unidecode
+from unicodedata import normalize
+
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
 
-import operator
-import random
-import unicodedata
-
+from mpdg.govbr.faleconosco.browser import falecategorizar
 
 grok.templatedir('templates')
 
@@ -20,6 +24,7 @@ class CategoriaChartsView(grok.View):
     grok.name('categoria-charts-view')
     grok.require('zope2.View')
     grok.context(ISiteRoot)
+
 
     def update(self):
         qtd_get = int(self.request.form.get('qtd', 10))
@@ -90,7 +95,6 @@ class CategoriaChartsView(grok.View):
         tags = self._filter_tags()
         result = []
         for tag, v in tags:
-
                 result.append(tag)
         return result
 
@@ -163,6 +167,8 @@ class CategoriaChartsView(grok.View):
         """
         result = []
         for elem in range(0, self.qtd):
-            cor = '#{:02x}{:02x}{:02x}'.format(*map(lambda x: random.randint(0, 255), range(0, 10)))
+            cor = '#{:02x}{:02x}{:02x}'.format(*map(lambda x: random.randint(0, 255), range(0,10)))
             result.append(cor)
         return result
+
+

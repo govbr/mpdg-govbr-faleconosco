@@ -4,7 +4,6 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="mpdg.govbr.faleconosco"
       metal:use-macro="context/main_template/macros/master">
-
       <metal:block fill-slot="javascript_head_slot">
   <script type="text/javascript">
        $( function() {
@@ -16,34 +15,22 @@
         $( ".titulo" ).tooltip();
       }
        );
-
   </script>
 </metal:block>
-
 <metal:block fill-slot="main">
-
 <h2 class="documentFirstHeading">Fale Conosco / Painel de Administração / Desarquivar Mensagem</h2>
-
 <div class="tile tile-default" style="margin-top:10px;">
-
     <div class="outstanding-header">
       <h2 class="outstanding-title" tal:content="view/label | nothing" />
     </div>
-
 </div>
-
-
-
-
 <div class="fale-mensagem-form">
-
     <div class="fale-mensagem-header"
          tal:define="DateTime python:modules['DateTime'].DateTime;">
         <span><b>Assunto:</b> <span tal:content="view/assunto">assunto</span></span>
         <span style="float: right"
               tal:content="python:context.toLocalizedTime(DateTime())"></span>
     </div>
-
     <tal:repeat repeat="item view/get_messages">
     <div class="accordion">
         <h3 tal:content="item/titulo">Titulo da mensagem 1</h3>
@@ -62,15 +49,12 @@
                   </div>
                 </tal:repeat>
             </div>
-
         </div>
     </div>
     </tal:repeat>
-
     <div id="content-core">
         <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
-
 </div>
 </metal:block>
 </html>

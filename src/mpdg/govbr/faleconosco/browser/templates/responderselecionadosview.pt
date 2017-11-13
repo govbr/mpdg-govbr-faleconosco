@@ -16,14 +16,10 @@
         $( ".titulo" ).tooltip();
       }
        );
-
   </script>
   <script src="++resource++mpdg.govbr.faleconosco/fale.js"></script>
-
 </metal:block>
-
 <metal:block fill-slot="main">
-
 <h1 class="documentFirstHeading">Fale Conosco | Painel de Administração</h1>
 
 <div class="tile tile-default" style="margin-top:10px;">
@@ -39,7 +35,6 @@
         <span style="float: right"
               tal:content="python:context.toLocalizedTime(DateTime())"></span>
     </div>
-
     <tal:repeat repeat="item view/get_messages">
     <div class="accordion" id ="titulo" title="Clique para visualizar fluxo de mensagem ">
         <h3 tal:content="item/titulo">Titulo da mensagem 1</h3>
@@ -58,15 +53,12 @@
                   </div>
                 </tal:repeat>
             </div>
-
         </div>
     </div>
     </tal:repeat>
-
     <div id="content-core">
         <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
-
     <div class="fale-mensagem-acao">
         <span>
             <b class="negrito">Adicionar:</b>
@@ -79,7 +71,6 @@
                id="fale-mensagem-corpo-sel" rel="#pb" style="cursor: pointer;">FAQ</a> -->
         </span>
     </div>
-
     <!-- <script>
         $(document).ready(function(){
             $('#form-buttons-descartar').click(function(e){

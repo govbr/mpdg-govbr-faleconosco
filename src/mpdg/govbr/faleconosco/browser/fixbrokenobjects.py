@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from five import grok
-from plone import api
-from Products.contentmigration.archetypes import InplaceATFolderMigrator
-from Products.contentmigration.basemigrator.walker import CatalogWalker
-from StringIO import StringIO
 from zope.interface import Interface
-
+from plone import api
+from Products.contentmigration.basemigrator.walker import CatalogWalker
+from Products.contentmigration.archetypes import InplaceATFolderMigrator
+from StringIO import StringIO
 
 grok.templatedir('templates')
 
@@ -45,7 +44,6 @@ class FaleConoscoBaseMigrator(InplaceATFolderMigrator):
         self.new.setCreationDate(self.old.created())
         self.new.reindexObject()
 
-
 class FixBrokenObjects(grok.View):
     grok.name('fixbrokenobjects')
     grok.require('zope2.View')
@@ -64,7 +62,7 @@ class FixBrokenObjects(grok.View):
 
     def migrate_all(self):
         out = StringIO()
-        print >> out, 'Starting migration'
+        print >> out, "Starting migration"
 
         portal = api.portal.get()
         migrators = (FaleConoscoBaseMigrator, )
@@ -74,6 +72,6 @@ class FixBrokenObjects(grok.View):
             walker.go(out=out)
             print >> out, walker.getOutput()
 
-        print >> out, 'Migration finished'
+        print >> out, "Migration finished"
         import transaction; transaction.commit()
         return out.getvalue()

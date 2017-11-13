@@ -4,9 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="mpdg.govbr.faleconosco"
       metal:use-macro="context/main_template/macros/master">
-
 <metal:block fill-slot="main">
-
     <script src="++resource++mpdg.govbr.faleconosco/Chart.min.js"></script>
     <script src="++resource++mpdg.govbr.faleconosco/chroma.min.js"></script>
     <script>
@@ -21,20 +19,15 @@
                 }
             });
         });
-
         $(function () {
-<<<<<<< HEAD
             var colors = <tal:block replace="view/gera_cor" />;
             var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
-
             var data = {
                 labels: <tal:block content='view/get_tags_list ' />,
                 datasets: [
                     {
                         label: "Categorias de mensagens",
                         data: <tal:block replace="view/tagdata" />,
-=======
-
             var colors = <tal:block replace="view/gera_cor" />;
             var tipo = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&')[0].split('=')[1]
             var data = {
@@ -43,16 +36,11 @@
                     {
                         label: "Categorias de mensagens",
                         data: <tal:block replace="view/zipped_tags" />,
->>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
                         backgroundColor: colors,
                         borderColor: colors,
                         borderWidth:1
                     }
                 ]
-<<<<<<< HEAD
-=======
-
->>>>>>> 096affeeafe575406b6818c6799528ca5591e3be
             }
 
             var context = $("#fale-grafico").get(0).getContext("2d");
@@ -83,24 +71,19 @@
         #tipo-grafico, .fale-grafico {
             float: right;
         }
-
         .fale-total-mensagens, .fale-grafico-legenda {
             float: left;
         }
-
         .fale-grafico-legenda {
             width: 30%;
         }
-
         .fale-grafico {
             width: 60%;
         }
-
         .fale-resultado-grafico {
             margin-top: 2em;
         }
     </style>
-
     <h1 class="documentFirstHeading">Fale Conosco | Gráfico de categorias</h1>
     <a href="" title="Gráficos de categorias" class="btn btn-success btn-color"
        tal:attributes="href string:${context/absolute_url}/@@fale-conosco-charts">Gráfico de mensagens
@@ -125,7 +108,7 @@
             <div >
             <ul class="fale-grafico-legenda">
                 <li tal:repeat="tag view/zipped_tags">
-                    <span tal:replace="python:tag[0]">coppe</span> (<span tal:replace="python:tag[1]">7</span>)
+                    <span tal:replace="python:tag[0]">coppe</span> (<span tal:replace="python:tag[1]">7</span>
                 </li>
             </ul>
             <div class="fale-grafico">

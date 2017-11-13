@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
 
-
 grok.templatedir('templates')
-
 
 class TextosProntosView(grok.View):
     """ View para adicionar vários textos prontos ao Fale Conosco
@@ -28,7 +25,7 @@ class TextosProntosView(grok.View):
                 texto_prontos = ''
 
             result.append({
-                'titulo': texto.title,
-                'texto': texto_prontos
-            })
+                'titulo' : texto.title,
+                'texto'  : texto_prontos
+             })
         return result

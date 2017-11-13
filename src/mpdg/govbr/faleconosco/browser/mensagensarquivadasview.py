@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from five import grok
-from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
-
+from Products.CMFCore.utils import getToolByName
+from plone import api
+from DateTime import DateTime
 
 grok.templatedir('templates')
-
 
 class MensagensArquivadasView(grok.View):
     """ View para administração das mensagens arquivadas"""
@@ -22,11 +22,12 @@ class MensagensArquivadasView(grok.View):
     def mensagens_arquivadas(self):
 
         catalog = api.portal.get_tool('portal_catalog')
-        brain = catalog.searchResults(
-            portal_type='FaleConosco',  # Pegar pelo Objeto Arquivado = True
-            arquivado=True,
-            sort_on='modified'
+        brain   = catalog.searchResults(
+            portal_type  = 'FaleConosco', # Pegar pelo Objeto Arquivado = True
+            arquivado    = True,
+            sort_on      = 'modified'
         )
+
 
         mensagens = []
         for item in brain:
@@ -34,27 +35,37 @@ class MensagensArquivadasView(grok.View):
             pathPhisical = obj.getPhysicalPath()
 
             listarHistorico = catalog.searchResults(
-                portal_type='Historico',
-                path='/'.join(pathPhisical),
-                sort_limit=1,
-                sort_on='created',
-                sort_order='reverse'
-            )[:1]
+                portal_type = 'Historico',
+                path        = '/'.join(pathPhisical),
+                sort_limit  = 1,
+                sort_on     = 'created',
+                sort_order  = "reverse"
+                )[:1]
 
             nome = ''
-            obs = ''
+            obs  = ''
             if listarHistorico:
                 objHistorico = listarHistorico[0].getObject()
-                nome = objHistorico.getNome()
-                obs = objHistorico.getObservacao()
+                nome         = objHistorico.getNome()
+                obs          = objHistorico.getObservacao()
 
             mensagens.append(
-                {
-                    'UID': obj.UID,
-                    'assunto': obj.getAssunto(),
-                    'nome': nome,
-                    'observacao': obs
-                }
+              {
+                  'UID'  : obj.UID,
+                  'assunto': obj.getAssunto(),
+                  'nome': nome,
+                  'observacao': obs
+              }
             )
 
         return mensagens
+
+
+
+
+
+
+
+
+
+

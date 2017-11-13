@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from five import grok
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
-from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
-from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+from plone import api
 from Products.statusmessages.interfaces import IStatusMessage
-
+from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
 
 grok.templatedir('templates')
 
 
-class DesarquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, grok.View):
+class DesarquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView ,grok.View):
     """docstring for ClassName"""
     grok.name('desarquivar-mensagem')
     grok.require('zope2.View')
@@ -19,9 +18,9 @@ class DesarquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, grok
     def assunto(self):
         # fazer busca e retornar assunto da msg
         catalog = api.portal.get_tool(name='portal_catalog')
-        brain = catalog.searchResults(UID=self.uids)
+        brain   = catalog.searchResults(UID=self.uids)
         if brain:
-            form = brain[0].getObject()
+            form     = brain[0].getObject()
             mensagem = form.getAssunto()
             return mensagem
 
@@ -32,12 +31,12 @@ class DesarquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, grok
             return self._back_to_admin()
 
         catalog = api.portal.get_tool(name='portal_catalog')
-        brain = catalog.searchResults(UID=uids)
+        brain   = catalog.searchResults(UID=uids)
 
         if brain:
 
             obj = brain[0].getObject()
-            obj.setArquivado(False)  # Verificar se este valor está sendo passado corretamente.
+            obj.setArquivado(False) # Verificar se este valor está sendo passado corretamente.
             import transaction; transaction.commit()
             # obj.reindexObject()
             catalog.reindexObject(obj)
@@ -48,6 +47,7 @@ class DesarquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, grok
 
             self.message('Mensagem não pode ser encontrada')
             return self._back_to_admin()
+
 
     def _back_to_admin(self):
         p_url = api.portal.get().absolute_url()

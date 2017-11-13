@@ -75,8 +75,6 @@
                         <div>
                             <input value="" name="assunto" placeholder="Assunto" type="text"
                             >
-
-
                         </div>
                         <!-- <div>
                             <select name="assunto">
@@ -170,10 +168,8 @@
         </li>
         <li><a href="#" id="fale-gerar-charts">Gerar Gráfico</a></li>
         <li><a href="" tal:attributes="href string:@@mensagens-arquivadas-admin" class="">Mensagens arquivadas</a></li>
-
     </ul>
   </div>
-
 <div class="container-results">
     <div class="results-search" ajax-content="fale-conosco-busca">
         <div class="table-box"
@@ -208,14 +204,11 @@
                         tal:define="zebra python:repeat['item'].odd and 'odd' or 'even'"
                         tal:attributes="class string:fale-mais-mensagem ${zebra}">
                         <td tal:define="status item/status">
-
                             <input class="fale-select" name="fale-select" type="checkbox" value="item/uid"
                                                        tal:condition="python: status != 'respondido'"
                                                        tal:attributes="value item/uid
                                                        "/>
-
                         </td>
-
                         <td tal:define="status item/status" style="text-align: center;">
                             <a href="#" class="fale-mais-mensagem">
                                 <img src="" alt=""
@@ -234,10 +227,8 @@
                                         acao context/REQUEST/acao|nothing;
                                         msg context/REQUEST/msg|nothing;
                                         member context/@@plone_portal_state/member;">
-
                             <h1 tal:content="item/assunto"></h1>
                             <tal:mensagem repeat="mensagem python:context.restrictedTraverse('@@mensagens').get_mensagens(uid=UID)">
-
                               <!-- cabeçalho da msg -->
                               <div class="fale-mensagem-cabecalho" tal:condition="not: repeat/mensagem/start">
                                   <span class="negrito"
@@ -254,9 +245,7 @@
                                        tal:content="mensagem/mensagem"></div>
                               </div>
                               <!-- fim conteudo da msg -->
-
                               <br />
-
                               <div tal:define="resp mensagem/responsavel;
                                                estado mensagem/estado"
                                    tal:condition="python: not acao and
@@ -271,17 +260,14 @@
                                         <a href="#" id="fale-mensagem-responder-new-page"
                                            tal:attributes="href string:${context/portal_url}/${resp_action}">Responder</a>
                                       </span>
-
                                       <span tal:condition="python:view.can_reply(estado, resp)">
                                         | <a href="@@usuarios" class="fale-mensagem-encaminhar link-overlay"
                                              tal:attributes="id string:fale-encaminhar-${repeat/item/number};
                                                              rel string:#pb_${repeat/item/number}">Encaminhar</a>
                                       </span>
-
                                       <span tal:condition="python:view.can_rescue(item, estado)">
                                         | <a href="#" id="fale-mensagem-resgatar">Resgatar</a>
                                       </span>
-
                                       <span tal:condition="view/is_admin">
                                         | <a href="" id="fale-mensagem-arquivar"
                                              tal:attributes="href string:${context/portal_url}/@@justificar-arquivamento-de-mensagem?uids=${UID}">Arquivar</a>
@@ -302,15 +288,10 @@
                                             <input type="submit" value="Salvar" />
                                           </form>
                                       </div>
-
                                     </p>
-
                               </div>
-
                               <div id="fale-mensagem-form" />
-
                               <div class="fale-mensagem-form" style="display: none" tal:condition="repeat/mensagem/end">
-
                                     <form action="@@add-mensagem" name="add-mensagem" method="post"
                                           id="fale-mensagem-form-id" tal:attributes="id string:fale-encaminhar-${repeat/item/number}"  >
                                         <input type="hidden" name="nome" value="" tal:attributes="value mensagem/nome" />
@@ -352,7 +333,6 @@
 
             <div class="fale-tabela-resultado"
                  tal:condition="results" >
-
                  <ul>
                     <!-- <li><a href="#" id="fale-selecionar">Selecionar todos</a></li>
                     <li><a href="#" id="fale-desmarcar">Desmarcar todos</a></li> -->
@@ -371,14 +351,10 @@
                   <li><a href="#" id="fale-gerar-charts">Gerar Gráfico</a></li>
                   <li><a href="" tal:attributes="href string:@@mensagens-arquivadas-admin" class="">Mensagens arquivadas</a></li>
                   </ul>
-
            </div>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
         </div>
     </div>
-
 </div>
-
 </metal:block>
-
 </html>

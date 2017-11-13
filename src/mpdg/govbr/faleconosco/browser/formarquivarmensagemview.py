@@ -1,31 +1,34 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from five import grok
-from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
-from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
 from plone import api
-from plone.autoform import directives
-from plone.directives import form
-from plone.i18n.normalizer import idnormalizer
 from Products.CMFCore.interfaces import ISiteRoot
-from Products.CMFCore.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
-from z3c.form import button
+from plone.directives import form
 from zope import schema
+from z3c.form import button
+from plone.autoform import directives
+
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
+from datetime import datetime
+from plone.i18n.normalizer import idnormalizer
+from Products.CMFCore.utils import getToolByName
+from mpdg.govbr.faleconosco.browser.utilities import FluxoMensagensView
 
 
 grok.templatedir('templates')
 
-
 # Criando a interface do formulário
 class IFormArquivarMensagemView(form.Schema):
     # Criando os campos do formulário
-    directives.mode(uids='hidden')
-    uids = schema.TextLine(title=u'UIDS', required=True)
-    observacao = schema.Text(title=u'Motivo:', required=True)
 
+
+    directives.mode(uids='hidden')
+    uids=schema.TextLine(title=u"UIDS", required=True)
+    observacao=schema.Text(title=u"Motivo:", required=True)
 
 # Renderizando o formulário
+
+
 @form.default_value(field=IFormArquivarMensagemView['uids'])
 def default_uids(data):
     return data.request.get('uids')
@@ -42,21 +45,20 @@ class FormArquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, for
     schema = IFormArquivarMensagemView
     ignoreContext = True
 
-    label = u'Arquivar Mensagem'
+    label=u"Arquivar Mensagem"
 
     def assunto(self):
         # fazer busca e retornar assunto da msg
-        catalog = api.portal.get_tool(name='portal_catalog')
-        brain = catalog.searchResults(UID=self.uids)
+        catalog=api.portal.get_tool(name='portal_catalog')
+        brain=catalog.searchResults(UID=self.uids)
         if brain:
-            form = brain[0].getObject()
-            mensagem = form.getAssunto()
+            form=brain[0].getObject()
+            mensagem=form.getAssunto()
             return mensagem
 
     def update(self):
         # Captura o UID da mensagem.
         self.uids = self.request.form.get('form.widgets.uids') or self.request.form.get('uids')
-
         # Retira as opões de edição da página.(Barrinha verde)
         self.request.set('disable_border', True)
         self.request.set('disable_plone.leftcolumn', True)
@@ -78,17 +80,18 @@ class FormArquivarMensagemView(FaleConoscoAdminRequired, FluxoMensagensView, for
         if errors:
             self.status = self.formErrorsMessage
 
-        msg = data['observacao']
-        nome = api.user.get_current().id  # Pega o id do usuário logado.
-        catalog = api.portal.get_tool(name='portal_catalog')
-        brain = catalog.searchResults(UID=self.uids)
+        msg=data['observacao']
+        nome=api.user.get_current().id # Pega o id do usuário logado.
+        catalog= pi.portal.get_tool(name='portal_catalog')
+        brain=catalog.searchResults(UID=self.uids)
 
         if brain:
             fale = brain[0].getObject()
-            fale.setArquivado(True)  # Verificar se este valor está sendo passado corretamente.
+            fale.setArquivado(True) # Verificar se este valor está sendo passado corretamente.
 
             # Cria o objeto historico dentro do tipo de conteudo FaleConosco
-            id = idnormalizer.normalize(nome) + '-' + str(datetime.now().microsecond)
+            id = idnormalizer.normalize(nome) + \
+                    '-' + str(datetime.now().microsecond)
 
             type_info = pt.getTypeInfo('Historico')
 
