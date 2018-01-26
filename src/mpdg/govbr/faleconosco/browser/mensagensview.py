@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from five import grok
 from plone import api
 from Acquisition import aq_parent
-
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
-
 from mpdg.govbr.faleconosco.browser.utilities import get_wf_history
 
 grok.templatedir('templates')

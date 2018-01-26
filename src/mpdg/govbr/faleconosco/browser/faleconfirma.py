@@ -1,25 +1,21 @@
 # -*- coding: utf-8 -*-
-
 from five import grok
 from datetime import datetime
-
 from plone import api
 from plone.i18n.normalizer import idnormalizer
-
 from zope.annotation import IAnnotations
 from zope.interface import Interface
-
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.CMFCore.utils import getToolByName
-
 from mpdg.govbr.faleconosco.setuphandlers import create_folder_fale
 from mpdg.govbr.faleconosco import MessageFactory as _
 from mpdg.govbr.faleconosco.config import KEY_CONFIRMA
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
 
-class FaleConfirma(grok.View):
+class FaleConfirma(FaleConoscoAdminRequired, grok.View):
     """ view para confirmar o fale conosco e criar o conteudo
     """
     grok.context(Interface)

@@ -8,7 +8,6 @@ from plone.supermodel import model
 from zope import schema
 from z3c.form import button
 from plone.autoform import directives
-
 from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired, FluxoMensagensView
 
 

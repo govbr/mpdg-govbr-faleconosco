@@ -1,30 +1,24 @@
 # -*- coding: utf-8 -*-
-
 import pandas as pd
 from pandas.tseries.offsets import BDay
-
 from DateTime import DateTime
-
 from five import grok
-
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
-
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-
 from mpdg.govbr.faleconosco.config import DIAS_PRAZO, DIAS_ATRASO, DIAS_ALERTA
 from mpdg.govbr.faleconosco.interfaces import IFaleConosco
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
 
-class FaleChartsView(grok.View):
+class FaleChartsView(FaleConoscoAdminRequired, grok.View):
     """ view para os gráficos
     """
-
     grok.name('fale-conosco-charts')
-    grok.require('zope2.View')
+    grok.require('cmf.ManagePortal')
     grok.context(ISiteRoot)
 
     no_prazo = 0

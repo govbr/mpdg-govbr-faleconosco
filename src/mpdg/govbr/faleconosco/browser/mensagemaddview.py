@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from five import grok
 from datetime import datetime
 from Products.CMFCore.interfaces import ISiteRoot
@@ -11,10 +10,11 @@ from plone.i18n.normalizer import idnormalizer
 from plone import api
 from mpdg.govbr.faleconosco.mailer import simple_send_mail
 from mpdg.govbr.faleconosco.utils import prepare_email_message
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
-class MensagemAddView(grok.View):
+class MensagemAddView(FaleConoscoAdminRequired, grok.View):
     """ View para adicionar mensagem ao Fale Conosco """
 
     grok.name('add-mensagem')

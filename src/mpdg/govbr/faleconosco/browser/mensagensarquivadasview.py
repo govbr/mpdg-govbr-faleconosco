@@ -4,10 +4,11 @@ from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from plone import api
 from DateTime import DateTime
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
-class MensagensArquivadasView(grok.View):
+class MensagensArquivadasView(FaleConoscoAdminRequired, grok.View):
     """ View para administração das mensagens arquivadas"""
 
     grok.name('mensagens-arquivadas-admin')

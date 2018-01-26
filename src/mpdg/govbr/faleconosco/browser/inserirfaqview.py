@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-
 from five import grok
-
 from plone import api
-
 from Products.CMFCore.interfaces import ISiteRoot
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
 
-class InserirFaqView(grok.View):
+class InserirFaqView(FaleConoscoAdminRequired, grok.View):
     """ View para adicionar várias mensagens ao Fale Conosco
     """
 

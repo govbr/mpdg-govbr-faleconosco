@@ -2,11 +2,12 @@
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
 
-class UsuariosView(grok.View):
+class UsuariosView(FaleConoscoAdminRequired, grok.View):
     """ View para adicionar usuarios ao encaminhar
     """
 

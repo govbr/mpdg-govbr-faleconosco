@@ -2,10 +2,11 @@
 from five import grok
 from plone import api
 from Products.CMFCore.interfaces import ISiteRoot
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
-class TextosProntosView(grok.View):
+class TextosProntosView(FaleConoscoAdminRequired, grok.View):
     """ View para adicionar vários textos prontos ao Fale Conosco
     """
 
