@@ -18,7 +18,7 @@ class FaleChartsView(FaleConoscoAdminRequired, grok.View):
     """ view para os gráficos
     """
     grok.name('fale-conosco-charts')
-    grok.require('cmf.ManagePortal')
+    grok.require('zope2.View')
     grok.context(ISiteRoot)
 
     no_prazo = 0

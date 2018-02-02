@@ -5,6 +5,7 @@ from plone import api
 from Products.contentmigration.basemigrator.walker import CatalogWalker
 from Products.contentmigration.archetypes import InplaceATFolderMigrator
 from StringIO import StringIO
+from mpdg.govbr.faleconosco.browser.utilities import FaleConoscoAdminRequired
 
 grok.templatedir('templates')
 
@@ -44,9 +45,9 @@ class FaleConoscoBaseMigrator(InplaceATFolderMigrator):
         self.new.setCreationDate(self.old.created())
         self.new.reindexObject()
 
-class FixBrokenObjects(grok.View):
+class FixBrokenObjects(FaleConoscoAdminRequired, grok.View):
     grok.name('fixbrokenobjects')
-    grok.require('cmf.ManagePortal')
+    grok.require('zope2.View')
     grok.context(Interface)
 
     def __call__(self):

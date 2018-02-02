@@ -19,7 +19,7 @@ class CategoriaChartsView(FaleConoscoAdminRequired, grok.View):
     """ view para os gráficos
     """
     grok.name('categoria-charts-view')
-    grok.require('cmf.ManagePortal')
+    grok.require('zope2.View')
     grok.context(ISiteRoot)
 
 
