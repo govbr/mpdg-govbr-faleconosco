@@ -47,7 +47,7 @@ class FaleConoscoBaseMigrator(InplaceATFolderMigrator):
 
 class FixBrokenObjects(FaleConoscoAdminRequired, grok.View):
     grok.name('fixbrokenobjects')
-    grok.require('zope2.View')
+    grok.require('cmf.ManagePortal')
     grok.context(Interface)
 
     def __call__(self):
